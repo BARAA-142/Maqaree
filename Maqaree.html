@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منهاج المقارئ - مسجد الكنجلبة</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  --blue:#274F7D;
+  --blue-dark:#1D3F66;
+  --blue-light:#EEF4FA;
+
+  --gold:#D4AF4F;
+  --gold-dark:#B58D2D;
+  --gold-light:#F7E8B5;
+
+  --bg:#F7F8FA;
+  --card-bg:#FFFFFF;
+
+  --text:#22314A;
+  --text-muted:#64748B;
+  --text-light:#94A3B8;
+
+  --border:#DCE4EE;
+
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:18px;
+
+  --shadow-sm:0 3px 8px rgba(39,79,125,.08);
+  --shadow-md:0 10px 25px rgba(39,79,125,.12);
+}
+.header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.header-logo{
+    width:120px;
+    max-width:30vw;
+    filter:drop-shadow(0 4px 10px rgba(0,0,0,.15));
+}
+
+.header-content{
+    text-align:right;
+}
+
+.header-content h1{
+    color:white;
+    font-size:32px;
+    font-weight:900;
+}
+
+.header-content p{
+    color:var(--gold-light);
+    font-size:15px;
+}
+
+.level-tabs{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    padding:20px;
+    background:white;
+}
+
+.level-btn{
+    border:none;
+    background:var(--blue-light);
+    color:var(--blue-dark);
+    padding:10px 20px;
+    border-radius:999px;
+    font-family:'Tajawal';
+    font-weight:700;
+    cursor:pointer;
+}
+
+.level-btn.active{
+    background:var(--gold);
+    color:white;
+}
+
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--gold);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--green-dark);
+  padding: 28px 24px 22px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    60deg, transparent, transparent 30px,
+    rgba(255,255,255,0.02) 30px, rgba(255,255,255,0.02) 31px
+  );
+}
+.site-header h1 {
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: 900;
+  position: relative;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+.site-header p {
+  color: rgba(245,230,179,0.7);
+  font-size: 13px;
+  position: relative;
+}
+
+/* ── LEGEND ── */
+.legend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 14px 20px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── TABS ── */
+.tabs-bar {
+  display: flex;
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tabs-bar::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  flex-shrink: 0;
+  padding: 13px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--green-dark); }
+.tab-btn.active {
+  color: var(--green-dark);
+  border-bottom-color: var(--green-mid);
+}
+
+/* ── CONTAINER ── */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+/* ── TAB PANEL ── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── LEVEL BLOCK ── */
+.level-block {
+  margin-bottom: 32px;
+}
+.level-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  border: 1px solid;
+}
+.level-header.beginner{
+    background:#EFF6FF;
+    border-color:#93C5FD;
+}
+
+.level-header.mid1{
+    background:#F8FAFC;
+    border-color:#CBD5E1;
+}
+
+.level-header.mid2{
+    background:#FEF3C7;
+    border-color:#FBBF24;
+}
+
+.level-header.advanced{
+    background:#E8F5E9;
+    border-color:#4CAF50;
+}
+.level-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.beginner .level-badge { background: #639922; color: #fff; }
+.mid1 .level-badge     { background: #378add; color: #fff; }
+.mid2 .level-badge     { background: #ba7517; color: #fff; }
+.advanced .level-badge { background: #d85a30; color: #fff; }
+
+.level-title {
+  font-size: 14px;
+  font-weight: 700;
+  flex: 1;
+}
+.level-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── WEEKS GRID ── */
+.weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 700px) {
+  .weeks-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 420px) {
+  .weeks-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── WEEK CARD ── */
+.week-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:14px;
+    transition:.25s;
+    cursor:pointer;
+}
+
+.week-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--gold);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+
+.week-card.selected {
+  border-color: var(--green-mid);
+  background: var(--green-lighter);
+  box-shadow: 0 0 0 2px rgba(45,122,79,0.15);
+}
+.week-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-light);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+.week-date {
+  font-size: 10px;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+.week-topic {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 3px;
+}
+.week-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+.type-pill {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.type-recitation { background: #dcf0cd; color: #2d6010; }
+.type-theory     { background: #dbeafe; color: #1e40af; }
+.type-mixed      { background: #fef3c7; color: #92400e; }
+.type-review     { background: #fee2e2; color: #991b1b; }
+
+/* ── DETAIL PANEL ── */
+.detail-panel {
+  display: none;
+  margin-top: 10px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1.5px solid var(--green-mid);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  animation: slideDown 0.2s ease;
+}
+.detail-panel.visible { display: block; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.detail-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+.detail-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+.detail-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.close-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  transition: background 0.15s;
+}
+.close-btn:hover { background: var(--bg); }
+
+.detail-list {
+  list-style: none;
+  margin-bottom: 14px;
+}
+.detail-list li {
+  padding: 5px 0 5px 0;
+  padding-right: 16px;
+  position: relative;
+  font-size: 13px;
+  color: var(--text);
+  border-bottom: 1px solid #f3f4f6;
+}
+.detail-list li:last-child { border-bottom: none; }
+.detail-list li::before {
+  content: '▸';
+  position: absolute;
+  right: 0;
+  color: var(--green-mid);
+  font-size: 11px;
+  top: 7px;
+}
+
+/* ── LINKS ── */
+.detail-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.detail-link:hover { opacity: 0.85; transform: translateY(-1px); }
+.detail-link:active { transform: scale(0.97); }
+.link-youtube {
+  background: #FF0000;
+  color: #fff;
+}
+.link-telegram {
+  background: #0088cc;
+  color: #fff;
+}
+.link-placeholder {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── ICON SVG ── */
+.icon { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+/* ── NOTE BOX ── */
+.note-box {
+  margin-top: 8px;
+  padding: 12px 16px;
+  border-right: 3px solid var(--green-mid);
+  background: var(--green-lighter);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.note-box strong { color: var(--green-dark); }
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: var(--text-light);
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+
+  <div class="header-inner">
+
+      <img
+          src="logo.png"
+          alt="مسجد الكنجلبة"
+          class="header-logo">
+
+      <div class="header-content">
+          <h1>منهاج المقارئ الصيفية</h1>
+
+          <p>
+            مسجد الكنجلبة
+            <span>•</span>
+            صيف 1447 هـ
+          </p>
+      </div>
+
+  </div>
+
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#2d6010"></div>تلقين عملي</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1e40af"></div>نظري</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#92400e"></div>عملي + نظري</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#991b1b"></div>مراجعة وتقييم</div>
+</div>
+
+<nav class="tabs-bar">
+
+  <button
+      class="tab-btn active"
+      onclick="showCategory('primary')">
+
+      الابتدائي
+  </button>
+
+  <button
+      class="tab-btn"
+      onclick="showCategory('secondary')">
+
+      الإعدادي والثانوي
+  </button>
+
+</nav>
+
+
+<div class="container">
+
+  <!-- ═══ مبتدئ ═══ -->
+  <div id="panel-ibtidai" class="tab-panel active">
+    <div class="level-block">
+      <div class="level-header beginner">
+        <span class="level-badge">مبتدئ</span>
+        <span class="level-title">الفئة الابتدائية (الصف 1–6)</span>
+        <span class="level-meta">العلامة الكاملة: 18 · الحد الأدنى: 13</span>
+      </div>
+      <div class="weeks-grid" id="grid-ibtidai-a"></div>
+      <div class="detail-panel" id="detail-ibtidai-a"></div>
+    </div>
+    <div class="level-block">
+      <div class="level-header beginner">
+        <span class="level-badge">مبتدئ</span>
+        <span class="level-title">الفئة الإعدادية والثانوية</span>
+        <span class="level-meta">العلامة الكاملة: 18 · الحد الأدنى: 13</span>
+      </div>
+      <div class="weeks-grid" id="grid-ibtidai-b"></div>
+      <div class="detail-panel" id="detail-ibtidai-b"></div>
+    </div>
+  </div>
+
+  <!-- ═══ متوسط 1 ═══ -->
+  <div id="panel-mutawassit1" class="tab-panel">
+    <div class="level-block">
+      <div class="level-header mid1">
+        <span class="level-badge">متوسط 1</span>
+        <span class="level-title">الفئة الابتدائية (الصف 1–6)</span>
+        <span class="level-meta">العلامة الكاملة: 24 · الحد الأدنى: 19</span>
+      </div>
+      <div class="weeks-grid" id="grid-mut1-a"></div>
+      <div class="detail-panel" id="detail-mut1-a"></div>
+    </div>
+    <div class="level-block">
+      <div class="level-header mid1">
+        <span class="level-badge">متوسط 1</span>
+        <span class="level-title">الفئة الإعدادية والثانوية</span>
+        <span class="level-meta">العلامة الكاملة: 24 · الحد الأدنى: 19</span>
+      </div>
+      <div class="weeks-grid" id="grid-mut1-b"></div>
+      <div class="detail-panel" id="detail-mut1-b"></div>
+    </div>
+  </div>
+
+  <!-- ═══ متوسط 2 ═══ -->
+  <div id="panel-mutawassit2" class="tab-panel">
+    <div class="level-block">
+      <div class="level-header mid2">
+        <span class="level-badge">متوسط 2</span>
+        <span class="level-title">الفئة الابتدائية (الصف 1–6)</span>
+        <span class="level-meta">العلامة الكاملة: 24 · الحد الأدنى: 19</span>
+      </div>
+      <div class="weeks-grid" id="grid-mut2-a"></div>
+      <div class="detail-panel" id="detail-mut2-a"></div>
+    </div>
+    <div class="level-block">
+      <div class="level-header mid2">
+        <span class="level-badge">متوسط 2</span>
+        <span class="level-title">الفئة الإعدادية والثانوية</span>
+        <span class="level-meta">العلامة الكاملة: 24 · الحد الأدنى: 19</span>
+      </div>
+      <div class="weeks-grid" id="grid-mut2-b"></div>
+      <div class="detail-panel" id="detail-mut2-b"></div>
+    </div>
+  </div>
+
+  <!-- ═══ متقدم ═══ -->
+  <div id="panel-mutaqaddim" class="tab-panel">
+    <div class="level-block">
+      <div class="level-header advanced">
+        <span class="level-badge">متقدم</span>
+        <span class="level-title">الفئة الابتدائية (الصف 1–6)</span>
+        <span class="level-meta">العلامة المطلوبة: 18 فما فوق</span>
+      </div>
+      <div class="weeks-grid" id="grid-adv-a"></div>
+      <div class="detail-panel" id="detail-adv-a"></div>
+    </div>
+    <div class="level-block">
+      <div class="level-header advanced">
+        <span class="level-badge">متقدم</span>
+        <span class="level-title">الفئة الإعدادية والثانوية</span>
+        <span class="level-meta">العلامة المطلوبة: 18 فما فوق</span>
+      </div>
+      <div class="weeks-grid" id="grid-adv-b"></div>
+      <div class="detail-panel" id="detail-adv-b"></div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>ملاحظة للأساتذة:</strong> الفارق الرئيسي بين الابتدائي وغيره في التعامل مع التلقين: يُعطى الابتدائيون وقتًا أطول للتلقين العملي مع تبسيط الجانب النظري، بينما يُركّز مع الإعدادي والثانوي على النظري بشكل أسرع. اضغط على أي أسبوع لعرض تفاصيله وروابط الشرح.
+  </div>
+
+</div>
+
+<footer class="footer">
+  مسجد الكنجلبة · دورة المقرأة الصيفية 1446هـ
+</footer>
+
+<script>
+// ═══════════════════════════════════════════
+//  البيانات
+// ═══════════════════════════════════════════
+
+const DATES = [
+  'يونيو 6–12','يونيو 13–19','يونيو 20–26','يونيو 27–يوليو 3',
+  'يوليو 4–10','يوليو 11–17','يوليو 18–24','يوليو 25–31',
+  'أغسطس 1–7','أغسطس 8–14','أغسطس 15–21','أغسطس 22–25'
+];
+
+// نوع الرابط: 'youtube' | 'telegram' | null
+// ضع الرابط في حقل url، أو اتركه null إذا لم يكن جاهزًا
+
+const DATA = {
+'ibtidai-a': [
+  { topic:'ضبط الحركات', sub:'الفتحة والضمة والكسرة — تلقينًا', type:'recitation',
+    detail:['إتمام الحركات الثلاث دون اختصار','عدم مطّها لتصبح حرفَ مدّ','التدرب على البسملة وقصار السور'],
+    links:[ {type:'youtube', url:'https://www.youtube.com/YOUR_LINK_HERE', label:'شرح الحركات'}, {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'قناة المقرأة'} ] },
+  { topic:'المد الطبيعي', sub:'تطبيق عملي بالتلقين', type:'recitation',
+    detail:['ضبط زمن المد الطبيعي (حركتان)','عدم إطالته كالمد الممدود','أمثلة: الطارق - الثاقب'],
+    links:[ {type:'youtube', url:null, label:'شرح المد الطبيعي'} ] },
+  { topic:'التشديد', sub:'الشدة وحقها في النطق', type:'recitation',
+    detail:['تمييز الحرف المشدد في القراءة','الوقوف صحيحًا على المشدد','أمثلة: وتّب - لمّا - ولكنّ'],
+    links:[ {type:'youtube', url:null, label:'شرح التشديد'} ] },
+  { topic:'الحروف الشديدة والرخوة', sub:'زمن الحرف الساكن', type:'recitation',
+    detail:['الشديد: قطع الهواء (أجد قط بكت)','الرخو: جريان الهواء','البيني: متوسط (لن عمر)'],
+    links:[ {type:'youtube', url:null, label:'شرح صفات الحروف'} ] },
+  { topic:'تصفية الغنة', sub:'النطق دون أنفنة', type:'recitation',
+    detail:['لا يخرج صوت من الأنف','خاصةً عند حروف المد (ا و ي)','التأكد بإغلاق الأنف أثناء القراءة'],
+    links:[ {type:'youtube', url:null, label:'شرح الغنة'} ] },
+  { topic:'الهمزة والغين والخاء', sub:'مخارج مميزة', type:'recitation',
+    detail:['عدم قلقلة الهمزة الساكنة','الغين والخاء: لكل مخرجه الخاص','عدم إبدال أحدهما بالآخر'],
+    links:[ {type:'youtube', url:null, label:'شرح المخارج'} ] },
+  { topic:'العين والجيم', sub:'مخرجان دقيقان', type:'recitation',
+    detail:['العين: دون تفخيم أو تحويل للألف','الجيم: ليست رخوة ولا تشبه الشين','التدرب على: النجم - الطارق'],
+    links:[ {type:'youtube', url:null, label:'شرح العين والجيم'} ] },
+  { topic:'اللام الشمسية والقمرية', sub:'عملي مع مدخل نظري', type:'mixed',
+    detail:['تمييز اللام الشمسية: الطارق الجبال','اللام القمرية: الحمد - الكتاب','سؤال نظري مبسّط عن الفرق'],
+    links:[ {type:'youtube', url:null, label:'شرح اللام'} ] },
+  { topic:'الأحرف اللثوية + الراء', sub:'ظ ذ ث — وعدم تكرير الراء', type:'recitation',
+    detail:['إخراج اللسان عند طرف الثنية','عدم نطقها سينًا أو زايًا','عدم تكرير الراء خاصةً المشددة'],
+    links:[ {type:'youtube', url:null, label:'شرح اللثويات'} ] },
+  { topic:'أحكام النون والميم', sub:'تلقينًا عمليًا (أساسيات)', type:'recitation',
+    detail:['الإخفاء عمليًا (النجم - إن كل نفس)','الإدغام بغنة (من ماء)','الإقلاب: الميم فوق الحرف'],
+    links:[ {type:'youtube', url:null, label:'شرح النون الساكنة'} ] },
+  { topic:'تنوين النصب + الوقف', sub:'الوقف والابتداء الأساسي', type:'mixed',
+    detail:['إضافة الألف عند الوقف على تنوين النصب','الوقف على ساكن','أمثلة: ماءً - النجم'],
+    links:[ {type:'youtube', url:null, label:'شرح الوقف'} ] },
+  { topic:'مراجعة شاملة + تقييم', sub:'الملاحظات الـ 18', type:'review',
+    detail:['مراجعة كل ما سبق','تطبيق على سور قصيرة كاملة','التقييم الختامي بالعلامة'],
+    links:[ {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'نتائج التقييم'} ] },
+],
+
+'ibtidai-b': [
+  { topic:'ضبط الحركات والمد', sub:'الأساسيات — وتيرة أسرع', type:'recitation',
+    detail:['إتمام الحركات الثلاث','المد الطبيعي وضبط زمنه','تلقين مكثف في حصة واحدة'],
+    links:[ {type:'youtube', url:null, label:'شرح الحركات'} ] },
+  { topic:'التشديد والحروف الشديدة', sub:'عملي وسريع', type:'recitation',
+    detail:['الشدة وحقها في النطق','الحروف الشديدة: أجد قط بكت','الحروف الرخوة والبينية'],
+    links:[ {type:'youtube', url:null, label:'شرح التشديد'} ] },
+  { topic:'الغنة والمخارج', sub:'تصفية الصوت', type:'recitation',
+    detail:['تصفية الحرف من الغنة','الهمزة: عدم قلقلتها','الغين والخاء ومخرجيهما'],
+    links:[ {type:'youtube', url:null, label:'شرح الغنة'} ] },
+  { topic:'العين والجيم واللثوية', sub:'مخارج دقيقة', type:'recitation',
+    detail:['العين بلا تفخيم','الجيم الصحيحة','ظ ذ ث: اللسان عند الثنية'],
+    links:[ {type:'youtube', url:null, label:'شرح المخارج'} ] },
+  { topic:'اللام الشمسية والقمرية', sub:'نظري وعملي معًا', type:'mixed',
+    detail:['القاعدة النظرية بسرعة','التطبيق على أمثلة متعددة','الربط بالقرآن مباشرة'],
+    links:[ {type:'youtube', url:null, label:'شرح اللام'} ] },
+  { topic:'الراء وأحكامها المبدئية', sub:'عدم التكرير', type:'recitation',
+    detail:['عدم تكرير الراء','التفخيم المبدئي للراء','ترقيقها في حالات واضحة'],
+    links:[ {type:'youtube', url:null, label:'شرح الراء'} ] },
+  { topic:'أحكام النون الساكنة', sub:'نظري وعملي', type:'mixed',
+    detail:['الإظهار - الإخفاء - الإدغام - الإقلاب','قاعدة مبسطة لكل حكم','تطبيق على آيات مختارة'],
+    links:[ {type:'youtube', url:null, label:'شرح النون الساكنة'} ] },
+  { topic:'أحكام الميم الساكنة', sub:'نظري وعملي', type:'mixed',
+    detail:['الإخفاء الشفوي','الإدغام الشفوي (الميم في الميم)','الإظهار الشفوي'],
+    links:[ {type:'youtube', url:null, label:'شرح الميم الساكنة'} ] },
+  { topic:'المدود الأساسية', sub:'الطبيعي والمتصل والمنفصل', type:'mixed',
+    detail:['المد الطبيعي: 2 حركة','المتصل والمنفصل: 4-5 حركات','التطبيق مع التلقي'],
+    links:[ {type:'youtube', url:null, label:'شرح المدود'} ] },
+  { topic:'الوقف والابتداء', sub:'قواعد الوقف الأساسية', type:'mixed',
+    detail:['الوقف على ساكن','تنوين النصب والألف','الوقف الاضطراري والاختياري'],
+    links:[ {type:'youtube', url:null, label:'شرح الوقف'} ] },
+  { topic:'تكامل المهارات', sub:'قراءة آيات متواصلة', type:'recitation',
+    detail:['قراءة سور كاملة بتطبيق الأحكام','تصحيح الأخطاء الجماعية','التعزيز الإيجابي'],
+    links:[ {type:'telegram', url:null, label:'مواد المراجعة'} ] },
+  { topic:'تقييم ختامي', sub:'الملاحظات الـ 18', type:'review',
+    detail:['تقييم فردي شامل','رصد العلامة وتحديد المستوى','توجيه للمستوى التالي'],
+    links:[ {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'نتائج التقييم'} ] },
+],
+
+'mut1-a': [
+  { topic:'مراجعة المبتدئ', sub:'تثبيت الأساس', type:'recitation',
+    detail:['مراجعة أبرز ملاحظات المبتدئ','قراءة سور قصيرة كاملة','رصد نقاط الضعف'],
+    links:[ {type:'youtube', url:null, label:'مراجعة شاملة'} ] },
+  { topic:'النون الساكنة — تفصيل', sub:'الإظهار والإخفاء', type:'mixed',
+    detail:['الإظهار الحلقي: تطبيق جيد','الإخفاء: زمنه وغنته','أمثلة: النجم - إن كل نفس'],
+    links:[ {type:'youtube', url:null, label:'شرح الإظهار والإخفاء'} ] },
+  { topic:'النون الساكنة — تكملة', sub:'الإدغام والإقلاب', type:'mixed',
+    detail:['الإدغام بغنة وبلا غنة','الإقلاب: الميم فوق الحرف','النظري الكامل لأحكام النون'],
+    links:[ {type:'youtube', url:null, label:'شرح الإدغام والإقلاب'} ] },
+  { topic:'الميم الساكنة — تفصيل', sub:'الأحكام الثلاثة', type:'mixed',
+    detail:['الإخفاء الشفوي','الإدغام الشفوي (الميم في الميم)','الإظهار الشفوي — النظري بند مستقل'],
+    links:[ {type:'youtube', url:null, label:'شرح الميم الساكنة'} ] },
+  { topic:'القلقلة', sub:'تطبيق عملي منضبط', type:'mixed',
+    detail:['أحرف القلقلة: قطب جد','أخطاء تُتجنب: تحريك المقلقل - همزه - مطّه','مراتب القلقلة وتمييزها'],
+    links:[ {type:'youtube', url:null, label:'شرح القلقلة'} ] },
+  { topic:'الهمس + لام الجلالة', sub:'التفخيم والترقيق', type:'mixed',
+    detail:['الهمس: دون مبالغة أو تقصير','لام الجلالة المفخمة: بعد فتح أو ضم','لام الجلالة المرققة: بعد كسر'],
+    links:[ {type:'youtube', url:null, label:'شرح لام الجلالة'} ] },
+  { topic:'اللام الشمسية والقمرية', sub:'تأكيد النظري', type:'theory',
+    detail:['النظري بشكل مفصّل','التمييز الفوري أثناء القراءة','اختبار شفهي سريع'],
+    links:[ {type:'youtube', url:null, label:'شرح اللام'} ] },
+  { topic:'المدود الأساسية', sub:'الطبيعي والمتصل والمنفصل', type:'mixed',
+    detail:['المد الطبيعي: ضبط الزمن بدقة','المد المتصل والمنفصل تطبيقًا','المد اللازم والعارض للسكون'],
+    links:[ {type:'youtube', url:null, label:'شرح المدود'} ] },
+  { topic:'نظري المدود', sub:'بند مستقل', type:'theory',
+    detail:['تمييز أنواع المدود نظريًا','ليس بالضرورة عدد الحركات','الجمع بين التطبيق والنظرية'],
+    links:[ {type:'youtube', url:null, label:'المدود نظريًا'} ] },
+  { topic:'أحكام الراء المبدئية', sub:'تفخيم وترقيق', type:'mixed',
+    detail:['تفخيم الراء في حالاتها عمليًا','ترقيق الراء في حالاتها عمليًا','الضم عند الحرف المفخم: خالدين'],
+    links:[ {type:'youtube', url:null, label:'شرح الراء'} ] },
+  { topic:'همزة الوصل', sub:'عند البدء', type:'mixed',
+    detail:['الحركة عند البدء بهمزة الوصل','الكسر والضم: أسكن-اجلس-كبرك-اضرب','التمييز العملي للحالات الثلاث'],
+    links:[ {type:'youtube', url:null, label:'شرح همزة الوصل'} ] },
+  { topic:'تقييم ختامي متوسط 1', sub:'العلامة الكاملة: 24', type:'review',
+    detail:['تقييم فردي على الـ 24 ملاحظة','الحد الأدنى 19 للانتقال','التمييز: وصل/وقف - الميم بين الجيم'],
+    links:[ {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'نتائج التقييم'} ] },
+],
+
+'mut1-b': [
+  { topic:'أحكام النون — نظري وعملي', sub:'الأحكام الأربعة دفعة واحدة', type:'mixed',
+    detail:['إظهار - إخفاء - إدغام - إقلاب','الجانب النظري الكامل للنون','أمثلة قرآنية متنوعة'],
+    links:[ {type:'youtube', url:null, label:'شرح النون الساكنة'} ] },
+  { topic:'أحكام الميم + القلقلة', sub:'نظري وعملي', type:'mixed',
+    detail:['الأحكام الثلاثة للميم وآلية التمييز','القلقلة الصحيحة وضبط أزمنتها','الجمع بينهما في قراءة واحدة'],
+    links:[ {type:'youtube', url:null, label:'شرح الميم والقلقلة'} ] },
+  { topic:'الهمس + لام الجلالة', sub:'نظري وعملي', type:'mixed',
+    detail:['حروف الهمس: فحثه شخص سكت','لام الجلالة بحالتيها','ربط بالقراءة الجارية'],
+    links:[ {type:'youtube', url:null, label:'شرح لام الجلالة'} ] },
+  { topic:'اللام الشمسية والقمرية', sub:'تأكيد نظري عميق', type:'theory',
+    detail:['الـ 14 شمسية والـ 14 قمرية','اختبار شفهي سريع','التمييز الفوري في القراءة'],
+    links:[ {type:'youtube', url:null, label:'شرح اللام'} ] },
+  { topic:'المدود: تطبيق + نظري', sub:'الطبيعي والمتصل والمنفصل', type:'mixed',
+    detail:['المدود الثلاثة الأساسية نظريًا','التطبيق على آيات طويلة','اللازم والعارض للسكون'],
+    links:[ {type:'youtube', url:null, label:'شرح المدود'} ] },
+  { topic:'نظري المدود الكامل', sub:'جميع أنواع المدود', type:'theory',
+    detail:['تمييز كل نوع بالاسم','الجمع بين النظري والتطبيق','تمرين كتابي أو شفهي'],
+    links:[ {type:'youtube', url:null, label:'المدود نظريًا'} ] },
+  { topic:'أحكام الراء', sub:'تفخيم وترقيق وأحوالهما', type:'mixed',
+    detail:['تفخيم الراء: حالات الفتح والضم','ترقيق الراء: حالات الكسر','حالات الخلاف والراء الساكنة'],
+    links:[ {type:'youtube', url:null, label:'شرح الراء'} ] },
+  { topic:'همزة الوصل + الوقف', sub:'عملي ونظري', type:'mixed',
+    detail:['همزة الوصل: الحالات الثلاث','الوقف والابتداء الأساسي','التمييز بين الوصل والوقف'],
+    links:[ {type:'youtube', url:null, label:'شرح همزة الوصل'} ] },
+  { topic:'الوقوف الخاصة', sub:'تمييز الوصل والوقف', type:'mixed',
+    detail:['الميم بين الجيم والسكت والقلة','الصلة في المطففين','الوقف التام والجائز والقبيح'],
+    links:[ {type:'youtube', url:null, label:'أحكام الوقف'} ] },
+  { topic:'تكامل وقراءة مكثفة', sub:'سور متكاملة', type:'recitation',
+    detail:['قراءة سور من جزء عم بالتطبيق الكامل','التصحيح الفوري','التقويم الذاتي'],
+    links:[ {type:'telegram', url:null, label:'مواد المراجعة'} ] },
+  { topic:'مراجعة شاملة', sub:'تثبيت كل الأحكام', type:'review',
+    detail:['مراجعة جميع الأحكام السابقة','تصحيح ما تبقى من أخطاء','الاستعداد للتقييم'],
+    links:[ {type:'telegram', url:null, label:'مواد المراجعة'} ] },
+  { topic:'تقييم ختامي متوسط 1', sub:'العلامة الكاملة: 24', type:'review',
+    detail:['تقييم فردي كامل','الحد الأدنى 19 للانتقال لمتوسط 2','كتابة ملاحظات للمستوى التالي'],
+    links:[ {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'نتائج التقييم'} ] },
+],
+
+'mut2-a': [
+  { topic:'المدود — تفصيل نظري', sub:'مد البدل ومد العوض', type:'theory',
+    detail:['مد الطبيعي ومد البدل: الفرق','مد العوض عند الوقف','التمييز نظريًا لا بعدد الحركات فقط'],
+    links:[ {type:'youtube', url:null, label:'شرح مد البدل'} ] },
+  { topic:'مد الصلة الصغرى والكبرى', sub:'نظري وعملي', type:'mixed',
+    detail:['مد الصلة الصغرى: هاء الضمير المتحرك','مد الصلة الكبرى: هاء الضمير + همز','أمثلة: إنه هو الغفور'],
+    links:[ {type:'youtube', url:null, label:'شرح مد الصلة'} ] },
+  { topic:'المد اللازم', sub:'كلمي وحرفي', type:'theory',
+    detail:['الكلمي المثقل والمخفف','الحرفي في الفواتح','التمييز العملي في القراءة'],
+    links:[ {type:'youtube', url:null, label:'شرح المد اللازم'} ] },
+  { topic:'مد اللين والعارض للسكون', sub:'نظري وعملي', type:'mixed',
+    detail:['مد اللين: و ي ساكنة قبل همز','مد العارض للسكون عند الوقف','ضبط الأزمنة في كليهما'],
+    links:[ {type:'youtube', url:null, label:'شرح مد اللين'} ] },
+  { topic:'أحكام الراء — تفصيل', sub:'نظري وعملي', type:'mixed',
+    detail:['مواطن التفخيم: أغلب الحالات','مواطن الترقيق: بعد الكسر','حالات الخلاف: الراء بعد ياء الجزم'],
+    links:[ {type:'youtube', url:null, label:'شرح الراء بالتفصيل'} ] },
+  { topic:'التفخيم والترقيق', sub:'الألف والغنة وحروف الاستعلاء', type:'theory',
+    detail:['تفخيم الألف وترقيقها حسب ما قبلها','الغنة تتبع ما بعدها تفخيمًا وترقيقًا','حروف الاستعلاء: خص ضغط قظ'],
+    links:[ {type:'youtube', url:null, label:'شرح التفخيم والترقيق'} ] },
+  { topic:'همزة الوصل — نظري كامل', sub:'البدء بالكسر والضم', type:'theory',
+    detail:['الكسر: الأصل في همزة الوصل','الضم: مع فعل الأمر الثلاثي','أوجه البسملة بين السورتين'],
+    links:[ {type:'youtube', url:null, label:'شرح همزة الوصل'} ] },
+  { topic:'صفات الحروف الأساسية', sub:'مدخل نظري', type:'theory',
+    detail:['الصفير: ص ز س','الاستطالة: الضاد','التفشي: الشين','القلقلة: مراتبها'],
+    links:[ {type:'youtube', url:null, label:'شرح صفات الحروف'} ] },
+  { topic:'الإدغام المتماثل والمتجانس', sub:'عملي مبدئي', type:'mixed',
+    detail:['المتماثل: قد دخلتم - يدركّم','المتجانس: إذ ظلمتم - قل ربّ','زمن الغنة بالتلقي'],
+    links:[ {type:'youtube', url:null, label:'شرح الإدغام'} ] },
+  { topic:'الإدغام المتقارب', sub:'عملي', type:'mixed',
+    detail:['يخلقكم - يرزقكم','التمييز عن باقي أنواع الإدغام','التطبيق في القراءة المتواصلة'],
+    links:[ {type:'youtube', url:null, label:'شرح المتقارب'} ] },
+  { topic:'مراجعة وقراءة مكثفة', sub:'تطبيق شامل', type:'recitation',
+    detail:['قراءة جزء كامل أو أكثر','تطبيق جميع أحكام المتوسط 2','رصد ما يحتاج مزيدًا من العمل'],
+    links:[ {type:'telegram', url:null, label:'مواد المراجعة'} ] },
+  { topic:'تقييم ختامي متوسط 2', sub:'العلامة الكاملة: 24', type:'review',
+    detail:['تقييم فردي على الـ 24 ملاحظة','الحد الأدنى 19 للانتقال للمتقدم','توجيه نحو القراءة الممتدة'],
+    links:[ {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'نتائج التقييم'} ] },
+],
+
+'mut2-b': [
+  { topic:'مراجعة متوسط 1 + مدود', sub:'التثبيت والانطلاق', type:'mixed',
+    detail:['مراجعة سريعة لأبرز أحكام متوسط 1','المدود: مد البدل - العوض - الصلة الصغرى','وتيرة أسرع مع التركيز على النظري'],
+    links:[ {type:'youtube', url:null, label:'مراجعة شاملة'} ] },
+  { topic:'المد اللازم والصلة الكبرى', sub:'نظري وعملي', type:'mixed',
+    detail:['المد اللازم بأنواعه','مد الصلة الكبرى','التمييز الفوري بين كل نوع'],
+    links:[ {type:'youtube', url:null, label:'شرح المد اللازم'} ] },
+  { topic:'مد اللين والعارض + تفخيم', sub:'مدخل التفخيم والترقيق', type:'mixed',
+    detail:['مد اللين والعارض للسكون','تفخيم الألف وترقيقها','الغنة وتبعيتها'],
+    links:[ {type:'youtube', url:null, label:'شرح التفخيم'} ] },
+  { topic:'حروف الاستعلاء والراء', sub:'نظري وعملي', type:'mixed',
+    detail:['خص ضغط قظ: تفخيمها وأحوالها','الراء: مواطن التفخيم والترقيق','لام الجلالة نظريًا بأحوالها'],
+    links:[ {type:'youtube', url:null, label:'شرح الاستعلاء'} ] },
+  { topic:'همزة الوصل + أوجه البسملة', sub:'نظري كامل', type:'theory',
+    detail:['همزة الوصل: كسر وضم','أوجه البسملة بين السورتين','عدم ضم الحرف المفخم (خالدين)'],
+    links:[ {type:'youtube', url:null, label:'شرح همزة الوصل'} ] },
+  { topic:'صفات الحروف', sub:'الصفير والتفشي والاستطالة', type:'theory',
+    detail:['الصفير: ص ز س','التفشي: الشين','الاستطالة: الضاد وأثرها في القراءة'],
+    links:[ {type:'youtube', url:null, label:'شرح صفات الحروف'} ] },
+  { topic:'الإدغام بأنواعه', sub:'نظري وعملي', type:'mixed',
+    detail:['المتماثل: قد دخلتم','المتجانس: إذ ظلمتم - قل ربّ','المتقارب: يخلقكم'],
+    links:[ {type:'youtube', url:null, label:'شرح الإدغام'} ] },
+  { topic:'الغنة وأزمنتها', sub:'مع الإدغام', type:'mixed',
+    detail:['أزمنة الغنة ومراتبها','الغنة في الميم والنون','غنة الإدغام والإخفاء'],
+    links:[ {type:'youtube', url:null, label:'شرح الغنة'} ] },
+  { topic:'مراتب القلقلة', sub:'نظري وعملي', type:'theory',
+    detail:['قلقلة الساكن الوسط','قلقلة الساكن وقفًا','قلقلة الحرف المشدد وقفًا','التمييز بين المراتب'],
+    links:[ {type:'youtube', url:null, label:'شرح القلقلة'} ] },
+  { topic:'حالات خاصة', sub:'مواضع دقيقة', type:'theory',
+    detail:['الروم والإشمام (تأمنا)','الإمالة الوحيدة في القرآن','وصل: آلم الله في آل عمران'],
+    links:[ {type:'youtube', url:null, label:'الحالات الخاصة'} ] },
+  { topic:'مراجعة شاملة', sub:'قراءة مكثفة', type:'recitation',
+    detail:['قراءة أجزاء كاملة','التطبيق الشامل لأحكام المتوسط 2','رصد ما يحتاج تعزيزًا'],
+    links:[ {type:'telegram', url:null, label:'مواد المراجعة'} ] },
+  { topic:'تقييم ختامي متوسط 2', sub:'العلامة الكاملة: 24', type:'review',
+    detail:['تقييم فردي كامل','الحد الأدنى 19 للانتقال','التحضير لمنهج المتقدم'],
+    links:[ {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'نتائج التقييم'} ] },
+],
+
+'adv-a': [
+  { topic:'مراجعة متوسط 2 + صفات', sub:'الانطلاق للمتقدم', type:'mixed',
+    detail:['مراجعة أبرز أحكام متوسط 2','صفات الحروف: مدخل تفصيلي','الاستعلاء والاستفال نظريًا'],
+    links:[ {type:'youtube', url:null, label:'مراجعة المتوسط 2'} ] },
+  { topic:'صفات الحروف — تكملة', sub:'الاطباق والانفتاح', type:'theory',
+    detail:['حروف الاطباق: ص ظ ط ض','الانفتاح: باقي الحروف','التطبيق على قراءة طويلة'],
+    links:[ {type:'youtube', url:null, label:'شرح صفات الحروف'} ] },
+  { topic:'الإدغام — تفصيل كامل', sub:'المتماثل والمتجانس', type:'theory',
+    detail:['المتماثل نظريًا: أنواعه وشروطه','المتجانس نظريًا: أمثلته','بين الكلمة وداخلها'],
+    links:[ {type:'youtube', url:null, label:'شرح الإدغام'} ] },
+  { topic:'الإدغام المتقارب + الغنة', sub:'نظري وعملي', type:'mixed',
+    detail:['المتقارب نظريًا','أزمنة الغنة ومراتبها','ضبط مستوى الغنة في كل حكم'],
+    links:[ {type:'youtube', url:null, label:'شرح المتقارب'} ] },
+  { topic:'القلقلة الكاملة', sub:'بما فيها قلقلة المتحرك', type:'theory',
+    detail:['قلقلة الساكن المتوسط','قلقلة الساكن وقفًا','قلقلة المتحرك (وقفًا)','التمييز بين المراتب الثلاث'],
+    links:[ {type:'youtube', url:null, label:'شرح القلقلة'} ] },
+  { topic:'اللين والانحراف والتكرير', sub:'صفات إضافية', type:'theory',
+    detail:['اللين: و ي المتحركتان','الانحراف: ل ر','التكرير: الراء وضبطه'],
+    links:[ {type:'youtube', url:null, label:'صفات دقيقة'} ] },
+  { topic:'الاستطالة والتفشي والصفير', sub:'صفات الشين والضاد والصاد', type:'theory',
+    detail:['استطالة الضاد وأثرها العملي','تفشي الشين','الصفير في ص ز س'],
+    links:[ {type:'youtube', url:null, label:'شرح صفات الحروف'} ] },
+  { topic:'الغنة في الميم والنون', sub:'تفصيل', type:'mixed',
+    detail:['غنة الميم والنون المشددتين','غنة الإدغام والإخفاء','ضبط الزمن الصحيح للغنة'],
+    links:[ {type:'youtube', url:null, label:'شرح الغنة'} ] },
+  { topic:'حالات الوقف الخاصة', sub:'الروم والإشمام والإمالة', type:'theory',
+    detail:['الروم والإشمام: تأمنا','الإمالة: الوحيدة في القرآن','أحكام الوقف والابتداء'],
+    links:[ {type:'youtube', url:null, label:'الوقف الخاص'} ] },
+  { topic:'مواضع دقيقة في القرآن', sub:'آل عمران والنمل', type:'theory',
+    detail:['وصل: آلم الله في آل عمران','فما آتان في سورة النمل','يرضه لكم - يبصط: السين فوق الصاد'],
+    links:[ {type:'youtube', url:null, label:'المواضع الدقيقة'} ] },
+  { topic:'ترك التكلف + ختمة الضبط', sub:'الاستعداد لختمة الضبط', type:'recitation',
+    detail:['ترك التكلف المذموم في القراءة','قراءة صفحات من المصحف المضبوط','الاستعداد لختمة الضبط'],
+    links:[ {type:'telegram', url:null, label:'مواد ختمة الضبط'} ] },
+  { topic:'تقييم ختامي المتقدم', sub:'العلامة المطلوبة: 18+', type:'review',
+    detail:['تقييم شامل لجميع أحكام المتقدم','العلامة 18+ للبدء بختمة الضبط','شهادة إتمام المستوى'],
+    links:[ {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'نتائج التقييم'} ] },
+],
+
+'adv-b': [
+  { topic:'صفات الحروف الكاملة', sub:'الاستعلاء والاطباق — نظري', type:'theory',
+    detail:['الاستعلاء والاستفال تفصيلًا','الاطباق والانفتاح','الشدة والرخاوة والتوسط'],
+    links:[ {type:'youtube', url:null, label:'شرح صفات الحروف'} ] },
+  { topic:'الإدغام الكامل', sub:'الأنواع الثلاثة — نظري', type:'theory',
+    detail:['المتماثل: شروطه وأمثلته وما يستثنى','المتجانس: أمثلته الكاملة','المتقارب: أمثلته وشروطه'],
+    links:[ {type:'youtube', url:null, label:'شرح الإدغام'} ] },
+  { topic:'أزمنة الغنة ومراتبها', sub:'نظري وعملي', type:'mixed',
+    detail:['المرتبة الأولى: المشدد','المرتبة الثانية: المدغم والمخفى','المرتبة الثالثة: المظهر','ضبط الأزمنة بالتلقي'],
+    links:[ {type:'youtube', url:null, label:'شرح الغنة'} ] },
+  { topic:'القلقلة الكاملة + اللين', sub:'بما فيها قلقلة المتحرك', type:'theory',
+    detail:['قلقلة الساكن الوسط — الطرف وقفًا — المتحرك','اللين: و ي المتحركتان قبل ساكن','التمييز العملي في القراءة'],
+    links:[ {type:'youtube', url:null, label:'شرح القلقلة'} ] },
+  { topic:'الانحراف والتكرير والصفير', sub:'تفصيل', type:'theory',
+    detail:['الانحراف: ل ر — كيف ينحرف الصوت','التكرير في الراء وكيف يُضبط','الصفير في ص ز س بدقة'],
+    links:[ {type:'youtube', url:null, label:'صفات دقيقة'} ] },
+  { topic:'الاستطالة والتفشي والغنة', sub:'تطبيق على مقاطع طويلة', type:'mixed',
+    detail:['استطالة الضاد وضبطها في التلاوة','تفشي الشين وأثره','الغنة في الميم والنون: مراتبها'],
+    links:[ {type:'youtube', url:null, label:'شرح الاستطالة'} ] },
+  { topic:'الوقف والابتداء', sub:'أحكام الوقف الكاملة', type:'theory',
+    detail:['الوقف التام والكافي والحسن والقبيح','الابتداء الجائز وغير الجائز','العلامات في المصاحف المضبوطة'],
+    links:[ {type:'youtube', url:null, label:'أحكام الوقف'} ] },
+  { topic:'الروم والإشمام والإمالة', sub:'حالات خاصة', type:'theory',
+    detail:['الروم والإشمام: معناهما وتطبيقهما','الإمالة: الوحيدة في القرآن (مجراها)','الإمالة بين بين ومواطنها'],
+    links:[ {type:'youtube', url:null, label:'الإمالة والروم'} ] },
+  { topic:'المواضع الدقيقة في القرآن', sub:'مواضع تحتاج تنبيهًا خاصًا', type:'theory',
+    detail:['وصل: آلم الله في آل عمران','فما آتان في سورة النمل','يرضه لكم - يبصط','ترك التكلف المذموم'],
+    links:[ {type:'youtube', url:null, label:'المواضع الدقيقة'} ] },
+  { topic:'قراءة مكثفة + ختمة الضبط', sub:'تطبيق الكل على المصحف', type:'recitation',
+    detail:['قراءة صفحات من مصحف الضبط','التصحيح على أساس الأحكام الكاملة','التهيؤ للصلاة بقراءة مستقلة'],
+    links:[ {type:'telegram', url:null, label:'مواد ختمة الضبط'} ] },
+  { topic:'مراجعة شاملة', sub:'تكامل المهارات', type:'review',
+    detail:['مراجعة كل أحكام المتقدم','التأكد من القراءة الصحيحة المستقلة','الاستعداد للتقييم النهائي'],
+    links:[ {type:'telegram', url:null, label:'مواد المراجعة'} ] },
+  { topic:'تقييم ختامي المتقدم', sub:'العلامة المطلوبة: 18+', type:'review',
+    detail:['تقييم فردي شامل','العلامة 18+ للبدء بختمة الضبط','شهادة إتمام الدورة الصيفية'],
+    links:[ {type:'telegram', url:'https://t.me/YOUR_CHANNEL', label:'نتائج التقييم'} ] },
+],
+};
+
+// ═══════════════════════════════════════════
+//  منطق العرض
+// ═══════════════════════════════════════════
+
+const TYPE_LABELS = {
+  recitation:'تلقين عملي',
+  theory:'نظري',
+  mixed:'عملي + نظري',
+  review:'مراجعة وتقييم'
+};
+
+const TABS = ['ibtidai','mutawassit1','mutawassit2','mutaqaddim'];
+
+// حالة مفتوحة لكل شبكة
+const openState = {};
+
+function buildGrid(gridId, detailId, weeks) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = '';
+  weeks.forEach((w, i) => {
+    const card = document.createElement('div');
+    card.className = 'week-card';
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    card.setAttribute('aria-expanded','false');
+    card.onclick = () => toggleDetail(gridId, detailId, i, weeks);
+    card.onkeydown = e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); toggleDetail(gridId, detailId, i, weeks); } };
+    card.innerHTML = `
+      <div class="week-num">الأسبوع ${i+1}</div>
+      <div class="week-date">${DATES[i]}</div>
+      <div class="week-topic">${w.topic}</div>
+      <div class="week-sub">${w.sub}</div>
+      <span class="type-pill type-${w.type}">${TYPE_LABELS[w.type]}</span>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function toggleDetail(gridId, detailId, idx, weeks) {
+  const panel = document.getElementById(detailId);
+  const cards = document.getElementById(gridId).querySelectorAll('.week-card');
+  const key = gridId;
+
+  if (openState[key] === idx) {
+    // أغلق
+    openState[key] = null;
+    cards.forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-expanded','false'); });
+    panel.classList.remove('visible');
+    panel.innerHTML = '';
+    return;
+  }
+
+  openState[key] = idx;
+  cards.forEach((c,i) => {
+    c.classList.toggle('selected', i===idx);
+    c.setAttribute('aria-expanded', i===idx ? 'true' : 'false');
+  });
+
+  const w = weeks[idx];
+
+  // بناء أزرار الروابط
+  let linksHTML = '';
+  if (w.links && w.links.length) {
+    const btns = w.links.map(lnk => {
+      if (!lnk.url || lnk.url.includes('YOUR_LINK') || lnk.url.includes('YOUR_CHANNEL')) {
+        return `<span class="detail-link link-placeholder">${lnk.label} (الرابط قريبًا)</span>`;
+      }
+      const cls = lnk.type === 'youtube' ? 'link-youtube' : 'link-telegram';
+      const icon = lnk.type === 'youtube'
+        ? `<svg class="icon" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.7 12.36 12.36 0 0 0-8.64 0A4.83 4.83 0 0 1 3.41 6.69 48.64 48.64 0 0 0 2 12a48.64 48.64 0 0 0 1.41 5.31 4.83 4.83 0 0 1 3.77 2.7 12.36 12.36 0 0 0 8.64 0 4.83 4.83 0 0 1 3.77-2.7A48.64 48.64 0 0 0 22 12a48.64 48.64 0 0 0-2.41-5.31zM9.75 15V9l5.25 3z"/></svg>`
+        : `<svg class="icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>`;
+      return `<a href="${lnk.url}" target="_blank" rel="noopener noreferrer" class="detail-link ${cls}">${icon}${lnk.label}</a>`;
+    }).join('');
+    linksHTML = `<div class="detail-links">${btns}</div>`;
+  }
+
+  const listItems = w.detail.map(d => `<li>${d}</li>`).join('');
+
+  panel.innerHTML = `
+    <div class="detail-top">
+      <div>
+        <div class="detail-title">الأسبوع ${idx+1} — ${w.topic}</div>
+        <div class="detail-date">${DATES[idx]}</div>
+      </div>
+      <button class="close-btn" onclick="closeDetail('${detailId}','${gridId}')">إغلاق ✕</button>
+    </div>
+    <ul class="detail-list">${listItems}</ul>
+    ${linksHTML}
+  `;
+  panel.classList.add('visible');
+
+  // تمرير ناعم للبانل
+  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+}
+
+function closeDetail(detailId, gridId) {
+  const key = gridId;
+  openState[key] = null;
+  document.getElementById(detailId).classList.remove('visible');
+  document.getElementById(gridId).querySelectorAll('.week-card').forEach(c => {
+    c.classList.remove('selected');
+    c.setAttribute('aria-expanded','false');
+  });
+}
+
+function showTab(name) {
+  TABS.forEach(t => {
+    document.getElementById('panel-'+t).classList.toggle('active', t===name);
+  });
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', TABS[i]===name);
+  });
+}
+
+// بناء الشبكات
+Object.keys(DATA).forEach(key => {
+  buildGrid('grid-'+key, 'detail-'+key, DATA[key]);
+});
+</script>
+</body>
+</html>
