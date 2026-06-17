@@ -7,9 +7,7 @@
   <link rel="icon" href="logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --navy:    #1B2E5E;
       --gold:    #D4A820;
@@ -23,761 +21,285 @@
       --shadow:  0 4px 24px rgba(27,46,94,0.10);
       --radius:  14px;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    /* ===== LAYOUT ===== */
+    body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
     .page { display: none; }
     .page.active { display: block; }
 
-    /* ===== NAVBAR ===== */
+    /* NAVBAR */
     nav {
-      background: var(--navy);
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      background: var(--navy); padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; position: sticky; top: 0; z-index: 100;
       box-shadow: 0 2px 12px rgba(0,0,0,0.25);
     }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-
-    .nav-logo img {
-      height: 44px;
-      width: 44px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      border-radius: 8px;
-    }
-
-    .nav-logo span {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--gold);
-      font-family: 'Amiri', serif;
-    }
-
-    .nav-tabs {
-      display: flex;
-      gap: 4px;
-    }
-
+    .nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .nav-logo img { height: 44px; width: 44px; object-fit: contain; filter: brightness(0) invert(1); border-radius: 8px; }
+    .nav-logo span { font-size: 18px; font-weight: 700; color: var(--gold); font-family: 'Amiri', serif; }
+    .nav-tabs { display: flex; gap: 4px; }
     .nav-tab {
-      padding: 8px 16px;
-      border-radius: 8px;
-      color: rgba(255,255,255,0.7);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: none;
-      background: transparent;
-      font-family: 'Cairo', sans-serif;
+      padding: 8px 16px; border-radius: 8px; color: rgba(255,255,255,0.7);
+      font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+      border: none; background: transparent; font-family: 'Cairo', sans-serif;
     }
-
     .nav-tab:hover { color: white; background: rgba(255,255,255,0.1); }
     .nav-tab.active { color: var(--navy); background: var(--gold); }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
       background: linear-gradient(135deg, var(--navy) 0%, #2A4080 60%, #1B2E5E 100%);
-      padding: 60px 24px 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      padding: 60px 24px 80px; text-align: center; position: relative; overflow: hidden;
     }
-
     .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-
-    .hero-logo {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 4px 16px rgba(212,168,32,0.4));
-      position: relative;
-    }
-
-    .hero h1 {
-      font-family: 'Amiri', serif;
-      font-size: clamp(28px, 5vw, 48px);
-      color: white;
-      margin-bottom: 10px;
-      position: relative;
-    }
-
+    .hero-logo { width: 100px; height: 100px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 4px 16px rgba(212,168,32,0.4)); position: relative; }
+    .hero h1 { font-family: 'Amiri', serif; font-size: clamp(28px, 5vw, 48px); color: white; margin-bottom: 10px; position: relative; }
     .hero h1 span { color: var(--gold); }
+    .hero p { color: rgba(255,255,255,0.75); font-size: 16px; margin-bottom: 40px; position: relative; }
 
-    .hero p {
-      color: rgba(255,255,255,0.75);
-      font-size: 16px;
-      margin-bottom: 40px;
-      position: relative;
-    }
-
-    /* ===== CATEGORY CARDS ===== */
+    /* CATEGORY CARDS */
     .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 40px 24px;
-      max-width: 900px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px; padding: 40px 24px; max-width: 900px; margin: 0 auto;
     }
-
     .cat-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 40px 32px;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      border: 2px solid transparent;
-      transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
+      background: var(--white); border-radius: var(--radius); padding: 40px 32px;
+      text-align: center; cursor: pointer; box-shadow: var(--shadow);
+      border: 2px solid transparent; transition: all 0.25s; position: relative; overflow: hidden;
     }
-
     .cat-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--navy), var(--gold));
-      transform: scaleX(0);
-      transition: transform 0.3s;
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--gold)); transform: scaleX(0); transition: transform 0.3s;
     }
-
     .cat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,46,94,0.18); }
     .cat-card:hover::after { transform: scaleX(1); }
-
     .cat-icon { font-size: 52px; margin-bottom: 16px; display: block; }
     .cat-title { font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
     .cat-sub { font-size: 14px; color: var(--sub); }
 
-    /* ===== BREADCRUMB ===== */
+    /* BREADCRUMB */
     .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 24px;
-      background: var(--white);
-      border-bottom: 1px solid var(--bg2);
-      font-size: 14px;
-      color: var(--sub);
+      display: flex; align-items: center; gap: 8px; padding: 16px 24px;
+      background: var(--white); border-bottom: 1px solid var(--bg2);
+      font-size: 14px; color: var(--sub);
     }
-
     .breadcrumb span { cursor: pointer; }
     .breadcrumb span:hover { color: var(--navy); }
     .breadcrumb .sep { color: var(--bg2); }
     .breadcrumb .current { color: var(--navy); font-weight: 600; }
 
-    /* ===== LEVEL CARDS ===== */
+    /* LEVEL CARDS */
     .levels-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      padding: 32px 24px;
-      max-width: 1000px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px; padding: 32px 24px; max-width: 1000px; margin: 0 auto;
     }
-
     .level-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 28px 20px;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      border: 2px solid transparent;
-      transition: all 0.25s;
+      background: var(--white); border-radius: var(--radius); padding: 28px 20px;
+      text-align: center; cursor: pointer; box-shadow: var(--shadow);
+      border: 2px solid transparent; transition: all 0.25s;
     }
-
-    .level-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold);
-    }
-
+    .level-card:hover { transform: translateY(-3px); border-color: var(--gold); }
     .level-icon { font-size: 40px; margin-bottom: 12px; display: block; }
     .level-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
     .level-desc { font-size: 12px; color: var(--sub); line-height: 1.5; }
 
-    /* ===== AHKAM PAGE ===== */
-    .page-header {
-      padding: 28px 24px 20px;
-      border-bottom: 1px solid var(--bg2);
-      background: var(--white);
-    }
-
-    .page-header h2 {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--navy);
-    }
-
+    /* AHKAM PAGE */
+    .page-header { padding: 28px 24px 20px; border-bottom: 1px solid var(--bg2); background: var(--white); }
+    .page-header h2 { font-size: 22px; font-weight: 700; color: var(--navy); }
     .page-header p { font-size: 14px; color: var(--sub); margin-top: 4px; }
-
     .ahkam-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-      padding: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px; padding: 24px; max-width: 1200px; margin: 0 auto;
     }
-
     .hukm-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: all 0.25s;
-      border: 2px solid transparent;
+      background: var(--white); border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); cursor: pointer; transition: all 0.25s; border: 2px solid transparent;
     }
-
     .hukm-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(27,46,94,0.15); }
     .hukm-card.open { border-color: var(--gold); }
-
     .hukm-header {
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 18px 20px; display: flex; align-items: center; justify-content: space-between;
     }
-
     .hukm-header-left { display: flex; align-items: center; gap: 12px; }
-
-    .hukm-badge {
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 600;
-      background: rgba(27,46,94,0.08);
-      color: var(--navy);
-    }
-
-    .hukm-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .hukm-arrow {
-      color: var(--sub);
-      transition: transform 0.3s;
-      font-size: 12px;
-    }
-
+    .hukm-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; background: rgba(27,46,94,0.08); color: var(--navy); }
+    .hukm-num { font-size: 13px; font-weight: 700; color: var(--sub); min-width: 28px; text-align: center; background: var(--bg); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+    .hukm-title { font-size: 16px; font-weight: 700; color: var(--text); }
+    .hukm-arrow { color: var(--sub); transition: transform 0.3s; font-size: 12px; }
     .hukm-card.open .hukm-arrow { transform: rotate(180deg); }
-
-    .hukm-body {
-      display: none;
-      padding: 0 20px 20px;
-      border-top: 1px solid var(--bg2);
-    }
-
+    .hukm-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--bg2); }
     .hukm-card.open .hukm-body { display: block; }
+    .hukm-sura { display: inline-flex; align-items: center; gap: 6px; background: var(--bg); border-radius: 8px; padding: 6px 12px; font-size: 13px; color: var(--sub); margin: 16px 0 12px; }
+    .hukm-sharh { font-size: 14px; line-height: 1.8; color: var(--text); margin-bottom: 14px; }
+    .amthal-title { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .amthal-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .mithal { background: var(--navy); color: var(--gold); border-radius: 8px; padding: 5px 12px; font-size: 14px; font-family: 'Amiri', serif; }
 
-    .hukm-sura {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--bg);
-      border-radius: 8px;
-      padding: 6px 12px;
-      font-size: 13px;
-      color: var(--sub);
-      margin: 16px 0 12px;
-    }
-
-    .hukm-sharh {
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-
-    .amthal-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .amthal-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .mithal {
-      background: var(--navy);
-      color: var(--gold);
-      border-radius: 8px;
-      padding: 5px 12px;
-      font-size: 14px;
-      font-family: 'Amiri', serif;
-    }
-
-    .hukm-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #FF0000, #CC0000);
-      color: white;
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .hukm-link:hover { opacity: 0.85; }
-
-    /* ===== ASSESSMENT PAGE ===== */
-    .assessment-container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 32px 24px;
-    }
-
-    .form-section {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: var(--shadow);
-      margin-bottom: 24px;
-    }
-
-    .form-section h3 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--gold);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
+    /* ASSESSMENT */
+    .assessment-container { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
+    .form-section { background: var(--white); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); margin-bottom: 24px; }
+    .form-section h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--gold); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
-
-    .form-group label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--sub);
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--sub); }
+    .form-group input, .form-group select {
+      border: 1.5px solid var(--bg2); border-radius: 8px; padding: 10px 14px;
+      font-size: 14px; font-family: 'Cairo', sans-serif; color: var(--text);
+      background: var(--bg); transition: border-color 0.2s; direction: rtl;
     }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--navy); }
 
-    .form-group input,
-    .form-group select {
-      border: 1.5px solid var(--bg2);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 14px;
-      font-family: 'Cairo', sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      transition: border-color 0.2s;
-      direction: rtl;
+    /* assessment rule box */
+    .assess-rule-box {
+      background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+      border: 1.5px solid #3B82F6; border-radius: var(--radius);
+      padding: 20px 24px; margin-bottom: 24px;
     }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--navy);
+    .assess-rule-box h4 { font-size: 15px; font-weight: 700; color: #1D4ED8; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .assess-rule-box p { font-size: 13px; color: #1E40AF; line-height: 1.8; }
+    .assess-rule-box .rule-example {
+      background: white; border-radius: 8px; padding: 10px 14px; margin-top: 10px;
+      font-size: 13px; color: #374151; border-right: 3px solid #3B82F6;
     }
 
     .ahkam-checklist { display: flex; flex-direction: column; gap: 10px; }
-
     .ahkam-group-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--gold);
-      padding: 6px 0;
-      border-bottom: 1px solid var(--bg2);
-      margin-top: 12px;
+      font-size: 13px; font-weight: 700; color: var(--gold); padding: 6px 0;
+      border-bottom: 1px solid var(--bg2); margin-top: 12px;
     }
-
     .check-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      background: var(--bg);
-      cursor: pointer;
-      transition: background 0.2s;
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      border-radius: 8px; background: var(--bg); cursor: pointer; transition: background 0.2s;
     }
-
     .check-item:hover { background: var(--bg2); }
-
-    .check-item input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: #c0392b;
-      cursor: pointer;
-    }
-
-    .check-item label {
-      font-size: 14px;
-      color: var(--text);
-      cursor: pointer;
-      flex: 1;
-    }
-
-    .check-item .level-tag {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-weight: 600;
-    }
-
+    .check-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: #c0392b; cursor: pointer; }
+    .check-item label { font-size: 14px; color: var(--text); cursor: pointer; flex: 1; }
+    .check-item .level-tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+    .check-item .hukm-counter { font-size: 11px; color: var(--sub); white-space: nowrap; }
     .assess-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--navy), #2A4080);
-      color: white;
-      border: none;
-      border-radius: var(--radius);
-      padding: 14px;
-      font-size: 16px;
-      font-weight: 700;
-      font-family: 'Cairo', sans-serif;
-      cursor: pointer;
-      transition: all 0.25s;
-      margin-top: 8px;
+      width: 100%; background: linear-gradient(135deg, var(--navy), #2A4080);
+      color: white; border: none; border-radius: var(--radius); padding: 14px;
+      font-size: 16px; font-weight: 700; font-family: 'Cairo', sans-serif;
+      cursor: pointer; transition: all 0.25s; margin-top: 8px;
     }
-
     .assess-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,46,94,0.3); }
-
     .result-box {
-      display: none;
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 32px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      margin-top: 24px;
-      border: 3px solid var(--gold);
+      display: none; background: var(--white); border-radius: var(--radius);
+      padding: 32px; box-shadow: var(--shadow); text-align: center;
+      margin-top: 24px; border: 3px solid var(--gold);
     }
-
     .result-box.show { display: block; }
-
-    .result-score {
-      font-size: 64px;
-      font-weight: 900;
-      color: var(--navy);
-      line-height: 1;
-    }
-
-    .result-score span { font-size: 24px; color: var(--sub); }
-
-    .result-level {
-      font-size: 28px;
-      font-weight: 700;
-      margin: 16px 0 8px;
-    }
-
+    .result-level { font-size: 26px; font-weight: 700; margin: 16px 0 8px; }
     .result-note { font-size: 14px; color: var(--sub); }
-
+    .result-level-detail {
+      background: var(--bg); border-radius: 10px; padding: 16px 20px;
+      margin-top: 16px; text-align: right;
+    }
+    .result-level-detail .lvl-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 0; border-bottom: 1px solid var(--bg2); font-size: 13px;
+    }
+    .result-level-detail .lvl-row:last-child { border-bottom: none; }
+    .lvl-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; color: white; }
+    .lvl-missed { color: #C0392B; font-weight: 600; }
+    .lvl-pass { color: #27AE60; font-weight: 600; }
     .weak-points { margin-top: 20px; text-align: right; }
     .weak-points h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
     .weak-list { display: flex; flex-wrap: wrap; gap: 8px; }
     .weak-tag { background: #FEF3F2; color: #C0392B; border-radius: 8px; padding: 5px 12px; font-size: 13px; }
 
-    /* ===== CIRCLES PAGE ===== */
-    .circles-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 24px;
+    /* CIRCLES PAGE */
+    .circles-container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+    .dura-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .dura-card {
+      background: var(--white); border-radius: var(--radius); padding: 24px 20px;
+      text-align: center; cursor: pointer; box-shadow: var(--shadow);
+      border: 2px solid transparent; transition: all 0.25s; position: relative; overflow: hidden;
     }
-
-    .top-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 12px;
+    .dura-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--dura-color, var(--navy)); transform: scaleX(0); transition: transform 0.3s;
     }
-
+    .dura-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(27,46,94,0.15); }
+    .dura-card:hover::after { transform: scaleX(1); }
+    .dura-card.selected { border-color: var(--dura-color, var(--navy)); background: var(--bg); }
+    .dura-card.selected::after { transform: scaleX(1); }
+    .dura-icon { font-size: 40px; margin-bottom: 12px; }
+    .dura-name { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .dura-type { font-size: 12px; color: var(--sub); }
+    .circles-section { display: none; }
+    .circles-section.active { display: block; }
+    .top-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
     .top-actions h2 { font-size: 22px; font-weight: 700; color: var(--navy); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: 'Cairo', sans-serif;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: none;
-    }
-
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: 'Cairo', sans-serif; cursor: pointer; transition: all 0.2s; border: none; }
     .btn-primary { background: var(--navy); color: white; }
     .btn-primary:hover { background: #2A4080; }
     .btn-gold { background: var(--gold); color: var(--navy); }
     .btn-gold:hover { background: var(--gold-lt); }
-    .btn-danger { background: #C0392B; color: white; }
-    .btn-danger:hover { background: #a93226; }
     .btn-sm { padding: 6px 12px; font-size: 12px; }
-
-    .circles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .circle-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .circle-head {
-      background: linear-gradient(135deg, var(--navy), #2A4080);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+    .circles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+    .circle-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .circle-head { background: linear-gradient(135deg, var(--navy), #2A4080); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
     .circle-head-info h3 { font-size: 17px; font-weight: 700; color: white; }
     .circle-head-info p { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
-
-    .circle-actions { display: flex; gap: 6px; }
-
     .circle-body { padding: 16px 20px; }
-
-    .circle-note {
-      background: var(--bg);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: var(--sub);
-      margin-bottom: 14px;
-      border-right: 3px solid var(--gold);
-    }
-
+    .circle-note { background: var(--bg); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--sub); margin-bottom: 14px; border-right: 3px solid var(--gold); }
     .student-list { display: flex; flex-direction: column; gap: 6px; }
-
-    .student-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 12px;
-      border-radius: 8px;
-      background: var(--bg);
-      transition: background 0.2s;
-    }
-
-    .student-row:hover { background: var(--bg2); }
-
+    .student-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 8px; background: var(--bg); }
     .student-name { font-size: 14px; font-weight: 600; color: var(--text); }
     .student-note { font-size: 12px; color: var(--sub); margin-top: 1px; }
-
-    .student-actions { display: flex; gap: 4px; opacity: 0; transition: opacity 0.2s; }
-    .student-row:hover .student-actions { opacity: 1; }
-
-    .icon-btn {
-      border: none;
-      background: none;
-      cursor: pointer;
-      padding: 4px 6px;
-      border-radius: 6px;
-      font-size: 14px;
-      transition: background 0.2s;
-    }
-
+    .icon-btn { border: none; background: none; cursor: pointer; padding: 4px 6px; border-radius: 6px; font-size: 14px; transition: background 0.2s; }
     .icon-btn:hover { background: var(--bg2); }
 
-    .add-student-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .add-student-row input {
-      flex: 1;
-      border: 1.5px solid var(--bg2);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 13px;
-      font-family: 'Cairo', sans-serif;
-      direction: rtl;
-    }
-
-    .add-student-row input:focus { outline: none; border-color: var(--navy); }
-
-    /* ===== NOTES PAGE ===== */
-    .notes-container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 32px 24px;
-    }
-
-    .note-composer {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      margin-bottom: 28px;
-    }
-
+    /* NOTES PAGE */
+    .notes-container { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
+    .note-composer { background: var(--white); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 28px; }
     .note-composer h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
-
     .note-composer textarea {
-      width: 100%;
-      min-height: 100px;
-      border: 1.5px solid var(--bg2);
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 14px;
-      font-family: 'Cairo', sans-serif;
-      resize: vertical;
-      direction: rtl;
-      color: var(--text);
-      background: var(--bg);
-      margin-bottom: 12px;
+      width: 100%; min-height: 100px; border: 1.5px solid var(--bg2); border-radius: 10px;
+      padding: 12px 16px; font-size: 14px; font-family: 'Cairo', sans-serif;
+      resize: vertical; direction: rtl; color: var(--text); background: var(--bg); margin-bottom: 12px;
     }
-
     .note-composer textarea:focus { outline: none; border-color: var(--navy); }
-
     .notes-list { display: flex; flex-direction: column; gap: 14px; }
-
-    .note-item {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      box-shadow: var(--shadow);
-      border-right: 4px solid var(--gold);
-      position: relative;
-    }
-
+    .note-item { background: var(--white); border-radius: var(--radius); padding: 20px 22px; box-shadow: var(--shadow); border-right: 4px solid var(--gold); }
     .note-text { font-size: 15px; line-height: 1.7; color: var(--text); margin-bottom: 8px; }
-
     .note-meta { font-size: 12px; color: var(--sub); }
-
-    .note-del {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      opacity: 0;
-      transition: opacity 0.2s;
+    .whatsapp-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white; border: none; border-radius: 10px; padding: 12px 20px;
+      font-size: 15px; font-weight: 700; font-family: 'Cairo', sans-serif;
+      cursor: pointer; transition: all 0.25s; text-decoration: none;
     }
+    .whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
+    .whatsapp-info { background: #F0FFF4; border: 1.5px solid #BBF7D0; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: #166534; display: flex; align-items: center; gap: 10px; }
 
-    .note-item:hover .note-del { opacity: 1; }
-
-    /* ===== MODAL ===== */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
-
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
     .modal-overlay.show { display: flex; }
-
-    .modal {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 28px;
-      width: min(480px, 92vw);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.25);
-    }
-
+    .modal { background: var(--white); border-radius: 16px; padding: 28px; width: min(480px, 92vw); box-shadow: 0 24px 64px rgba(0,0,0,0.25); }
     .modal h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
-
     .modal input, .modal select, .modal textarea {
-      width: 100%;
-      border: 1.5px solid var(--bg2);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 14px;
-      font-family: 'Cairo', sans-serif;
-      direction: rtl;
-      margin-bottom: 12px;
-      background: var(--bg);
+      width: 100%; border: 1.5px solid var(--bg2); border-radius: 8px; padding: 10px 14px;
+      font-size: 14px; font-family: 'Cairo', sans-serif; direction: rtl; margin-bottom: 12px; background: var(--bg);
     }
-
-    .modal input:focus, .modal select:focus, .modal textarea:focus {
-      outline: none;
-      border-color: var(--navy);
-    }
-
+    .modal input:focus, .modal select:focus, .modal textarea:focus { outline: none; border-color: var(--navy); }
     .modal-actions { display: flex; gap: 10px; margin-top: 6px; }
     .modal-actions .btn { flex: 1; justify-content: center; }
 
-    /* ===== RESPONSIVE ===== */
+    /* UTILITIES */
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--sub); }
+    .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-size: 15px; }
     @media (max-width: 600px) {
       .form-row { grid-template-columns: 1fr; }
       .nav-tabs { gap: 2px; }
       .nav-tab { padding: 6px 10px; font-size: 12px; }
       .nav-logo span { display: none; }
       .ahkam-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ===== UTILITIES ===== */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--sub);
-    }
-
-    .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
-    .empty-state p { font-size: 15px; }
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--sub);
-      margin-bottom: 8px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
+      .dura-selector { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -790,17 +312,16 @@
     <span>مقارئ الكنجلية</span>
   </div>
   <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showPage('curriculum')">📚 المنهاج</button>
-    <button class="nav-tab" onclick="showPage('assessment')">📝 تقييم طالب</button>
-    <button class="nav-tab" onclick="showPage('circles')">👥 الحلقات</button>
-    <button class="nav-tab" onclick="showPage('notes')">📌 الملاحظات</button>
+    <button class="nav-tab active" onclick="showPage('curriculum',this)">📚 المنهاج</button>
+    <button class="nav-tab" onclick="showPage('assessment',this)">📝 تقييم طالب</button>
+    <button class="nav-tab" onclick="showPage('circles',this)">👥 تقسيمات المقارئ</button>
+    <button class="nav-tab" onclick="showPage('notes',this)">📌 الملاحظات</button>
   </div>
 </nav>
 
 <!-- =================== CURRICULUM PAGE =================== -->
 <div id="page-curriculum" class="page active">
 
-  <!-- HOME: Choose Category -->
   <div id="view-home">
     <div class="hero">
       <img src="logo.png" alt="" class="hero-logo" />
@@ -811,17 +332,16 @@
       <div class="cat-card" onclick="selectCategory('ibtidai')">
         <span class="cat-icon">🏫</span>
         <div class="cat-title">الابتدائي</div>
-        <div class="cat-sub">المراحل الابتدائية الأولى</div>
+        <div class="cat-sub">المراحل الابتدائية — 4 مستويات</div>
       </div>
       <div class="cat-card" onclick="selectCategory('fawq')">
         <span class="cat-icon">🎓</span>
-        <div class="cat-title">فوق الابتدائي</div>
-        <div class="cat-sub">المتوسطة والثانوية</div>
+        <div class="cat-title">الإعدادي والثانوي</div>
+        <div class="cat-sub">المتوسطة والثانوية — 4 مستويات</div>
       </div>
     </div>
   </div>
 
-  <!-- LEVELS VIEW -->
   <div id="view-levels" style="display:none">
     <div class="breadcrumb">
       <span onclick="showView('home')">🏠 الرئيسية</span>
@@ -830,17 +350,16 @@
     </div>
     <div class="page-header">
       <h2>اختر المستوى</h2>
-      <p>4 مستويات — اضغط على المستوى المناسب</p>
+      <p id="levels-subtitle"></p>
     </div>
     <div class="levels-grid" id="levels-grid"></div>
   </div>
 
-  <!-- AHKAM VIEW -->
   <div id="view-ahkam" style="display:none">
     <div class="breadcrumb">
       <span onclick="showView('home')">🏠 الرئيسية</span>
       <span class="sep">›</span>
-      <span onclick="showView('levels')" id="bc-cat2"></span>
+      <span onclick="showView('levels')" id="bc-cat2" style="cursor:pointer"></span>
       <span class="sep">›</span>
       <span class="current" id="bc-level"></span>
     </div>
@@ -855,12 +374,23 @@
     </div>
     <div class="ahkam-grid" id="ahkam-grid"></div>
   </div>
-
 </div>
 
 <!-- =================== ASSESSMENT PAGE =================== -->
 <div id="page-assessment" class="page">
   <div class="assessment-container">
+
+    <!-- Rule explanation box -->
+    <div class="assess-rule-box">
+      <h4>ℹ️ كيف يعمل التقييم؟</h4>
+      <p>
+        يُقيَّم الطالب على أحكام كل مستوى على حدة.<br>
+        <strong>القاعدة:</strong> إذا أخفق الطالب في <strong>7 أحكام أو أكثر</strong> من مستوى معيّن، فهو ينتمي إلى ذلك المستوى ولا يتجاوزه — بغض النظر عن أحكام المستويات الأعلى.
+      </p>
+      <div class="rule-example">
+        <strong>مثال:</strong> طالب أخفق في 6 أحكام من المبتدئ → هو <u>مبتدئ</u>، حتى لو أتقن أحكام المتوسط الأول كلها.
+      </div>
+    </div>
 
     <div class="form-section">
       <h3>📋 بيانات الطالب</h3>
@@ -870,48 +400,30 @@
           <input type="text" id="student-name" placeholder="أدخل اسم الطالب" />
         </div>
         <div class="form-group">
-          <label>المستوى السابق (إن وجد)</label>
-          <select id="prev-level">
-            <option value="">— لا يوجد —</option>
-            <option value="mubtadi">المبتدئ</option>
-            <option value="mutawasit1">المتوسط 1</option>
-            <option value="mutawasit2">المتوسط 2</option>
-            <option value="mutaqadim">المتقدم</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>الأستاذ السابق (إن وجد)</label>
-          <input type="text" id="prev-teacher" placeholder="اسم الأستاذ" />
-        </div>
-        <div class="form-group">
           <label>الفئة</label>
-          <select id="student-cat">
+          <select id="student-cat" onchange="renderAssessmentChecklist()">
             <option value="ibtidai">الابتدائي</option>
-            <option value="fawq">فوق الابتدائي</option>
+            <option value="fawq">الإعدادي والثانوي</option>
           </select>
         </div>
       </div>
     </div>
 
     <div class="form-section">
-      <h3>❌ الأحكام التي يفقدها الطالب</h3>
-      <p style="font-size:13px;color:var(--sub);margin-bottom:16px">اختر كل حكم لا يُطبّقه الطالب بشكل صحيح</p>
+      <h3>❌ الأحكام التي يُخفق فيها الطالب</h3>
+      <p style="font-size:13px;color:var(--sub);margin-bottom:16px">ضع علامة ✓ على كل حكم لا يُطبّقه الطالب بشكل صحيح — عدّاد كل مستوى يظهر تلقائياً</p>
       <div class="ahkam-checklist" id="assessment-checklist"></div>
     </div>
 
-    <button class="assess-btn" onclick="calcAssessment()">
-      🎯 احسب المستوى المناسب
-    </button>
+    <button class="assess-btn" onclick="calcAssessment()">🎯 احسب المستوى المناسب</button>
 
     <div class="result-box" id="result-box">
       <div style="font-size:18px;color:var(--sub);margin-bottom:8px">النتيجة</div>
-      <div class="result-score" id="res-score"></div>
       <div class="result-level" id="res-level"></div>
       <div class="result-note" id="res-note"></div>
+      <div class="result-level-detail" id="res-detail"></div>
       <div class="weak-points" id="weak-points"></div>
-      <button class="btn btn-primary" style="margin-top:20px;width:100%;justify-content:center" onclick="printResult()">🖨️ طباعة التقرير</button>
+      <button class="btn btn-primary" style="margin-top:20px;width:100%;justify-content:center" onclick="window.print()">🖨️ طباعة التقرير</button>
     </div>
 
   </div>
@@ -920,16 +432,40 @@
 <!-- =================== CIRCLES PAGE =================== -->
 <div id="page-circles" class="page">
   <div class="circles-container">
-    <div class="top-actions">
-      <h2>👥 الحلقات والطلاب</h2>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn btn-gold" onclick="openModal('modal-add-teacher')">➕ إضافة أستاذ / حلقة</button>
+    <div class="page-header" style="margin-bottom:28px;border-radius:var(--radius)">
+      <h2>👥 تقسيمات المقارئ</h2>
+      <p>اختر الدورة لعرض حلقاتها وأساتذتها</p>
+    </div>
+
+    <!-- 4 دورات -->
+    <div class="dura-selector">
+      <div class="dura-card" style="--dura-color:#2E7D5E" onclick="selectDura('uthman')">
+        <div class="dura-icon">🕌</div>
+        <div class="dura-name">دورة سيدنا عثمان بن عفان</div>
+        <div class="dura-type">ابتدائي</div>
+      </div>
+      <div class="dura-card" style="--dura-color:#1A5C8A" onclick="selectDura('umar')">
+        <div class="dura-icon">📖</div>
+        <div class="dura-name">دورة سيدنا عمر بن الخطاب</div>
+        <div class="dura-type">ابتدائي</div>
+      </div>
+      <div class="dura-card" style="--dura-color:#7B3FA0" onclick="selectDura('abubakr')">
+        <div class="dura-icon">⭐</div>
+        <div class="dura-name">دورة سيدنا أبو بكر الصديق</div>
+        <div class="dura-type">إعدادي</div>
+      </div>
+      <div class="dura-card" style="--dura-color:#B5490B" onclick="selectDura('thanawi')">
+        <div class="dura-icon">🎓</div>
+        <div class="dura-name">دورة الثانوي</div>
+        <div class="dura-type">ثانوي</div>
       </div>
     </div>
-    <div class="circles-grid" id="circles-grid">
+
+    <!-- محتوى الدورة -->
+    <div id="circles-section" class="circles-section active">
       <div class="empty-state">
-        <div class="empty-icon">📚</div>
-        <p>لا توجد حلقات بعد — أضف أستاذاً لإنشاء حلقة</p>
+        <div class="empty-icon">👆</div>
+        <p>اختر دورة من الأعلى لعرض حلقاتها</p>
       </div>
     </div>
   </div>
@@ -938,169 +474,317 @@
 <!-- =================== NOTES PAGE =================== -->
 <div id="page-notes" class="page">
   <div class="notes-container">
+
+    <div class="whatsapp-info">
+      <span style="font-size:22px">💡</span>
+      <span>الملاحظات تُرسل مباشرةً إلى المشرف عبر واتساب — لا يتم حفظ أي بيانات في الجهاز</span>
+    </div>
+
     <div class="note-composer">
-      <h3>📌 ملاحظة جديدة</h3>
+      <h3>📌 إرسال ملاحظة للمشرف</h3>
+      <div class="form-group" style="margin-bottom:12px">
+        <label>الكاتب (اختياري)</label>
+        <input type="text" id="note-author" placeholder="اسمك أو اسم الأستاذ..." style="border:1.5px solid var(--bg2);border-radius:8px;padding:10px 14px;font-size:14px;font-family:Cairo,sans-serif;direction:rtl;background:var(--bg);width:100%" />
+      </div>
       <textarea id="note-input" placeholder="اكتب ملاحظتك هنا..."></textarea>
-      <div style="display:flex;gap:10px;align-items:center">
-        <input type="text" id="note-author" placeholder="الكاتب (اختياري)" style="border:1.5px solid var(--bg2);border-radius:8px;padding:8px 12px;font-size:13px;font-family:Cairo,sans-serif;direction:rtl;background:var(--bg);max-width:200px" />
-        <button class="btn btn-primary" onclick="addNote()">💾 حفظ الملاحظة</button>
-      </div>
+      <a id="whatsapp-link" class="whatsapp-btn" href="#" onclick="sendWhatsapp(event)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        إرسال عبر واتساب
+      </a>
     </div>
-    <div class="notes-list" id="notes-list">
-      <div class="empty-state">
-        <div class="empty-icon">📝</div>
-        <p>لا توجد ملاحظات بعد</p>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- =================== MODALS =================== -->
-
-<!-- Add Teacher Modal -->
-<div class="modal-overlay" id="modal-add-teacher">
-  <div class="modal">
-    <h3>➕ إضافة أستاذ / حلقة جديدة</h3>
-    <input type="text" id="new-teacher-name" placeholder="اسم الأستاذ *" />
-    <select id="new-teacher-level">
-      <option value="mubtadi">المبتدئ</option>
-      <option value="mutawasit1">المتوسط 1</option>
-      <option value="mutawasit2">المتوسط 2</option>
-      <option value="mutaqadim">المتقدم</option>
-    </select>
-    <input type="text" id="new-circle-note" placeholder="ملاحظة على الحلقة (اختياري)" />
-    <div class="modal-actions">
-      <button class="btn btn-primary" onclick="addTeacher()">إضافة</button>
-      <button class="btn" style="background:var(--bg2)" onclick="closeModal('modal-add-teacher')">إلغاء</button>
-    </div>
-  </div>
-</div>
-
-<!-- Edit Note Modal -->
-<div class="modal-overlay" id="modal-circle-note">
-  <div class="modal">
-    <h3>✏️ ملاحظة الحلقة</h3>
-    <textarea id="circle-note-text" rows="3" placeholder="أدخل ملاحظة للحلقة..."></textarea>
-    <input type="hidden" id="circle-note-id" />
-    <div class="modal-actions">
-      <button class="btn btn-primary" onclick="saveCircleNote()">حفظ</button>
-      <button class="btn" style="background:var(--bg2)" onclick="closeModal('modal-circle-note')">إلغاء</button>
-    </div>
-  </div>
-</div>
-
-<!-- Student Note Modal -->
-<div class="modal-overlay" id="modal-student-note">
-  <div class="modal">
-    <h3>📝 ملاحظة الطالب</h3>
-    <textarea id="student-note-text" rows="3" placeholder="أدخل ملاحظة للطالب..."></textarea>
-    <input type="hidden" id="student-note-circle" />
-    <input type="hidden" id="student-note-idx" />
-    <div class="modal-actions">
-      <button class="btn btn-primary" onclick="saveStudentNote()">حفظ</button>
-      <button class="btn" style="background:var(--bg2)" onclick="closeModal('modal-student-note')">إلغاء</button>
-    </div>
   </div>
 </div>
 
 <script>
 // ============================================================
-// DATA
+// DATA — المنهاج الكامل
 // ============================================================
-const LEVELS_DATA = {
-  mubtadi:    { id:'mubtadi',    name:'المبتدئ',    color:'#2E7D5E', icon:'🌱', desc:'صعوبة في القراءة — تجويد شبه معدوم' },
-  mutawasit1: { id:'mutawasit1', name:'المتوسط 1',  color:'#1A5C8A', icon:'📖', desc:'يقرأ بشكل معقول — تجويد أساسي' },
-  mutawasit2: { id:'mutawasit2', name:'المتوسط 2',  color:'#7B3FA0', icon:'🎯', desc:'قراءة جيدة — تجويد متوسط' },
-  mutaqadim:  { id:'mutaqadim',  name:'المتقدم',    color:'#B5490B', icon:'⭐', desc:'قراءة ممتازة — يحتاج صقل' },
+
+// مستويات الابتدائي
+const LEVELS_IBTIDAI = {
+  ibt_mubtadi:    { id:'ibt_mubtadi',    name:'المبتدئ',         color:'#2E7D5E', icon:'🌱', desc:'صعوبة في القراءة — تجويد شبه معدوم', cat:'ibtidai' },
+  ibt_mutawasit1: { id:'ibt_mutawasit1', name:'المتوسط الأول',   color:'#1A5C8A', icon:'📖', desc:'تجويد ضعيف نظرياً وعملياً — معظم المخارج موجودة', cat:'ibtidai' },
+  ibt_mutawasit2: { id:'ibt_mutawasit2', name:'المتوسط الثاني',  color:'#7B3FA0', icon:'🎯', desc:'تجويد جيد مع نقص في المدود وأحكام الراء', cat:'ibtidai' },
+  ibt_mutaqadim:  { id:'ibt_mutaqadim',  name:'المتقدم',          color:'#B5490B', icon:'⭐', desc:'قراءة ممتازة — يحتاج صقل وإتقان كامل', cat:'ibtidai' },
 };
 
-const AHKAM = {
-  mubtadi: [
-    { id:'m1',  title:'اللام الشمسية والقمرية',     mahwar:'أساسيات', sharh:'التمييز بين اللام الشمسية (تُدغم) والقمرية (تُظهر).', amthal:['الضَّحى','اللَّيل','الجِبَال','الأُولى'], sura:'الضحى والشرح', link:'https://youtube.com' },
-    { id:'m2',  title:'الحرف المشدد',                mahwar:'أساسيات', sharh:'الحرف المشدد = حرفان. يُعطى ضعف الزمن والقوة في النطق.', amthal:['علَّم','إنَّ','التِّين','تَبَّ'], sura:'التين والعلق', link:'https://youtube.com' },
-    { id:'m3',  title:'الوقوف على الحرف المتحرك',    mahwar:'أساسيات', sharh:'عند الوقوف نسكّن الحرف المتحرك آخر الكلمة.', amthal:['مُنفَكِّين → مُنفَكِّيـن','رَسُولٌ → رَسُولْ'], sura:'البينة والزلزلة', link:'https://youtube.com' },
-    { id:'m4',  title:'الوقوف على تنوين النصب',      mahwar:'أساسيات', sharh:'وقفاً: بألف — وصلاً: إبانة التنوين.', amthal:['ضَبْحاً → ضَبْحَا وقفاً','قَدْحاً → قَدْحَا وقفاً'], sura:'العاديات', link:'https://youtube.com' },
-    { id:'m5',  title:'حروف المد وزمنها',            mahwar:'أساسيات', sharh:'أحرف المد: ا، و، ي — تُعطى زمناً أكبر دون مبالغة.', amthal:['القَارِعَة','التَّكَاثُر','يَكُون','اليَقِين'], sura:'القارعة والتكاثر', link:'https://youtube.com' },
-    { id:'m6',  title:'الحركات وإتمامها',            mahwar:'أساسيات', sharh:'إتمام الفتحة والكسرة والضمة دون اختصار أو مبالغة.', amthal:['ألم تَرَ','لإِيلاف','بِسم الله'], sura:'الفيل وقريش', link:'https://youtube.com' },
-    { id:'m7',  title:'فكرة عامة عن المخارج',        mahwar:'مخارج الحروف', sharh:'المخارج الخمس: الجوف، الحلق، اللسان، الشفتان، الخيشوم.', amthal:['الجوف','الحلق','اللسان','الشفتان'], sura:'الماعون والكوثر', link:'https://youtube.com' },
-    { id:'m8',  title:'مخرج الجوف',                 mahwar:'مخارج الحروف', sharh:'أحرفه: أحرف المد — خالية من الغنة.', amthal:['الكَافِرُون','تَعْبُدُون','جَاء'], sura:'الكافرون والنصر', link:'https://youtube.com' },
-    { id:'m9',  title:'الألف — عدم الإمالة',         mahwar:'مخارج الحروف', sharh:'فتح الفم جيداً — لا تشبيه بالياء.', amthal:['النَّاس لا تقل النِّيس','الرَّحمن'], sura:'الإخلاص والناس', link:'https://youtube.com' },
-    { id:'m10', title:'مخرج الحلق',                 mahwar:'مخارج الحروف', sharh:'أحرفه الستة: الهمزة والهاء والعين والحاء والغين والخاء.', amthal:['الهمزة: أَحَد','الهاء: هُوَ','العين: عَلِيم'], sura:'سورة عم', link:'https://youtube.com' },
-    { id:'m11', title:'الهمزة والوقوف عليها',        mahwar:'مخارج الحروف', sharh:'تُسكَّن عند الوقف ولا تُقلقل.', amthal:['مَاء','السَّمَاء','يَشَاء'], sura:'تتمة سورة عم', link:'https://youtube.com' },
-    { id:'m12', title:'نطق العين',                  mahwar:'مخارج الحروف', sharh:'نطق واضح لا يشبه الألف المفخمة.', amthal:['النَّازِعَات','عَمَّ','تَتْبَعُهَا'], sura:'النازعات', link:'https://youtube.com' },
-    { id:'m13', title:'التمييز بين الغين والخاء',    mahwar:'مخارج الحروف', sharh:'متقاربان — الغين مجهورة، الخاء مهموسة — لا قلقلة.', amthal:['غَرَقاً ← بالغين','خَاشِعَة ← بالخاء'], sura:'تتمة النازعات', link:'https://youtube.com' },
-    { id:'m14', title:'مخرج اللسان — التاء',         mahwar:'مخارج الحروف', sharh:'طرف اللسان مع أصول الثنايا — مهموسة ≠ الدال.', amthal:['كُوِّرَت','انكَدَرَت'], sura:'التكوير', link:'https://youtube.com' },
-    { id:'m15', title:'حرف الجيم',                  mahwar:'مخارج الحروف', sharh:'وسط اللسان مع الحنك — لا يشبه الشين.', amthal:['فُجِّرَت','الجَنَّة'], sura:'الانفطار', link:'https://youtube.com' },
-    { id:'m16', title:'الأحرف اللثوية',              mahwar:'مخارج الحروف', sharh:'ث، ذ، ظ — إخراج اللسان عند نطقها فقط.', amthal:['إِذَا','السَّمَاء','ثُمَّ'], sura:'الانفطار والانشقاق', link:'https://youtube.com' },
-    { id:'m17', title:'مخرج الشفتين',               mahwar:'مخارج الحروف', sharh:'أحرفه: ب، م، و، ف — انطباق الشفتين أو انفتاحهما.', amthal:['فاء','مِيم: مَبْعُوثُون','باء: بِسم'], sura:'المطففين', link:'https://youtube.com' },
-    { id:'m18', title:'القلقلة',                     mahwar:'الصفات', sharh:'اضطراب الصوت عند سكون أحرف: ق ط ب ج د.', amthal:['القَمَر','الطَّارِق','البُرُوج'], sura:'البروج', link:'https://youtube.com' },
-    { id:'m19', title:'أحكام النون والتنوين',         mahwar:'الصفات', sharh:'الإظهار، الإدغام، الإقلاب، الإخفاء — تطبيق عملي.', amthal:['مِن مَا ← إدغام','مِن بَين ← إقلاب'], sura:'الطارق', link:'https://youtube.com' },
-  ],
-  mutawasit1: [
-    { id:'mt1', title:'المد الطبيعي',               mahwar:'أحكام المد', sharh:'حركتان، لا سبب له من همز أو سكون.', amthal:['قَالَ','يَقُول','قِيل'], sura:'قصار السور', link:'https://youtube.com' },
-    { id:'mt2', title:'مد البدل',                   mahwar:'أحكام المد', sharh:'همزة قبل حرف المد — مقداره حركتان.', amthal:['آمَنَ','آدَم','إِيمَان'], sura:'البقرة', link:'https://youtube.com' },
-    { id:'mt3', title:'المد المتصل',                mahwar:'أحكام المد', sharh:'حرف المد والهمزة في كلمة واحدة — 4 إلى 5 حركات.', amthal:['جَاء','سَاء','جِيء'], sura:'آل عمران', link:'https://youtube.com' },
-    { id:'mt4', title:'المد المنفصل',               mahwar:'أحكام المد', sharh:'حرف المد في آخر كلمة والهمزة في أول التالية — 4 إلى 5 حركات.', amthal:['يَا أَيُّهَا','إِنَّا أَعْطَيْنَاك'], sura:'الكوثر', link:'https://youtube.com' },
-    { id:'mt5', title:'المد العارض للسكون',          mahwar:'أحكام المد', sharh:'حرف مد قبل حرف آخر الكلمة عند الوقف — 2 أو 4 أو 6 حركات.', amthal:['نَسْتَعِين','العَالَمِين'], sura:'الفاتحة', link:'https://youtube.com' },
-    { id:'mt6', title:'أحكام الراء',                mahwar:'صفات الحروف', sharh:'الراء: تفخيم وترقيق حسب الحركة والمحيط.', amthal:['رَبَّنَا ← تفخيم','رِزْق ← ترقيق'], sura:'الفاتحة وقصار السور', link:'https://youtube.com' },
-  ],
-  mutawasit2: [
-    { id:'mw1', title:'المد اللازم',                mahwar:'أحكام المد', sharh:'حرف مد بعده سكون أصلي — مقداره 6 حركات وجوباً.', amthal:['الم','الصاخة','الحاقة'], sura:'فواتح السور', link:'https://youtube.com' },
-    { id:'mw2', title:'التفخيم والترقيق',           mahwar:'صفات الحروف', sharh:'التفخيم: تسمين الصوت — الترقيق: تنحيفه.', amthal:['خَلَقَ ← تفخيم','كَرِيم ← ترقيق'], sura:'سور متنوعة', link:'https://youtube.com' },
-    { id:'mw3', title:'أحكام الميم الساكنة',        mahwar:'أحكام النون', sharh:'إخفاء شفوي (مع ب)، إدغام شفوي (مع م)، إظهار (مع غيرهما).', amthal:['هُم بِهِ ← إخفاء','لَهُم مَا ← إدغام'], sura:'الفاتحة', link:'https://youtube.com' },
-  ],
-  mutaqadim: [
-    { id:'mq1', title:'أحكام الوقف والابتداء',      mahwar:'الوقف', sharh:'الوقف التام، الكافي، الحسن، القبيح — علامات الوقف في المصحف.', amthal:['وقف تام','وقف كافٍ','وقف حسن'], sura:'البقرة وآل عمران', link:'https://youtube.com' },
-    { id:'mq2', title:'أحكام السكت',               mahwar:'الوقف', sharh:'قطع الصوت زمناً يسيراً دون تنفس — مواضعه الأربعة في حفص.', amthal:['مَن رَاق','بَل رَان'], sura:'المطففين والقيامة', link:'https://youtube.com' },
-    { id:'mq3', title:'الصفات المتضادة',            mahwar:'صفات الحروف', sharh:'الجهر/الهمس، الشدة/الرخاوة، الاستعلاء/الانخفاض، الإطباق/الانفتاح.', amthal:['الجهر: ب، ج، د','الهمس: ف، ح، ث، ه'], sura:'جميع السور', link:'https://youtube.com' },
-  ],
+// مستويات الإعدادي والثانوي
+const LEVELS_FAWQ = {
+  fawq_mubtadi:    { id:'fawq_mubtadi',    name:'المبتدئ',         color:'#2E7D5E', icon:'🌱', desc:'صعوبة في القراءة — تجويد شبه معدوم', cat:'fawq' },
+  fawq_mutawasit1: { id:'fawq_mutawasit1', name:'المتوسط الأول',   color:'#1A5C8A', icon:'📖', desc:'تجويد ضعيف نظرياً وعملياً — معظم المخارج موجودة', cat:'fawq' },
+  fawq_mutawasit2: { id:'fawq_mutawasit2', name:'المتوسط الثاني',  color:'#7B3FA0', icon:'🎯', desc:'تجويد جيد مع نقص في المدود وأحكام الراء', cat:'fawq' },
+  fawq_mutaqadim:  { id:'fawq_mutaqadim',  name:'المتقدم',          color:'#B5490B', icon:'⭐', desc:'قراءة ممتازة — يحتاج صقل وإتقان كامل', cat:'fawq' },
 };
 
-const ASSESSMENT_LIST = [
-  { id:'a1',  title:'اللام الشمسية والقمرية',     level:'mubtadi',    weight:5 },
-  { id:'a2',  title:'الحرف المشدد',                level:'mubtadi',    weight:5 },
-  { id:'a3',  title:'الوقوف على الحرف المتحرك',    level:'mubtadi',    weight:5 },
-  { id:'a4',  title:'الوقوف على تنوين النصب',      level:'mubtadi',    weight:5 },
-  { id:'a5',  title:'حروف المد',                   level:'mubtadi',    weight:5 },
-  { id:'a6',  title:'الحركات وإتمامها',             level:'mubtadi',    weight:5 },
-  { id:'a7',  title:'مخارج الحروف الأساسية',        level:'mubtadi',    weight:10 },
-  { id:'a8',  title:'القلقلة',                      level:'mubtadi',    weight:5 },
-  { id:'a9',  title:'أحكام النون والتنوين عملياً',  level:'mubtadi',    weight:10 },
-  { id:'a10', title:'المد الطبيعي',                level:'mutawasit1', weight:10 },
-  { id:'a11', title:'المد المتصل والمنفصل',         level:'mutawasit1', weight:10 },
-  { id:'a12', title:'المد العارض للسكون',           level:'mutawasit1', weight:5 },
-  { id:'a13', title:'أحكام الراء',                  level:'mutawasit1', weight:5 },
-  { id:'a14', title:'المد اللازم',                  level:'mutawasit2', weight:5 },
-  { id:'a15', title:'التفخيم والترقيق',             level:'mutawasit2', weight:5 },
-  { id:'a16', title:'أحكام الميم الساكنة',          level:'mutawasit2', weight:5 },
+// ---- أحكام المبتدئ (مشترك بين الابتدائي والإعدادي مع اختلاف السور) ----
+const AHKAM_MUBTADI_IBTIDAI = [
+  // ضبط الحرف
+  { id:'ib_m1',  lesson:1,  title:'إتمام الحركات وعدم التمطيط', mahwar:'ضبط الحرف', sharh:'إعطاء كل حركة حقها من غير إفراط في الإشباع — التمطيط هو الإفراط في إشباع الحركات حتى يتولد منها حرف.', amthal:['مِثَالاً كلمة: عَلَيْهِم','البسملة كاملة'], sura:'سورة الفاتحة' },
+  { id:'ib_m2',  lesson:2,  title:'ضبط زمن المد الطبيعي',       mahwar:'ضبط الحرف', sharh:'المد الطبيعي: لا تقوم ذات الحرف إلا به، لا يتوقف على همز أو سكون، يُمد بمقدار حركتين.', amthal:['النازعات','قَالَ','يَقُولُ'], sura:'سورة الفاتحة والناس' },
+  { id:'ib_m3',  lesson:3,  title:'حق الحرف المشدد والوقوف عليه', mahwar:'ضبط الحرف', sharh:'لا بد من إعطاء الحرف المشدد قوة حرفين وخاصة بعد المد.', amthal:['اللام الشمسية','يَذَّكَّرُ','يُزَكِّي'], sura:'سورة البقرة' },
+  { id:'ib_m4',  lesson:4,  title:'ضبط زمن الحرف الساكن — الشديد والقصير', mahwar:'ضبط الحرف', sharh:'الشدة: انحباس جريان الصوت. حروفها: أجد قط بكت (8 أحرف).', amthal:['كُوِّرَت','الطَّارِق','البُرُوج'], sura:'سورة آل عمران' },
+  { id:'ib_m5',  lesson:5,  title:'ضبط زمن الحرف الساكن — البيني المتوسط', mahwar:'ضبط الحرف', sharh:'وُصفت بالتوسط لأن الصوت لم ينحبس كالشديدة ولم يجرِ كالرخوة. حروفها: لن عمر.', amthal:['انفطرت','المطففين','يستوفون','مرقوم'], sura:'سورة النساء' },
+  { id:'ib_m6',  lesson:6,  title:'ضبط زمن الحرف الساكن الرخو — طويل', mahwar:'ضبط الحرف', sharh:'الرخاوة: جريان الصوت مع الحرف لضعف الاعتماد على المخرج. حروفها: ما عدا الشدة والتوسط.', amthal:['يَسْتَوْفُون','حروف المد'], sura:'سورة المائدة' },
+  // مخارج الحروف
+  { id:'ib_m7',  lesson:7,  title:'فكرة عامة عن مخارج الحروف', mahwar:'مخارج الحروف', sharh:'المخارج الخمس الأساسية: الجوف، الحلق، اللسان، الشفتان، الخيشوم.', amthal:['الجوف','الحلق','اللسان','الشفتان'], sura:'سورة الأنعام' },
+  { id:'ib_m8',  lesson:8,  title:'مخرج الجوف', mahwar:'مخارج الحروف', sharh:'أحرفه: (ا، و، ي) + تصفية الحروف من الغنة وعدم إمالة الألف في غير موضعها.', amthal:['الكَافِرُون','تَعبُدُون','جَاء'], sura:'سورة الأنعام' },
+  { id:'ib_m9',  lesson:9,  title:'مخرج الحلق — الهمزة والهاء والعين', mahwar:'مخارج الحروف', sharh:'عدم تفخيم الهمزة، عدم قلقلة الهمزة الساكنة، عدم تفخيم العين.', amthal:['أَحَد','هُوَ','عَلِيم'], sura:'سورة الأعراف' },
+  { id:'ib_m10', lesson:10, title:'مخرج الحلق — الحاء والغين والخاء', mahwar:'مخارج الحروف', sharh:'عدم إبدال الغين خاءً أو قلقلتها.', amthal:['غَاشِيَة','حَمِيد','خَالِق'], sura:'سورة الأنفال' },
+  { id:'ib_m11', lesson:11, title:'مخرج اللسان — أقصى اللسان (ق، ك)', mahwar:'مخارج الحروف', sharh:'عدم المبالغة في همس الكاف المتحركة.', amthal:['ذَلِكَ','كَيفَ','قَالَ'], sura:'سورة التوبة' },
+  { id:'ib_m12', lesson:12, title:'وسط اللسان — الجيم والشين والياء', mahwar:'مخارج الحروف', sharh:'عدم نطق الجيم رخوة أو شبيهة بالشين أو الدال، مراعاة رخاوة الياء حال تشديدها.', amthal:['وَإيَّاكُم','جَنَّة','شَمسٍ'], sura:'سورة يونس' },
+  { id:'ib_m13', lesson:13, title:'حافة اللسان — الضاد واللام', mahwar:'مخارج الحروف', sharh:'مراعاة اللام الشمسية والقمرية. عدم قلقلتهما.', amthal:['الشَّمس','اللَّيل','ضَالِّين'], sura:'سورة هود' },
+  { id:'ib_m14', lesson:14, title:'طرف اللسان — النون والراء', mahwar:'مخارج الحروف', sharh:'عدم قلقلة النون حال سكونها، عدم تفخيمها، عدم تكرير الراء حال تشديدها.', amthal:['مِن','رَبَّنَا','نُور'], sura:'سورة يوسف' },
+  { id:'ib_m15', lesson:15, title:'طرف اللسان — الطاء والدال والتاء', mahwar:'مخارج الحروف', sharh:'عدم خلط صوت الدال بشيء من التاء، عدم المبالغة في همس التاء المتحركة.', amthal:['تِين','دِين','طَيِّبَة'], sura:'سورة الرعد' },
+  { id:'ib_m16', lesson:16, title:'طرف اللسان — الصاد والزاي والسين', mahwar:'مخارج الحروف', sharh:'عدم خلط صوت الزاي بصوت السين — متفقان بالمخرج لكن لكل منهما صفات تميزه.', amthal:['رِجزٍ','الرِّزق','صِراط'], sura:'سورة إبراهيم' },
+  { id:'ib_m17', lesson:17, title:'الأحرف اللثوية — الظاء والذال والثاء', mahwar:'مخارج الحروف', sharh:'تحقيق مخرجها بوضع طرف اللسان عند طرف الثنية، عدم إخراج اللسان في غيرها.', amthal:['إِذَا','السَّمَاء','ثُمَّ'], sura:'سورة الحجر' },
+  { id:'ib_m18', lesson:18, title:'مخرج الشفتين — الفاء والواو والباء والميم', mahwar:'مخارج الحروف', sharh:'عدم همس الباء، عدم تفخيم الميم والباء.', amthal:['فَاء','مِيم','بَاء','وَاو'], sura:'سورة النحل' },
+  // أحكام النون
+  { id:'ib_m19', lesson:19, title:'أحكام النون الساكنة والتنوين (1)', mahwar:'أحكام النون', sharh:'الإظهار: إظهار النون بلا غنة عند حروف الحلق الستة. الإدغام بغنة: عند (ي ن م و).', amthal:['مِن مَا','مِن نَعيم','من ما خلق'], sura:'سورة الإسراء' },
+  { id:'ib_m20', lesson:20, title:'أحكام النون الساكنة والتنوين (2)', mahwar:'أحكام النون', sharh:'الإدغام بلا غنة: عند (ل ر). الإقلاب: قلب النون ميماً عند الباء مع إخفاء وغنة.', amthal:['مِن بَين','مِن لَدُن','أَنبِئهُم'], sura:'سورة الكهف' },
+  { id:'ib_m21', lesson:21, title:'أحكام النون الساكنة والتنوين (3)', mahwar:'أحكام النون', sharh:'الإخفاء: النطق بالنون بصفة بين الإظهار والإدغام مع بقاء الغنة، عند 15 حرفاً.', amthal:['مِن قَبل','أَنتُم','مَنصُور'], sura:'سورة مريم' },
+  // الصفات
+  { id:'ib_m22', lesson:22, title:'القلقلة', mahwar:'الصفات', sharh:'اضطراب الصوت عند سكون أحرف: ق ط ب ج د — أقوى ما تكون عند الوقف.', amthal:['القَمَر','الطَّارِق','البُرُوج','أُجِيب','قَد'], sura:'سورة طه' },
+  { id:'ib_m23', lesson:23, title:'الهمس', mahwar:'الصفات', sharh:'جريان النفس عند النطق بالحرف. حروفه: (فحثه شخص سكت) — 10 أحرف.', amthal:['فاء','حاء','ثاء','هاء','شين'], sura:'سورة الأنبياء' },
 ];
 
-const LEVEL_COLORS = { mubtadi:'#2E7D5E', mutawasit1:'#1A5C8A', mutawasit2:'#7B3FA0', mutaqadim:'#B5490B' };
-const LEVEL_NAMES = { mubtadi:'المبتدئ', mutawasit1:'المتوسط 1', mutawasit2:'المتوسط 2', mutaqadim:'المتقدم' };
+const AHKAM_MUBTADI_FAWQ = [
+  { id:'fw_m1',  lesson:1,  title:'إتمام الحركات وعدم التمطيط', mahwar:'ضبط الحرف', sharh:'إعطاء كل حركة حقها — التمطيط: الإفراط في إشباع الحركات حتى يتولد منها حرف.', amthal:['عَلَيْهِم','البسملة كاملة'], sura:'سورة عم' },
+  { id:'fw_m2',  lesson:2,  title:'ضبط زمن المد الطبيعي',       mahwar:'ضبط الحرف', sharh:'المد الطبيعي: لا تقوم ذات الحرف إلا به، يُمد بمقدار حركتين.', amthal:['النَّازعات','قَالَ'], sura:'النازعات' },
+  { id:'fw_m3',  lesson:3,  title:'حق الحرف المشدد والوقوف عليه', mahwar:'ضبط الحرف', sharh:'إعطاء الحرف المشدد قوة حرفين، خاصة بعد المد.', amthal:['اللام الشمسية','يَذَّكَّرُ','يُزَكِّي'], sura:'عبس' },
+  { id:'fw_m4',  lesson:4,  title:'ضبط زمن الحرف الساكن — الشديد والقصير', mahwar:'ضبط الحرف', sharh:'الشدة: انحباس جريان الصوت. حروفها 8: أجد قط بكت.', amthal:['كُوِّرَت','الطَّارِق','البُرُوج'], sura:'التكوير' },
+  { id:'fw_m5',  lesson:5,  title:'ضبط زمن الحرف الساكن — البيني المتوسط', mahwar:'ضبط الحرف', sharh:'حروفها: لن عمر. بين الشدة والرخاوة.', amthal:['انفطرت','المطففين','يستوفون'], sura:'الانفطار والمطففين' },
+  { id:'fw_m6',  lesson:6,  title:'ضبط زمن الحرف الساكن الرخو', mahwar:'ضبط الحرف', sharh:'جريان الصوت مع الحرف لضعف الاعتماد على المخرج.', amthal:['يَستَوفُون','حروف المد'], sura:'المطففين' },
+  { id:'fw_m7',  lesson:7,  title:'فكرة عامة عن مخارج الحروف', mahwar:'مخارج الحروف', sharh:'المخارج الخمس: الجوف، الحلق، اللسان، الشفتان، الخيشوم.', amthal:['الجوف','الحلق','اللسان'], sura:'البروج' },
+  { id:'fw_m8',  lesson:8,  title:'مخرج الجوف', mahwar:'مخارج الحروف', sharh:'أحرفه: (ا، و، ي) + تصفية من الغنة + عدم إمالة الألف.', amthal:['الكَافِرُون','تَعبُدُون','جَاء'], sura:'الطارق' },
+  { id:'fw_m9',  lesson:9,  title:'مخرج الحلق — الهمزة والهاء والعين', mahwar:'مخارج الحروف', sharh:'عدم تفخيم الهمزة، عدم قلقلة الهمزة الساكنة، عدم تفخيم العين.', amthal:['أَحَد','هُوَ','عَلِيم'], sura:'الأعلى' },
+  { id:'fw_m10', lesson:10, title:'مخرج الحلق — الحاء والغين والخاء', mahwar:'مخارج الحروف', sharh:'عدم إبدال الغين خاءً أو قلقلتها.', amthal:['غَاشِيَة','حَمِيد','خَالِق'], sura:'الغاشية' },
+  { id:'fw_m11', lesson:11, title:'مخرج اللسان — أقصى اللسان (ق، ك)', mahwar:'مخارج الحروف', sharh:'عدم المبالغة في همس الكاف المتحركة.', amthal:['ذَلِكَ','كَيفَ'], sura:'الفجر' },
+  { id:'fw_m12', lesson:12, title:'وسط اللسان — الجيم والشين والياء', mahwar:'مخارج الحروف', sharh:'عدم نطق الجيم رخوة، مراعاة رخاوة الياء حال تشديدها.', amthal:['وَإيَّاكُم','جَنَّة'], sura:'البلد' },
+  { id:'fw_m13', lesson:13, title:'حافة اللسان — الضاد واللام', mahwar:'مخارج الحروف', sharh:'مراعاة اللام الشمسية والقمرية، عدم قلقلتهما.', amthal:['الشَّمس','اللَّيل','ضَالِّين'], sura:'الشمس والليل' },
+  { id:'fw_m14', lesson:14, title:'طرف اللسان — النون والراء', mahwar:'مخارج الحروف', sharh:'عدم قلقلة النون، عدم تكرير الراء حال تشديدها.', amthal:['مِن','رَبَّنَا'], sura:'الضحى والشرح' },
+  { id:'fw_m15', lesson:15, title:'طرف اللسان — الطاء والدال والتاء', mahwar:'مخارج الحروف', sharh:'عدم خلط الدال بالتاء، عدم المبالغة في همس التاء.', amthal:['تِين','دِين','طَيِّبَة'], sura:'التين والعلق' },
+  { id:'fw_m16', lesson:16, title:'طرف اللسان — الصاد والزاي والسين', mahwar:'مخارج الحروف', sharh:'عدم خلط الزاي بالسين، لكل صفات تميزه.', amthal:['رِجزٍ','الرِّزق'], sura:'القدر والبينة' },
+  { id:'fw_m17', lesson:17, title:'الأحرف اللثوية — الظاء والذال والثاء', mahwar:'مخارج الحروف', sharh:'تحقيق مخرجها بوضع طرف اللسان عند الثنية.', amthal:['إِذَا','السَّمَاء','ثُمَّ'], sura:'الزلزلة والعاديات' },
+  { id:'fw_m18', lesson:18, title:'مخرج الشفتين — الفاء والواو والباء والميم', mahwar:'مخارج الحروف', sharh:'عدم همس الباء، عدم تفخيم الميم والباء.', amthal:['فاء','ميم','باء','واو'], sura:'القارعة والتكاثر' },
+  { id:'fw_m19', lesson:19, title:'أحكام النون الساكنة والتنوين (1) — الإظهار والإدغام بغنة', mahwar:'أحكام النون', sharh:'الإظهار: عند حروف الحلق. الإدغام بغنة: عند (ي ن م و).', amthal:['مِن مَا','مِن نَعيم'], sura:'العصر والهمزة والفيل' },
+  { id:'fw_m20', lesson:20, title:'أحكام النون الساكنة والتنوين (2) — الإدغام بلا غنة والإقلاب', mahwar:'أحكام النون', sharh:'الإدغام بلا غنة: عند (ل ر). الإقلاب: قلب النون ميماً عند الباء.', amthal:['مِن بَين','مِن لَدُن'], sura:'قريش والماعون' },
+  { id:'fw_m21', lesson:21, title:'أحكام النون الساكنة والتنوين (3) — الإخفاء', mahwar:'أحكام النون', sharh:'الإخفاء: بين الإظهار والإدغام مع بقاء الغنة، عند 15 حرفاً.', amthal:['مِن قَبل','أَنتُم'], sura:'الكوثر والكافرون' },
+  { id:'fw_m22', lesson:22, title:'القلقلة', mahwar:'الصفات', sharh:'اضطراب الصوت عند سكون: ق ط ب ج د.', amthal:['القَمَر','الطَّارِق','البُرُوج'], sura:'الإخلاص والفلق' },
+  { id:'fw_m23', lesson:23, title:'الهمس', mahwar:'الصفات', sharh:'جريان النفس عند النطق بالحرف. حروفه 10: فحثه شخص سكت.', amthal:['فاء','حاء','ثاء'], sura:'الناس' },
+];
+
+// المتوسط الأول — مشترك الأحكام مع تغيير السور
+const AHKAM_MUTAWASIT1_IBTIDAI = [
+  { id:'imt1_1', lesson:1,  title:'مراجعة مخارج الحروف (1) — الجوف والحلق', mahwar:'مراجعات أساسية', sharh:'التأكد من عدم وجود أخطاء في مخارج الجوف والحلق.', amthal:['مخرج الجوف','مخرج الحلق'], sura:'سورة البقرة' },
+  { id:'imt1_2', lesson:2,  title:'مراجعة مخارج الحروف (2) — اللسان', mahwar:'مراجعات أساسية', sharh:'مخرج اللسان: أقصى، وسط، حافة.', amthal:['قاف','جيم','ضاد'], sura:'سورة البقرة' },
+  { id:'imt1_3', lesson:3,  title:'مراجعة مخارج الحروف (3) — الشفتان والخيشوم', mahwar:'مراجعات أساسية', sharh:'مخرج الشفتين والخيشوم.', amthal:['باء','ميم','غنة'], sura:'سورة آل عمران' },
+  { id:'imt1_4', lesson:4,  title:'ضبط زمن الحرف الساكن — الشديد والقصير', mahwar:'مراجعات أساسية', sharh:'الشدة: انحباس جريان الصوت. حروفها 8: أجد قط بكت.', amthal:['البروج','الطارق','كورت'], sura:'سورة النساء' },
+  { id:'imt1_5', lesson:5,  title:'ضبط زمن الحرف الساكن — البيني المتوسط', mahwar:'مراجعات أساسية', sharh:'حروفها: لن عمر — بين الشدة والرخاوة.', amthal:['نون','يسطرون'], sura:'الحاقة' },
+  { id:'imt1_6', lesson:6,  title:'ضبط زمن الحرف الساكن الرخو', mahwar:'مراجعات أساسية', sharh:'جريان الصوت مع الحرف لضعف الاعتماد على المخرج.', amthal:['يسطرون','حروف المد'], sura:'الحاقة' },
+  { id:'imt1_7', lesson:7,  title:'أحكام النون الساكنة — الإظهار', mahwar:'أحكام النون والتنوين', sharh:'إظهار النون بلا غنة عند حروف الحلق الستة: أ ه ع ح غ خ.', amthal:['حَمِيمٍ حَمِيمًا','مَن عَمِل'], sura:'المعارج' },
+  { id:'imt1_8', lesson:8,  title:'أحكام النون الساكنة — الإدغام بغنة', mahwar:'أحكام النون والتنوين', sharh:'الإدغام بغنة عند: (ي ن م و). النون تذوب في الحرف مع بقاء الغنة.', amthal:['مَن يَعمَل','مَن مَا خَلَق'], sura:'المعارج' },
+  { id:'imt1_9', lesson:9,  title:'أحكام النون الساكنة — الإدغام بلا غنة', mahwar:'أحكام النون والتنوين', sharh:'الإدغام بلا غنة عند: (ل ر).', amthal:['مِن لَدُنه','مِن رَبِّهم'], sura:'نوح' },
+  { id:'imt1_10',lesson:10, title:'أحكام النون الساكنة — الإقلاب', mahwar:'أحكام النون والتنوين', sharh:'قلب النون ميماً مخفاة مع غنة عند الباء.', amthal:['مِن بَعد','أَنبِئهُم'], sura:'نوح' },
+  { id:'imt1_11',lesson:11, title:'أحكام النون الساكنة — الإخفاء', mahwar:'أحكام النون والتنوين', sharh:'النطق بين الإظهار والإدغام مع بقاء الغنة، عند 15 حرفاً.', amthal:['مِن قَبل','أَنتُم','مَنصُور'], sura:'الجن' },
+  { id:'imt1_12',lesson:12, title:'مراجعة شاملة لأحكام النون', mahwar:'أحكام النون والتنوين', sharh:'تطبيق شامل لجميع أحكام النون الساكنة والتنوين.', amthal:['من ما','من بين','ليالٍ عشر'], sura:'المزمل' },
+  { id:'imt1_13',lesson:13, title:'أحكام الميم الساكنة — الإخفاء الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إخفاء الميم الساكنة عند الباء مع غنة.', amthal:['هُم بِه','أُم مَثَلاً'], sura:'المدثر' },
+  { id:'imt1_14',lesson:14, title:'أحكام الميم الساكنة — الإدغام الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إدغام الميم الساكنة في مثلها.', amthal:['لَهُم مَا','كُنتُم مُسلمين'], sura:'المدثر' },
+  { id:'imt1_15',lesson:15, title:'أحكام الميم الساكنة — الإظهار الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إظهار الميم عند بقية الحروف.', amthal:['أَنتُم فِيه','هُم كَافِرُون'], sura:'القيامة' },
+  { id:'imt1_16',lesson:16, title:'المد الطبيعي', mahwar:'أساسيات المدود', sharh:'حركتان، لا سبب له من همز أو سكون.', amthal:['قَالَ','يَقُول','قِيل'], sura:'المرسلات' },
+  { id:'imt1_17',lesson:17, title:'المد المنفصل', mahwar:'أساسيات المدود', sharh:'حرف المد في آخر كلمة والهمزة في أول التالية — 4 أو 5 حركات.', amthal:['يَا أَيُّهَا','إِنَّا أَعطَينَاك'], sura:'المرسلات' },
+  { id:'imt1_18',lesson:18, title:'المد المتصل', mahwar:'أساسيات المدود', sharh:'حرف المد والهمزة في كلمة واحدة — 4 أو 5 حركات.', amthal:['جَاء','سَاء','جِيء'], sura:'سور متعددة' },
+  { id:'imt1_19',lesson:19, title:'المد المنفصل (تطبيق)', mahwar:'أساسيات المدود', sharh:'تطبيق وتدريب إضافي على المد المنفصل.', amthal:['وَمَا أُنزِل','قُل أُوحِيَ'], sura:'سور مختارة' },
+  { id:'imt1_20',lesson:20, title:'المد اللازم', mahwar:'أساسيات المدود', sharh:'حرف مد بعده سكون أصلي — 6 حركات وجوباً.', amthal:['الم','الحاقة','الصاخة'], sura:'سور مختارة' },
+  { id:'imt1_21',lesson:21, title:'مراجعة المدود', mahwar:'أساسيات المدود', sharh:'مراجعة شاملة لجميع المدود.', amthal:['المد الطبيعي','المتصل','المنفصل','اللازم'], sura:'سور مختارة' },
+  { id:'imt1_22',lesson:22, title:'أحكام لام لفظ الجلالة', mahwar:'متفرقات', sharh:'تفخيم لام الجلالة إن سبقها فتح أو ضم، وترقيقها إن سبقها كسر.', amthal:['قَالَ الله','بِسمِ الله','لِلَّه'], sura:'سور مختارة' },
+  { id:'imt1_23',lesson:23, title:'القلقلة والهمس — عملي ونظري', mahwar:'متفرقات', sharh:'تطبيق القلقلة والهمس من خلال القراءة.', amthal:['قَد','البُرُوج','فاء','ثاء'], sura:'سور مختارة' },
+];
+
+const AHKAM_MUTAWASIT1_FAWQ = [
+  { id:'fmt1_1', lesson:1,  title:'مراجعة مخارج الحروف (1) — الجوف والحلق', mahwar:'مراجعات أساسية', sharh:'التأكد من عدم وجود أخطاء في مخارج الجوف والحلق.', amthal:['مخرج الجوف','مخرج الحلق'], sura:'الملك (1)' },
+  { id:'fmt1_2', lesson:2,  title:'مراجعة مخارج الحروف (2) — اللسان', mahwar:'مراجعات أساسية', sharh:'مخرج اللسان: أقصى، وسط، حافة.', amthal:['قاف','جيم','ضاد'], sura:'الملك (2)' },
+  { id:'fmt1_3', lesson:3,  title:'مراجعة مخارج الحروف (3) — الشفتان والخيشوم', mahwar:'مراجعات أساسية', sharh:'مخرج الشفتين والخيشوم.', amthal:['باء','ميم','غنة'], sura:'القلم' },
+  { id:'fmt1_4', lesson:4,  title:'ضبط زمن الحرف الساكن — الشديد والقصير', mahwar:'مراجعات أساسية', sharh:'الشدة: انحباس جريان الصوت. حروفها 8: أجد قط بكت.', amthal:['البروج','الطارق','كورت'], sura:'القلم' },
+  { id:'fmt1_5', lesson:5,  title:'ضبط زمن الحرف الساكن — البيني المتوسط', mahwar:'مراجعات أساسية', sharh:'حروفها: لن عمر.', amthal:['نون','يسطرون'], sura:'الحاقة' },
+  { id:'fmt1_6', lesson:6,  title:'ضبط زمن الحرف الساكن الرخو', mahwar:'مراجعات أساسية', sharh:'جريان الصوت مع الحرف.', amthal:['يسطرون','حروف المد'], sura:'الحاقة' },
+  { id:'fmt1_7', lesson:7,  title:'أحكام النون الساكنة — الإظهار', mahwar:'أحكام النون والتنوين', sharh:'إظهار النون بلا غنة عند حروف الحلق.', amthal:['حَمِيمٍ حَمِيمًا'], sura:'المعارج' },
+  { id:'fmt1_8', lesson:8,  title:'أحكام النون الساكنة — الإدغام بغنة', mahwar:'أحكام النون والتنوين', sharh:'عند: (ي ن م و).', amthal:['مَن يَعمَل'], sura:'المعارج' },
+  { id:'fmt1_9', lesson:9,  title:'أحكام النون الساكنة — الإدغام بلا غنة', mahwar:'أحكام النون والتنوين', sharh:'عند: (ل ر).', amthal:['مِن لَدُنه'], sura:'نوح' },
+  { id:'fmt1_10',lesson:10, title:'أحكام النون الساكنة — الإقلاب', mahwar:'أحكام النون والتنوين', sharh:'قلب النون ميماً عند الباء.', amthal:['مِن بَعد'], sura:'نوح' },
+  { id:'fmt1_11',lesson:11, title:'أحكام النون الساكنة — الإخفاء', mahwar:'أحكام النون والتنوين', sharh:'بين الإظهار والإدغام مع الغنة.', amthal:['مِن قَبل','أَنتُم'], sura:'الجن' },
+  { id:'fmt1_12',lesson:12, title:'مراجعة شاملة لأحكام النون', mahwar:'أحكام النون والتنوين', sharh:'تطبيق جميع أحكام النون.', amthal:['من ما','من بين','ليالٍ عشر'], sura:'المزمل' },
+  { id:'fmt1_13',lesson:13, title:'أحكام الميم الساكنة — الإخفاء الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إخفاء الميم عند الباء مع غنة.', amthal:['هُم بِه'], sura:'المدثر' },
+  { id:'fmt1_14',lesson:14, title:'أحكام الميم الساكنة — الإدغام الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إدغام الميم في مثلها.', amthal:['لَهُم مَا'], sura:'المدثر' },
+  { id:'fmt1_15',lesson:15, title:'أحكام الميم الساكنة — الإظهار الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إظهار الميم عند بقية الحروف.', amthal:['هُم كَافِرُون'], sura:'القيامة' },
+  { id:'fmt1_16',lesson:16, title:'المد الطبيعي', mahwar:'أساسيات المدود', sharh:'حركتان، لا سبب له.', amthal:['قَالَ','يَقُول'], sura:'المرسلات' },
+  { id:'fmt1_17',lesson:17, title:'المد المنفصل', mahwar:'أساسيات المدود', sharh:'حرف المد في آخر كلمة والهمزة في أول التالية.', amthal:['يَا أَيُّهَا'], sura:'المرسلات' },
+  { id:'fmt1_18',lesson:18, title:'المد المتصل', mahwar:'أساسيات المدود', sharh:'حرف المد والهمزة في كلمة واحدة.', amthal:['جَاء','سَاء'], sura:'سور متعددة' },
+  { id:'fmt1_19',lesson:19, title:'المد المنفصل (تطبيق)', mahwar:'أساسيات المدود', sharh:'تطبيق إضافي.', amthal:['وَمَا أُنزِل'], sura:'سور مختارة' },
+  { id:'fmt1_20',lesson:20, title:'المد اللازم', mahwar:'أساسيات المدود', sharh:'6 حركات وجوباً.', amthal:['الم','الحاقة'], sura:'سور مختارة' },
+  { id:'fmt1_21',lesson:21, title:'مراجعة المدود', mahwar:'أساسيات المدود', sharh:'مراجعة شاملة.', amthal:['المد الطبيعي','المتصل','المنفصل'], sura:'سور مختارة' },
+  { id:'fmt1_22',lesson:22, title:'أحكام لام لفظ الجلالة', mahwar:'متفرقات', sharh:'تفخيم وترقيق لام الجلالة.', amthal:['قَالَ الله','بِسمِ الله'], sura:'سور مختارة' },
+  { id:'fmt1_23',lesson:23, title:'القلقلة والهمس — عملي ونظري', mahwar:'متفرقات', sharh:'تطبيق القلقلة والهمس.', amthal:['قَد','البُرُوج'], sura:'سور مختارة' },
+];
+
+// المتوسط الثاني
+const AHKAM_MUTAWASIT2_IBTIDAI = [
+  { id:'imt2_1', lesson:1,  title:'مراجعة أحكام النون والتنوين كاملة', mahwar:'مراجعات أساسية', sharh:'مراجعة شاملة للإظهار والإدغام والإقلاب والإخفاء.', amthal:['من ما','من بين','من لدن'], sura:'قد سمع' },
+  { id:'imt2_2', lesson:2,  title:'مراجعة أحكام الميم الساكنة', mahwar:'مراجعات أساسية', sharh:'الإخفاء الشفوي والإدغام الشفوي والإظهار.', amthal:['هم به','لهم ما','هم كافرون'], sura:'قد سمع' },
+  { id:'imt2_3', lesson:3,  title:'المدود الأساسية — الطبيعي والمتصل والمنفصل واللازم', mahwar:'مراجعات أساسية', sharh:'مراجعة المدود الأساسية الأربعة.', amthal:['قال','جاء','يا أيها','الم'], sura:'الحشر' },
+  { id:'imt2_4', lesson:4,  title:'المد اللازم الكلمي', mahwar:'المدود بالتفصيل', sharh:'الكلمي المثقل: بعد حرف المد ساكن مشدد. الكلمي المخفف: بعده ساكن غير مشدد.', amthal:['الصآخة','أتحاجوني','ءالآن'], sura:'الممتحنة' },
+  { id:'imt2_5', lesson:5,  title:'المد اللازم الحرفي', mahwar:'المدود بالتفصيل', sharh:'الحرفي المثقل: في فواتح السور — اللام من (الم). الحرفي المخفف: "قاف" من (ق).', amthal:['الم','يس','حم'], sura:'الممتحنة' },
+  { id:'imt2_6', lesson:6,  title:'مد الصلة الصغرى', mahwar:'المدود بالتفصيل', sharh:'مد هاء الضمير إذا لم يأتِ بعدها همز — يلحق بالمد الأصلي.', amthal:['بِه فهو','له ما'], sura:'الصف' },
+  { id:'imt2_7', lesson:7,  title:'مد الصلة الكبرى', mahwar:'المدود بالتفصيل', sharh:'مد هاء الضمير إذا جاء بعدها همز قطع — يلحق بالمد الفرعي.', amthal:['مالَهُ أَخلَده','أَجرَهُ إِلَّا'], sura:'الجمعة' },
+  { id:'imt2_8', lesson:8,  title:'مد البدل والعارض للسكون', mahwar:'المدود الأخرى', sharh:'مد البدل: همزة قبل حرف المد. العارض للسكون: سكون عارض للوقف.', amthal:['أوتوا','آدم','البروج وقفاً'], sura:'المنافقون' },
+  { id:'imt2_9', lesson:9,  title:'مد العوض ومد اللين', mahwar:'المدود الأخرى', sharh:'العوض: مد في الوقف على تنوين النصب. اللين: واو أو ياء ساكنتان قبلهما فتح — عند الوقف.', amthal:['عفواً','رحيماً','البَيت','خَوف'], sura:'التغابن' },
+  { id:'imt2_10',lesson:10, title:'مراجعة المدود', mahwar:'المدود الأخرى', sharh:'مراجعة شاملة لجميع المدود.', amthal:['جميع أنواع المدود'], sura:'سور مختارة' },
+  { id:'imt2_11',lesson:11, title:'تفخيم حروف الاستعلاء', mahwar:'أحكام التفخيم والترقيق', sharh:'حروف الاستعلاء: خص ضغط قظ — كلها مفخمة.', amthal:['خَلَقَ','صَدَق','ضَرَب','غَفَر'], sura:'الطلاق' },
+  { id:'imt2_12',lesson:12, title:'تفخيم الراء في أحوالها', mahwar:'أحكام التفخيم والترقيق', sharh:'تفخيم الراء: إذا كانت مضمومة أو مفتوحة، أو ساكنة وقبلها فتح أو ضم، أو بعد كسر أصلي مع حرف استعلاء.', amthal:['رَبَّنَا','رِزق','مرصاداً','ارتابوا'], sura:'التحريم' },
+  { id:'imt2_13',lesson:13, title:'تفخيم اللام في أحوالها', mahwar:'أحكام التفخيم والترقيق', sharh:'تفخيم لام لفظ الجلالة إن سبقها فتح أو ضم.', amthal:['رسولُ الله','هو الله'], sura:'سور مختارة' },
+  { id:'imt2_14',lesson:14, title:'الغنة تتبع ما بعدها تفخيماً وترقيقاً', mahwar:'أحكام التفخيم والترقيق', sharh:'الغنة مرققة قبل الحروف المرققة ومفخمة قبل حروف الاستعلاء.', amthal:['مِن دِيارهم','مِن قَرن'], sura:'سور مختارة' },
+  { id:'imt2_15',lesson:15, title:'الألف تتبع ما قبلها تفخيماً وترقيقاً', mahwar:'أحكام التفخيم والترقيق', sharh:'الألف لا توصف بترقيق ولا تفخيم، بل تتبع ما قبلها.', amthal:['قَال','كَال','بِالبَاطِل'], sura:'سور مختارة' },
+  { id:'imt2_16',lesson:16, title:'مراجعة التفخيم والترقيق', mahwar:'أحكام التفخيم والترقيق', sharh:'الحروف المرققة والمفخمة والحروف التي تتبع ما قبلها.', amthal:['الراء','اللام','الألف','الغنة'], sura:'سور مختارة' },
+  { id:'imt2_17',lesson:17, title:'الابتداء بهمزة الوصل — الأفعال', mahwar:'الوقف والابتداء', sharh:'نبدأ بالكسر إن كان ثالث الفعل مفتوحاً أو مكسوراً، وبالضم إن كان مضموماً ضماً أصلياً.', amthal:['اِستَغفِروا','اِرجِعوا','اُعبُدوا'], sura:'سور مختارة' },
+  { id:'imt2_18',lesson:18, title:'الابتداء بهمزة الوصل — أفعال خاصة', mahwar:'الوقف والابتداء', sharh:'كلمات مثل: اِمشوا، اِقضوا، اِبنوا — نبدأ بالكسر لأن الضم في ثالثها غير أصلي.', amthal:['اِمشوا','اِقضوا','اِئتوا'], sura:'سور مختارة' },
+  { id:'imt2_19',lesson:19, title:'الابتداء بهمزة الوصل — الأسماء والأحرف', mahwar:'الوقف والابتداء', sharh:'الأسماء: بالكسر في العشرة الأسماء. (أل): بالفتح. الأحرف: بالفتح فقط.', amthal:['الكتاب','الرحمن','ابن'], sura:'سور مختارة' },
+  { id:'imt2_20',lesson:20, title:'مراعاة الوقف والابتداء', mahwar:'الوقف والابتداء', sharh:'الوقف في مكانه الجائز والتحرز من الوقف القبيح.', amthal:['وقف تام','وقف كافٍ','وقف حسن'], sura:'سور مختارة' },
+  { id:'imt2_21',lesson:21, title:'القلقلة بالتفصيل — ملاحظات عملية', mahwar:'بعض صفات الحروف', sharh:'قد يتأثر المقلقل بحركة السابق أو اللاحق — لا يُخرج في نهايته همزة، ولا يُمط حرف القلقلة.', amthal:['لقد كان','تبتم','إبراهيم'], sura:'سور مختارة' },
+  { id:'imt2_22',lesson:22, title:'الاستطالة في الضاد', mahwar:'بعض صفات الحروف', sharh:'صفة الاستطالة في حرف الضاد.', amthal:['ضَالِّين','ضَرَب','رِيَاضٍ'], sura:'سور مختارة' },
+  { id:'imt2_23',lesson:23, title:'تفشي الشين', mahwar:'بعض صفات الحروف', sharh:'تفشي الشين: انتشار الصوت في الفم عند النطق بها.', amthal:['شَمس','شَاء','مَشَى'], sura:'سور مختارة' },
+  { id:'imt2_24',lesson:24, title:'تكرار الراء والانحراف', mahwar:'بعض صفات الحروف', sharh:'الانحراف في اللام والراء. عدم تكرار الراء حال تشديدها.', amthal:['رَبَّنَا','اللَّيل'], sura:'سور مختارة' },
+];
+
+const AHKAM_MUTAWASIT2_FAWQ = AHKAM_MUTAWASIT2_IBTIDAI.map(h => ({
+  ...h, id: h.id.replace('imt2','fmt2'),
+  sura: h.sura === 'قد سمع' ? 'قد سمع' :
+        h.sura === 'الحشر' ? 'الحشر' :
+        h.sura === 'الممتحنة' ? 'الممتحنة' :
+        h.sura === 'الصف' ? 'الصف' :
+        h.sura === 'الجمعة' ? 'الجمعة' :
+        h.sura === 'المنافقون' ? 'المنافقون' :
+        h.sura === 'التغابن' ? 'التغابن' :
+        h.sura === 'الطلاق' ? 'الطلاق' :
+        h.sura === 'التحريم' ? 'التحريم' : h.sura
+}));
+
+// المتقدم
+const AHKAM_MUTAQADIM = [
+  { id:'mq1',  lesson:1,  title:'مراجعة شاملة للمدود', mahwar:'مراجعة وتطبيق', sharh:'مراجعة جميع أنواع المدود من المستويين السابقين.', amthal:['الطبيعي','المتصل','المنفصل','اللازم','البدل'], sura:'سور مختارة' },
+  { id:'mq2',  lesson:2,  title:'مراجعة التفخيم والترقيق', mahwar:'مراجعة وتطبيق', sharh:'مراجعة جميع أحكام التفخيم والترقيق.', amthal:['الراء','اللام','الألف','الغنة'], sura:'سور مختارة' },
+  { id:'mq3',  lesson:3,  title:'أحكام الوقف — التام والكافي والحسن', mahwar:'الوقف والابتداء', sharh:'الوقف التام: تمّ الكلام. الكافي: تمّ ولا تعلق. الحسن: تمّ ويُستحسن وصله.', amthal:['وقف تام','وقف كافٍ','وقف حسن'], sura:'البقرة وآل عمران' },
+  { id:'mq4',  lesson:4,  title:'أحكام الوقف — القبيح والممنوع', mahwar:'الوقف والابتداء', sharh:'الوقف القبيح: أخلّ بالمعنى أو غيّره. الممنوع: يوهم المعنى.', amthal:['لا إله...','محمد رسول...'], sura:'سور متعددة' },
+  { id:'mq5',  lesson:5,  title:'أحكام السكت', mahwar:'الوقف والابتداء', sharh:'قطع الصوت زمناً يسيراً دون تنفس — مواضعه الأربعة في حفص.', amthal:['مَن رَاق','بَل رَان'], sura:'المطففين والقيامة' },
+  { id:'mq6',  lesson:6,  title:'الصفات المتضادة — الجهر والهمس', mahwar:'صفات الحروف', sharh:'الجهر: انطباق الوتران. الهمس: جريان النفس.', amthal:['الجهر: ب ج د','الهمس: ف ح ث ه'], sura:'سور متعددة' },
+  { id:'mq7',  lesson:7,  title:'الصفات المتضادة — الشدة والرخاوة والتوسط', mahwar:'صفات الحروف', sharh:'الشدة: انحباس الصوت. الرخاوة: جريانه. التوسط: بينهما.', amthal:['أجد قط بكت','لن عمر'], sura:'سور متعددة' },
+  { id:'mq8',  lesson:8,  title:'الصفات المتضادة — الاستعلاء والانخفاض', mahwar:'صفات الحروف', sharh:'الاستعلاء: رفع اللسان للحنك الأعلى. الانخفاض: عكسه.', amthal:['خص ضغط قظ','بقية الحروف'], sura:'سور متعددة' },
+  { id:'mq9',  lesson:9,  title:'الصفات المتضادة — الإطباق والانفتاح', mahwar:'صفات الحروف', sharh:'الإطباق: التصاق اللسان بالحنك. الانفتاح: عدم الالتصاق.', amthal:['ص ض ط ظ','بقية الحروف'], sura:'سور متعددة' },
+  { id:'mq10', lesson:10, title:'القراءة الترتيلية وتطبيق التجويد كاملاً', mahwar:'التطبيق الشامل', sharh:'القراءة بالتجويد الكامل مع مراعاة جميع الأحكام من البداية.', amthal:['تطبيق شامل'], sura:'جزء عم كاملاً' },
+];
+
+// ---- جمع الأحكام ----
+const AHKAM = {
+  ibt_mubtadi:    AHKAM_MUBTADI_IBTIDAI,
+  ibt_mutawasit1: AHKAM_MUTAWASIT1_IBTIDAI,
+  ibt_mutawasit2: AHKAM_MUTAWASIT2_IBTIDAI,
+  ibt_mutaqadim:  AHKAM_MUTAQADIM,
+  fawq_mubtadi:    AHKAM_MUBTADI_FAWQ,
+  fawq_mutawasit1: AHKAM_MUTAWASIT1_FAWQ,
+  fawq_mutawasit2: AHKAM_MUTAWASIT2_FAWQ,
+  fawq_mutaqadim:  AHKAM_MUTAQADIM,
+};
+
+// ---- قائمة التقييم ----
+// كل مستوى له عدد أحكامه الخاصة — القاعدة: 7 أخطاء = يبقى في هذا المستوى
+const ASSESSMENT_LEVELS = [
+  { key:'mubtadi',    name:'المبتدئ',        color:'#2E7D5E', icon:'🌱',
+    items: [
+      { id:'as_m1',  title:'إتمام الحركات وعدم التمطيط' },
+      { id:'as_m2',  title:'ضبط زمن المد الطبيعي' },
+      { id:'as_m3',  title:'حق الحرف المشدد والوقوف عليه' },
+      { id:'as_m4',  title:'ضبط الحرف الساكن الشديد' },
+      { id:'as_m5',  title:'ضبط الحرف الساكن البيني' },
+      { id:'as_m6',  title:'ضبط الحرف الساكن الرخو' },
+      { id:'as_m7',  title:'مخرج الجوف (أحرف المد)' },
+      { id:'as_m8',  title:'مخرج الحلق (ء ه ع ح غ خ)' },
+      { id:'as_m9',  title:'مخارج اللسان' },
+      { id:'as_m10', title:'مخرج الشفتين' },
+      { id:'as_m11', title:'أحكام النون الساكنة والتنوين — الإظهار' },
+      { id:'as_m12', title:'أحكام النون — الإدغام بغنة' },
+      { id:'as_m13', title:'أحكام النون — الإدغام بلا غنة' },
+      { id:'as_m14', title:'أحكام النون — الإقلاب' },
+      { id:'as_m15', title:'أحكام النون — الإخفاء' },
+      { id:'as_m16', title:'القلقلة' },
+      { id:'as_m17', title:'الهمس' },
+    ]
+  },
+  { key:'mutawasit1', name:'المتوسط الأول',  color:'#1A5C8A', icon:'📖',
+    items: [
+      { id:'as_mt1', title:'أحكام الميم الساكنة — الإخفاء الشفوي' },
+      { id:'as_mt2', title:'أحكام الميم الساكنة — الإدغام الشفوي' },
+      { id:'as_mt3', title:'أحكام الميم الساكنة — الإظهار الشفوي' },
+      { id:'as_mt4', title:'المد الطبيعي (ضبط الزمن)' },
+      { id:'as_mt5', title:'المد المنفصل' },
+      { id:'as_mt6', title:'المد المتصل' },
+      { id:'as_mt7', title:'المد اللازم' },
+      { id:'as_mt8', title:'أحكام لام لفظ الجلالة' },
+    ]
+  },
+  { key:'mutawasit2', name:'المتوسط الثاني', color:'#7B3FA0', icon:'🎯',
+    items: [
+      { id:'as_mw1', title:'المد اللازم الكلمي (مثقل ومخفف)' },
+      { id:'as_mw2', title:'المد اللازم الحرفي (مثقل ومخفف)' },
+      { id:'as_mw3', title:'مد الصلة الصغرى والكبرى' },
+      { id:'as_mw4', title:'مد البدل والعارض للسكون' },
+      { id:'as_mw5', title:'مد العوض ومد اللين' },
+      { id:'as_mw6', title:'تفخيم حروف الاستعلاء' },
+      { id:'as_mw7', title:'تفخيم الراء وترقيقها' },
+      { id:'as_mw8', title:'تفخيم اللام وترقيقها' },
+      { id:'as_mw9', title:'الغنة تبع ما بعدها تفخيماً وترقيقاً' },
+      { id:'as_mw10',title:'الوقف والابتداء — همزة الوصل' },
+      { id:'as_mw11',title:'القلقلة بالتفصيل' },
+      { id:'as_mw12',title:'الاستطالة في الضاد وتفشي الشين' },
+    ]
+  },
+  { key:'mutaqadim', name:'المتقدم', color:'#B5490B', icon:'⭐',
+    items: [
+      { id:'as_mq1', title:'أحكام الوقف التام والكافي والحسن والقبيح' },
+      { id:'as_mq2', title:'أحكام السكت' },
+      { id:'as_mq3', title:'الصفات المتضادة — الجهر والهمس' },
+      { id:'as_mq4', title:'الصفات المتضادة — الشدة والرخاوة والتوسط' },
+      { id:'as_mq5', title:'الإطباق والانفتاح والاستعلاء والانخفاض' },
+      { id:'as_mq6', title:'القراءة الترتيلية الكاملة' },
+    ]
+  }
+];
+
+const THRESHOLD = 7; // عدد الأخطاء الذي يُحدد المستوى
+
+// بيانات الحلقات (للعرض فقط)
+const DURA_DATA = {
+  uthman:  { name:'دورة سيدنا عثمان بن عفان', type:'ابتدائي', color:'#2E7D5E', icon:'🕌', circles:[] },
+  umar:    { name:'دورة سيدنا عمر بن الخطاب', type:'ابتدائي', color:'#1A5C8A', icon:'📖', circles:[] },
+  abubakr: { name:'دورة سيدنا أبو بكر الصديق', type:'إعدادي', color:'#7B3FA0', icon:'⭐', circles:[] },
+  thanawi: { name:'دورة الثانوي', type:'ثانوي', color:'#B5490B', icon:'🎓', circles:[] },
+};
 
 // ============================================================
 // STATE
 // ============================================================
 let currentCat = '';
 let currentLevel = '';
-
-// LocalStorage keys
-const LS = { circles: 'maqari_circles', notes: 'maqari_notes' };
-
-function load(key) { try { return JSON.parse(localStorage.getItem(key)) || []; } catch(e) { return []; } }
-function save(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+let selectedDura = '';
 
 // ============================================================
 // NAVIGATION
 // ============================================================
-function showPage(name) {
+function showPage(name, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  event.currentTarget.classList.add('active');
+  if(btn) btn.classList.add('active');
+  else document.querySelectorAll('.nav-tab')[['curriculum','assessment','circles','notes'].indexOf(name)].classList.add('active');
 
-  if (name === 'circles') renderCircles();
-  if (name === 'notes') renderNotes();
   if (name === 'assessment') renderAssessmentChecklist();
 }
 
@@ -1119,12 +803,15 @@ function showView(v) {
 
 function selectCategory(cat) {
   currentCat = cat;
-  const catName = cat === 'ibtidai' ? 'الابتدائي' : 'فوق الابتدائي';
+  const catName = cat === 'ibtidai' ? 'الابتدائي' : 'الإعدادي والثانوي';
   document.getElementById('bc-cat').textContent = catName;
   document.getElementById('bc-cat2').textContent = catName;
 
+  const levels = cat === 'ibtidai' ? LEVELS_IBTIDAI : LEVELS_FAWQ;
   const grid = document.getElementById('levels-grid');
-  grid.innerHTML = Object.values(LEVELS_DATA).map(lv => `
+  document.getElementById('levels-subtitle').textContent = '4 مستويات — اضغط على المستوى المناسب';
+
+  grid.innerHTML = Object.values(levels).map(lv => `
     <div class="level-card" onclick="selectLevel('${lv.id}')" style="border-top: 4px solid ${lv.color}">
       <span class="level-icon">${lv.icon}</span>
       <div class="level-name" style="color:${lv.color}">${lv.name}</div>
@@ -1136,7 +823,8 @@ function selectCategory(cat) {
 
 function selectLevel(levelId) {
   currentLevel = levelId;
-  const lv = LEVELS_DATA[levelId];
+  const allLevels = {...LEVELS_IBTIDAI, ...LEVELS_FAWQ};
+  const lv = allLevels[levelId];
   document.getElementById('bc-level').textContent = lv.name;
   document.getElementById('level-icon').textContent = lv.icon;
   document.getElementById('level-title').textContent = lv.name;
@@ -1145,14 +833,11 @@ function selectLevel(levelId) {
   const ahkam = AHKAM[levelId] || [];
   const grid = document.getElementById('ahkam-grid');
 
-  // Group by mahwar
-  const groups = {};
-  ahkam.forEach(h => { (groups[h.mahwar] = groups[h.mahwar] || []).push(h); });
-
   grid.innerHTML = ahkam.map(h => `
     <div class="hukm-card" id="card-${h.id}" onclick="toggleHukm('${h.id}')">
       <div class="hukm-header">
         <div class="hukm-header-left">
+          <div class="hukm-num">${h.lesson}</div>
           <div>
             <div class="hukm-badge">${h.mahwar}</div>
             <div class="hukm-title">${h.title}</div>
@@ -1165,7 +850,6 @@ function selectLevel(levelId) {
         <div class="hukm-sharh">${h.sharh}</div>
         <div class="amthal-title">أمثلة تطبيقية</div>
         <div class="amthal-list">${h.amthal.map(a => `<span class="mithal">${a}</span>`).join('')}</div>
-        <a class="hukm-link" href="${h.link}" target="_blank">▶ شرح على يوتيوب</a>
       </div>
     </div>
   `).join('');
@@ -1177,243 +861,190 @@ function toggleHukm(id) {
 }
 
 // ============================================================
-// ASSESSMENT
+// ASSESSMENT — منطق الـ 7 أحكام
 // ============================================================
 function renderAssessmentChecklist() {
-  const groups = {};
-  ASSESSMENT_LIST.forEach(a => { (groups[LEVEL_NAMES[a.level]] = groups[LEVEL_NAMES[a.level]] || []).push(a); });
-
+  const cat = document.getElementById('student-cat').value;
   const cl = document.getElementById('assessment-checklist');
-  cl.innerHTML = Object.entries(groups).map(([grp, items]) => `
-    <div class="ahkam-group-title" style="color:${LEVEL_COLORS[items[0].level]}">— ${grp} —</div>
-    ${items.map(a => `
-      <label class="check-item">
-        <input type="checkbox" id="chk-${a.id}" />
-        <label for="chk-${a.id}" style="pointer-events:none">${a.title}</label>
-        <span class="level-tag" style="background:${LEVEL_COLORS[a.level]}22;color:${LEVEL_COLORS[a.level]}">${LEVEL_NAMES[a.level]}</span>
+
+  cl.innerHTML = ASSESSMENT_LEVELS.map(lvl => `
+    <div class="ahkam-group-title" style="color:${lvl.color}">
+      ${lvl.icon} ${lvl.name} — <span id="counter-${lvl.key}">0</span> / ${lvl.items.length} أخطاء
+    </div>
+    ${lvl.items.map(item => `
+      <label class="check-item" onclick="updateCounters()">
+        <input type="checkbox" id="chk-${item.id}" />
+        <label for="chk-${item.id}" style="pointer-events:none">${item.title}</label>
+        <span class="level-tag" style="background:${lvl.color}22;color:${lvl.color}">${lvl.name}</span>
       </label>
     `).join('')}
   `).join('');
+}
+
+function updateCounters() {
+  setTimeout(() => {
+    ASSESSMENT_LEVELS.forEach(lvl => {
+      const count = lvl.items.filter(item => {
+        const el = document.getElementById('chk-' + item.id);
+        return el && el.checked;
+      }).length;
+      const counter = document.getElementById('counter-' + lvl.key);
+      if(counter) {
+        counter.textContent = count;
+        counter.style.color = count >= THRESHOLD ? '#C0392B' : '#27AE60';
+        counter.style.fontWeight = count >= THRESHOLD ? '700' : '400';
+      }
+    });
+  }, 0);
 }
 
 function calcAssessment() {
   const name = document.getElementById('student-name').value.trim();
   if (!name) { alert('الرجاء إدخال اسم الطالب'); return; }
 
-  const totalWeight = ASSESSMENT_LIST.reduce((s, a) => s + a.weight, 0);
-  let lostWeight = 0;
-  const weakPoints = [];
-
-  ASSESSMENT_LIST.forEach(a => {
-    const chk = document.getElementById('chk-' + a.id);
-    if (chk && chk.checked) { lostWeight += a.weight; weakPoints.push(a.title); }
+  // احسب الأخطاء لكل مستوى
+  const levelResults = ASSESSMENT_LEVELS.map(lvl => {
+    const missed = lvl.items.filter(item => {
+      const el = document.getElementById('chk-' + item.id);
+      return el && el.checked;
+    }).length;
+    return { ...lvl, missed, failed: missed >= THRESHOLD };
   });
 
-  const score = Math.max(0, Math.round(((totalWeight - lostWeight) / totalWeight) * 100));
+  // تحديد المستوى: أول مستوى فيه ≥7 أخطاء
+  let assignedLevel = null;
+  let assignedNote = '';
+  for(let i = 0; i < levelResults.length; i++) {
+    if(levelResults[i].failed) {
+      assignedLevel = levelResults[i];
+      assignedNote = `أخفق الطالب في ${assignedLevel.missed} أحكام من مستوى ${assignedLevel.name} (الحد: ${THRESHOLD}) — فهو ينتمي إلى هذا المستوى.`;
+      break;
+    }
+  }
 
-  let level, note, color;
-  if (score >= 81) { level = 'المتقدم ⭐'; color = '#B5490B'; note = 'ممتاز! يمكن العمل على الصقل والإتقان الكامل.'; }
-  else if (score >= 61) { level = 'المتوسط 2 🎯'; color = '#7B3FA0'; note = 'جيد جداً! يحتاج تدقيق في بعض الأحكام المتقدمة.'; }
-  else if (score >= 36) { level = 'المتوسط 1 📖'; color = '#1A5C8A'; note = 'جيد! أساسياته راسخة ويحتاج تطوير أحكام المد.'; }
-  else { level = 'المبتدئ 🌱'; color = '#2E7D5E'; note = 'يحتاج بناء الأساسيات والتلقين التدريجي.'; }
+  // إذا لم يفشل في أي مستوى → متقدم
+  if(!assignedLevel) {
+    assignedLevel = levelResults[levelResults.length - 1];
+    assignedNote = 'أتقن الطالب أحكام جميع المستويات — يُوصى بمستوى المتقدم للصقل والإتقان الكامل.';
+  }
 
-  const rb = document.getElementById('result-box');
-  document.getElementById('res-score').innerHTML = `${score}<span>/ 100</span>`;
-  document.getElementById('res-level').textContent = `المستوى الموصى به: ${level}`;
-  document.getElementById('res-level').style.color = color;
-  document.getElementById('res-note').textContent = note;
+  // عرض النتيجة
+  document.getElementById('res-level').innerHTML = `${assignedLevel.icon} المستوى الموصى به: <span style="color:${assignedLevel.color}">${assignedLevel.name}</span>`;
+  document.getElementById('res-note').textContent = assignedNote;
+
+  // جدول تفصيلي
+  document.getElementById('res-detail').innerHTML = `
+    <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px">📊 تفصيل الأحكام لكل مستوى:</div>
+    ${levelResults.map(lr => `
+      <div class="lvl-row">
+        <span><span class="lvl-badge" style="background:${lr.color}">${lr.icon} ${lr.name}</span></span>
+        <span class="${lr.failed ? 'lvl-missed' : 'lvl-pass'}">
+          ${lr.missed} خطأ / ${lr.items.length}
+          ${lr.failed ? `❌ (≥${THRESHOLD} → يُحدَّد هنا)` : '✅'}
+        </span>
+      </div>
+    `).join('')}
+  `;
+
+  // نقاط الضعف
+  const allMissed = ASSESSMENT_LEVELS.flatMap(lvl =>
+    lvl.items.filter(item => {
+      const el = document.getElementById('chk-' + item.id);
+      return el && el.checked;
+    }).map(item => ({ title: item.title, color: lvl.color, level: lvl.name }))
+  );
 
   const wp = document.getElementById('weak-points');
-  if (weakPoints.length > 0) {
-    wp.innerHTML = `<h4>نقاط الضعف المُسجَّلة (${weakPoints.length}):</h4><div class="weak-list">${weakPoints.map(w => `<span class="weak-tag">❌ ${w}</span>`).join('')}</div>`;
+  if(allMissed.length > 0) {
+    wp.innerHTML = `<h4>نقاط الضعف المُسجَّلة (${allMissed.length}):</h4>
+    <div class="weak-list">${allMissed.map(w => `<span class="weak-tag">❌ ${w.title}</span>`).join('')}</div>`;
   } else {
-    wp.innerHTML = '<p style="color:#27ae60;font-weight:600">✅ لا توجد نقاط ضعف مُسجَّلة</p>';
+    wp.innerHTML = '<p style="color:#27ae60;font-weight:600;margin-top:12px">✅ لا توجد نقاط ضعف مُسجَّلة</p>';
   }
 
-  rb.classList.add('show');
-  rb.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function printResult() {
-  window.print();
+  document.getElementById('result-box').classList.add('show');
+  document.getElementById('result-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ============================================================
-// CIRCLES
+// CIRCLES — تقسيمات المقارئ (للعرض فقط)
 // ============================================================
-function renderCircles() {
-  const circles = load(LS.circles);
-  const grid = document.getElementById('circles-grid');
+function selectDura(key) {
+  selectedDura = key;
+  // تفعيل البطاقة المختارة
+  document.querySelectorAll('.dura-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
 
-  if (circles.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><p>لا توجد حلقات بعد — أضف أستاذاً لإنشاء حلقة</p></div>';
-    return;
-  }
+  const dura = DURA_DATA[key];
+  const section = document.getElementById('circles-section');
+  section.classList.add('active');
 
-  grid.innerHTML = circles.map((c, ci) => `
-    <div class="circle-card">
-      <div class="circle-head" style="background:linear-gradient(135deg,${LEVEL_COLORS[c.level]},${LEVEL_COLORS[c.level]}cc)">
-        <div class="circle-head-info">
-          <h3>أ. ${c.teacher}</h3>
-          <p>${LEVEL_NAMES[c.level]} · ${c.students.length} طالب</p>
-        </div>
-        <div class="circle-actions">
-          <button class="btn btn-sm" style="background:rgba(255,255,255,0.2);color:white" onclick="openCircleNote(${ci})">📝</button>
-          <button class="btn btn-sm btn-danger" onclick="deleteCircle(${ci})">🗑️</button>
+  if(dura.circles.length === 0) {
+    section.innerHTML = `
+      <div style="background:var(--white);border-radius:var(--radius);padding:24px 28px;box-shadow:var(--shadow);border-right:4px solid ${dura.color}">
+        <h3 style="color:${dura.color};margin-bottom:8px">${dura.icon} ${dura.name}</h3>
+        <p style="color:var(--sub);font-size:14px">نوع الدورة: <strong>${dura.type}</strong></p>
+        <div class="empty-state" style="padding:40px 20px">
+          <div class="empty-icon">📋</div>
+          <p>سيتم إدخال بيانات الحلقات والأساتذة قريباً</p>
         </div>
       </div>
-      <div class="circle-body">
-        ${c.note ? `<div class="circle-note">📌 ${c.note}</div>` : ''}
-        <div class="student-list">
-          ${c.students.length === 0 ? '<div style="text-align:center;color:var(--sub);font-size:13px;padding:12px">لا يوجد طلاب بعد</div>' :
-            c.students.map((s, si) => `
-              <div class="student-row">
-                <div>
-                  <div class="student-name">${s.name}</div>
-                  ${s.note ? `<div class="student-note">📌 ${s.note}</div>` : ''}
-                </div>
-                <div class="student-actions">
-                  <button class="icon-btn" onclick="openStudentNote(${ci},${si})" title="ملاحظة">📝</button>
-                  <button class="icon-btn" onclick="removeStudent(${ci},${si})" title="حذف">🗑️</button>
-                </div>
+    `;
+  } else {
+    section.innerHTML = `
+      <div style="margin-bottom:20px">
+        <h3 style="color:${dura.color};font-size:20px;font-weight:700">${dura.icon} ${dura.name} — ${dura.type}</h3>
+      </div>
+      <div class="circles-grid">
+        ${dura.circles.map(c => `
+          <div class="circle-card">
+            <div class="circle-head" style="background:linear-gradient(135deg,${dura.color},${dura.color}cc)">
+              <div class="circle-head-info">
+                <h3>أ. ${c.teacher}</h3>
+                <p>${c.level} · ${c.students.length} طالب</p>
               </div>
-            `).join('')}
-        </div>
-        <div class="add-student-row">
-          <input type="text" id="new-student-${ci}" placeholder="اسم الطالب الجديد..." onkeydown="if(event.key==='Enter')addStudent(${ci})" />
-          <button class="btn btn-primary btn-sm" onclick="addStudent(${ci})">➕</button>
-        </div>
+            </div>
+            <div class="circle-body">
+              ${c.note ? `<div class="circle-note">📌 ${c.note}</div>` : ''}
+              <div class="student-list">
+                ${c.students.length === 0
+                  ? '<div style="text-align:center;color:var(--sub);font-size:13px;padding:12px">لا يوجد طلاب</div>'
+                  : c.students.map(s => `
+                    <div class="student-row">
+                      <div>
+                        <div class="student-name">${s.name}</div>
+                        ${s.note ? `<div class="student-note">📌 ${s.note}</div>` : ''}
+                      </div>
+                    </div>
+                  `).join('')}
+              </div>
+            </div>
+          </div>
+        `).join('')}
       </div>
-    </div>
-  `).join('');
-}
-
-function addTeacher() {
-  const name = document.getElementById('new-teacher-name').value.trim();
-  const level = document.getElementById('new-teacher-level').value;
-  const note = document.getElementById('new-circle-note').value.trim();
-  if (!name) { alert('الرجاء إدخال اسم الأستاذ'); return; }
-
-  const circles = load(LS.circles);
-  circles.push({ teacher: name, level, note, students: [] });
-  save(LS.circles, circles);
-  closeModal('modal-add-teacher');
-  document.getElementById('new-teacher-name').value = '';
-  document.getElementById('new-circle-note').value = '';
-  renderCircles();
-}
-
-function deleteCircle(i) {
-  if (!confirm('هل تريد حذف هذه الحلقة؟')) return;
-  const circles = load(LS.circles);
-  circles.splice(i, 1);
-  save(LS.circles, circles);
-  renderCircles();
-}
-
-function addStudent(ci) {
-  const inp = document.getElementById('new-student-' + ci);
-  const name = inp.value.trim();
-  if (!name) return;
-  const circles = load(LS.circles);
-  circles[ci].students.push({ name, note: '' });
-  save(LS.circles, circles);
-  renderCircles();
-}
-
-function removeStudent(ci, si) {
-  if (!confirm('حذف الطالب؟')) return;
-  const circles = load(LS.circles);
-  circles[ci].students.splice(si, 1);
-  save(LS.circles, circles);
-  renderCircles();
-}
-
-function openCircleNote(ci) {
-  const circles = load(LS.circles);
-  document.getElementById('circle-note-text').value = circles[ci].note || '';
-  document.getElementById('circle-note-id').value = ci;
-  openModal('modal-circle-note');
-}
-
-function saveCircleNote() {
-  const ci = +document.getElementById('circle-note-id').value;
-  const text = document.getElementById('circle-note-text').value.trim();
-  const circles = load(LS.circles);
-  circles[ci].note = text;
-  save(LS.circles, circles);
-  closeModal('modal-circle-note');
-  renderCircles();
-}
-
-function openStudentNote(ci, si) {
-  const circles = load(LS.circles);
-  document.getElementById('student-note-text').value = circles[ci].students[si].note || '';
-  document.getElementById('student-note-circle').value = ci;
-  document.getElementById('student-note-idx').value = si;
-  openModal('modal-student-note');
-}
-
-function saveStudentNote() {
-  const ci = +document.getElementById('student-note-circle').value;
-  const si = +document.getElementById('student-note-idx').value;
-  const text = document.getElementById('student-note-text').value.trim();
-  const circles = load(LS.circles);
-  circles[ci].students[si].note = text;
-  save(LS.circles, circles);
-  closeModal('modal-student-note');
-  renderCircles();
-}
-
-// ============================================================
-// NOTES
-// ============================================================
-function renderNotes() {
-  const notes = load(LS.notes);
-  const list = document.getElementById('notes-list');
-  if (notes.length === 0) {
-    list.innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><p>لا توجد ملاحظات بعد</p></div>';
-    return;
+    `;
   }
-  list.innerHTML = [...notes].reverse().map((n, i) => `
-    <div class="note-item">
-      <div class="note-text">${n.text}</div>
-      <div class="note-meta">${n.author ? '✍️ ' + n.author + ' · ' : ''}${n.date}</div>
-      <button class="icon-btn note-del" onclick="deleteNote(${notes.length - 1 - i})">🗑️</button>
-    </div>
-  `).join('');
 }
 
-function addNote() {
+// ============================================================
+// NOTES — إرسال واتساب
+// ============================================================
+function sendWhatsapp(e) {
+  e.preventDefault();
   const text = document.getElementById('note-input').value.trim();
-  if (!text) return;
   const author = document.getElementById('note-author').value.trim();
-  const notes = load(LS.notes);
-  notes.push({ text, author, date: new Date().toLocaleDateString('ar-SA') });
-  save(LS.notes, notes);
-  document.getElementById('note-input').value = '';
-  renderNotes();
-}
+  if(!text) { alert('الرجاء كتابة الملاحظة أولاً'); return; }
 
-function deleteNote(i) {
-  if (!confirm('حذف الملاحظة؟')) return;
-  const notes = load(LS.notes);
-  notes.splice(i, 1);
-  save(LS.notes, notes);
-  renderNotes();
+  const msg = author ? `✍️ ${author}:\n${text}` : text;
+  const phone = '963949542356';
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
 }
-
-// ============================================================
-// MODAL
-// ============================================================
-function openModal(id) { document.getElementById(id).classList.add('show'); }
-function closeModal(id) { document.getElementById(id).classList.remove('show'); }
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('show'); });
-});
 
 // Init
-renderAssessmentChecklist();
+document.addEventListener('DOMContentLoaded', () => {
+  renderAssessmentChecklist();
+});
 </script>
 </body>
 </html>
