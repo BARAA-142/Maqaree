@@ -36,7 +36,7 @@
     .nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
     .nav-logo img { height: 44px; width: 44px; object-fit: contain; filter: brightness(0) invert(1); border-radius: 8px; }
     .nav-logo span { font-size: 18px; font-weight: 700; color: var(--gold); font-family: 'Amiri', serif; }
-    .nav-tabs { display: flex; gap: 4px; }
+    .nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
     .nav-tab {
       padding: 8px 16px; border-radius: 8px; color: rgba(255,255,255,0.7);
       font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
@@ -90,7 +90,7 @@
     .breadcrumb .sep { color: var(--bg2); }
     .breadcrumb .current { color: var(--navy); font-weight: 600; }
 
-    /* LEVEL CARDS */
+    /* LEVEL CARDS — تنويع الألوان */
     .levels-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px; padding: 32px 24px; max-width: 1000px; margin: 0 auto;
@@ -99,13 +99,18 @@
       background: var(--white); border-radius: var(--radius); padding: 28px 20px;
       text-align: center; cursor: pointer; box-shadow: var(--shadow);
       border: 2px solid transparent; transition: all 0.25s;
+      position: relative; overflow: hidden;
     }
-    .level-card:hover { transform: translateY(-3px); border-color: var(--gold); }
-    .level-icon { font-size: 40px; margin-bottom: 12px; display: block; }
-    .level-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-    .level-desc { font-size: 12px; color: var(--sub); line-height: 1.5; }
+    .level-card::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.06;
+      background: var(--lvl-bg, var(--navy));
+    }
+    .level-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 32px rgba(27,46,94,0.2); }
+    .level-icon { font-size: 40px; margin-bottom: 12px; display: block; position: relative; }
+    .level-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; position: relative; }
+    .level-desc { font-size: 12px; color: var(--sub); line-height: 1.5; position: relative; }
 
-    /* AHKAM PAGE */
+    /* AHKAM PAGE — بطاقات متنوعة الألوان */
     .page-header { padding: 28px 24px 20px; border-bottom: 1px solid var(--bg2); background: var(--white); }
     .page-header h2 { font-size: 22px; font-weight: 700; color: var(--navy); }
     .page-header p { font-size: 14px; color: var(--sub); margin-top: 4px; }
@@ -115,29 +120,41 @@
     }
     .hukm-card {
       background: var(--white); border-radius: var(--radius); overflow: hidden;
-      box-shadow: var(--shadow); cursor: pointer; transition: all 0.25s; border: 2px solid transparent;
+      box-shadow: var(--shadow); cursor: pointer; transition: all 0.25s;
+      border: 2px solid transparent; border-top: 5px solid var(--hk-color, var(--navy));
     }
-    .hukm-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(27,46,94,0.15); }
-    .hukm-card.open { border-color: var(--gold); }
-    .hukm-header {
-      padding: 18px 20px; display: flex; align-items: center; justify-content: space-between;
+    .hukm-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(27,46,94,0.18); }
+    .hukm-card.open { border-color: var(--hk-color, var(--gold)); }
+    .hukm-header { padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .hukm-header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .hukm-num {
+      font-size: 13px; font-weight: 800; color: white; min-width: 30px; text-align: center;
+      background: var(--hk-color, var(--navy)); border-radius: 50%; width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .hukm-header-left { display: flex; align-items: center; gap: 12px; }
-    .hukm-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; background: rgba(27,46,94,0.08); color: var(--navy); }
-    .hukm-num { font-size: 13px; font-weight: 700; color: var(--sub); min-width: 28px; text-align: center; background: var(--bg); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
-    .hukm-title { font-size: 16px; font-weight: 700; color: var(--text); }
-    .hukm-arrow { color: var(--sub); transition: transform 0.3s; font-size: 12px; }
+    .hukm-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; background: var(--hk-bg, rgba(27,46,94,0.08)); color: var(--hk-color, var(--navy)); display: inline-block; margin-bottom: 4px; }
+    .hukm-title { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.4; }
+    .hukm-arrow { color: var(--sub); transition: transform 0.3s; font-size: 12px; flex-shrink: 0; }
     .hukm-card.open .hukm-arrow { transform: rotate(180deg); }
     .hukm-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--bg2); }
     .hukm-card.open .hukm-body { display: block; }
-    .hukm-sura { display: inline-flex; align-items: center; gap: 6px; background: var(--bg); border-radius: 8px; padding: 6px 12px; font-size: 13px; color: var(--sub); margin: 16px 0 12px; }
-    .hukm-sharh { font-size: 14px; line-height: 1.8; color: var(--text); margin-bottom: 14px; }
-    .amthal-title { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
-    .amthal-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .mithal { background: var(--navy); color: var(--gold); border-radius: 8px; padding: 5px 12px; font-size: 14px; font-family: 'Amiri', serif; }
+    .hukm-sura { display: inline-flex; align-items: center; gap: 6px; background: var(--hk-bg, var(--bg)); color: var(--hk-color, var(--sub)); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600; margin: 16px 0 12px; }
+    .hukm-sharh { font-size: 14px; line-height: 1.85; color: var(--text); margin-bottom: 14px; }
+    .hukm-yt {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #FF0000, #CC0000);
+      color: white; border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 700;
+      text-decoration: none; transition: opacity 0.2s; margin-top: 4px;
+    }
+    .hukm-yt:hover { opacity: 0.85; }
+    .hukm-yt-empty {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg2); color: var(--sub); border-radius: 8px; padding: 9px 18px;
+      font-size: 13px; font-weight: 600;
+    }
 
     /* ASSESSMENT */
-    .assessment-container { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
+    .assessment-container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
     .form-section { background: var(--white); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); margin-bottom: 24px; }
     .form-section h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--gold); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
@@ -150,33 +167,33 @@
     }
     .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--navy); }
 
-    /* assessment rule box */
-    .assess-rule-box {
-      background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-      border: 1.5px solid #3B82F6; border-radius: var(--radius);
-      padding: 20px 24px; margin-bottom: 24px;
+    .cat-toggle { display: flex; gap: 12px; margin-bottom: 8px; }
+    .cat-toggle-btn {
+      flex: 1; padding: 16px; border-radius: 12px; border: 2px solid var(--bg2);
+      background: var(--white); cursor: pointer; text-align: center; font-weight: 700;
+      font-size: 15px; font-family: 'Cairo', sans-serif; transition: all 0.2s; color: var(--sub);
     }
-    .assess-rule-box h4 { font-size: 15px; font-weight: 700; color: #1D4ED8; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-    .assess-rule-box p { font-size: 13px; color: #1E40AF; line-height: 1.8; }
-    .assess-rule-box .rule-example {
-      background: white; border-radius: 8px; padding: 10px 14px; margin-top: 10px;
-      font-size: 13px; color: #374151; border-right: 3px solid #3B82F6;
-    }
+    .cat-toggle-btn.active { border-color: var(--navy); background: var(--navy); color: white; }
+    .cat-toggle-btn:hover:not(.active) { border-color: var(--gold); }
 
-    .ahkam-checklist { display: flex; flex-direction: column; gap: 10px; }
-    .ahkam-group-title {
-      font-size: 13px; font-weight: 700; color: var(--gold); padding: 6px 0;
-      border-bottom: 1px solid var(--bg2); margin-top: 12px;
+    .assess-level-block { margin-bottom: 22px; border-radius: var(--radius); overflow: hidden; border: 2px solid var(--bg2); }
+    .assess-level-head {
+      padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;
+      background: var(--lvl-color, var(--navy)); color: white;
     }
+    .assess-level-head .alh-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .assess-level-head .alh-score { font-size: 14px; font-weight: 700; background: rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 20px; }
+    .assess-level-items { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; background: var(--white); }
+
     .check-item {
       display: flex; align-items: center; gap: 10px; padding: 10px 14px;
       border-radius: 8px; background: var(--bg); cursor: pointer; transition: background 0.2s;
     }
     .check-item:hover { background: var(--bg2); }
-    .check-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: #c0392b; cursor: pointer; }
+    .check-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: #c0392b; cursor: pointer; flex-shrink: 0; }
     .check-item label { font-size: 14px; color: var(--text); cursor: pointer; flex: 1; }
-    .check-item .level-tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
-    .check-item .hukm-counter { font-size: 11px; color: var(--sub); white-space: nowrap; }
+    .check-item .lesson-num { font-size: 11px; color: var(--sub); background: var(--white); border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; }
+
     .assess-btn {
       width: 100%; background: linear-gradient(135deg, var(--navy), #2A4080);
       color: white; border: none; border-radius: var(--radius); padding: 14px;
@@ -186,31 +203,40 @@
     .assess-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,46,94,0.3); }
     .result-box {
       display: none; background: var(--white); border-radius: var(--radius);
-      padding: 32px; box-shadow: var(--shadow); text-align: center;
-      margin-top: 24px; border: 3px solid var(--gold);
+      padding: 32px; box-shadow: var(--shadow); margin-top: 24px; border: 3px solid var(--gold);
     }
     .result-box.show { display: block; }
-    .result-level { font-size: 26px; font-weight: 700; margin: 16px 0 8px; }
-    .result-note { font-size: 14px; color: var(--sub); }
-    .result-level-detail {
-      background: var(--bg); border-radius: 10px; padding: 16px 20px;
-      margin-top: 16px; text-align: right;
-    }
-    .result-level-detail .lvl-row {
+    .result-box h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 18px; text-align: center; }
+    .result-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 0; border-bottom: 1px solid var(--bg2); font-size: 13px;
+      padding: 14px 18px; border-radius: 10px; margin-bottom: 10px;
+      background: var(--bg);
     }
-    .result-level-detail .lvl-row:last-child { border-bottom: none; }
-    .lvl-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; color: white; }
-    .lvl-missed { color: #C0392B; font-weight: 600; }
-    .lvl-pass { color: #27AE60; font-weight: 600; }
-    .weak-points { margin-top: 20px; text-align: right; }
-    .weak-points h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-    .weak-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .weak-tag { background: #FEF3F2; color: #C0392B; border-radius: 8px; padding: 5px 12px; font-size: 13px; }
+    .result-row .rr-name { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .result-row .rr-frac { font-size: 16px; font-weight: 800; }
+    .result-row .rr-bar-wrap { flex: 1; margin: 0 16px; height: 8px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+    .result-row .rr-bar { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
 
     /* CIRCLES PAGE */
     .circles-container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+    .search-box { position: relative; margin-bottom: 24px; }
+    .search-box input {
+      width: 100%; padding: 14px 48px 14px 16px; border-radius: 12px;
+      border: 2px solid var(--bg2); font-size: 15px; font-family: 'Cairo', sans-serif;
+      direction: rtl; background: var(--white); transition: border-color 0.2s;
+    }
+    .search-box input:focus { outline: none; border-color: var(--navy); }
+    .search-box .search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--sub); }
+    .search-results { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .search-result-item {
+      background: var(--white); border-radius: 10px; padding: 12px 16px;
+      box-shadow: var(--shadow); display: flex; align-items: center; justify-content: space-between;
+      border-right: 4px solid var(--src-color, var(--navy));
+    }
+    .search-result-item .sri-name { font-weight: 700; font-size: 14px; }
+    .search-result-item .sri-loc { font-size: 12px; color: var(--sub); margin-top: 2px; }
+    .search-no-result { text-align: center; padding: 16px; color: var(--sub); font-size: 14px; }
+
     .dura-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
     .dura-card {
       background: var(--white); border-radius: var(--radius); padding: 24px 20px;
@@ -232,25 +258,17 @@
     .circles-section.active { display: block; }
     .top-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
     .top-actions h2 { font-size: 22px; font-weight: 700; color: var(--navy); }
-    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: 'Cairo', sans-serif; cursor: pointer; transition: all 0.2s; border: none; }
-    .btn-primary { background: var(--navy); color: white; }
-    .btn-primary:hover { background: #2A4080; }
-    .btn-gold { background: var(--gold); color: var(--navy); }
-    .btn-gold:hover { background: var(--gold-lt); }
-    .btn-sm { padding: 6px 12px; font-size: 12px; }
     .circles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
     .circle-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-    .circle-head { background: linear-gradient(135deg, var(--navy), #2A4080); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .circle-head { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
     .circle-head-info h3 { font-size: 17px; font-weight: 700; color: white; }
-    .circle-head-info p { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+    .circle-head-info p { font-size: 12px; color: rgba(255,255,255,0.85); margin-top: 2px; }
     .circle-body { padding: 16px 20px; }
     .circle-note { background: var(--bg); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--sub); margin-bottom: 14px; border-right: 3px solid var(--gold); }
     .student-list { display: flex; flex-direction: column; gap: 6px; }
     .student-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 8px; background: var(--bg); }
     .student-name { font-size: 14px; font-weight: 600; color: var(--text); }
     .student-note { font-size: 12px; color: var(--sub); margin-top: 1px; }
-    .icon-btn { border: none; background: none; cursor: pointer; padding: 4px 6px; border-radius: 6px; font-size: 14px; transition: background 0.2s; }
-    .icon-btn:hover { background: var(--bg2); }
 
     /* NOTES PAGE */
     .notes-container { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
@@ -262,10 +280,6 @@
       resize: vertical; direction: rtl; color: var(--text); background: var(--bg); margin-bottom: 12px;
     }
     .note-composer textarea:focus { outline: none; border-color: var(--navy); }
-    .notes-list { display: flex; flex-direction: column; gap: 14px; }
-    .note-item { background: var(--white); border-radius: var(--radius); padding: 20px 22px; box-shadow: var(--shadow); border-right: 4px solid var(--gold); }
-    .note-text { font-size: 15px; line-height: 1.7; color: var(--text); margin-bottom: 8px; }
-    .note-meta { font-size: 12px; color: var(--sub); }
     .whatsapp-btn {
       display: inline-flex; align-items: center; gap: 8px;
       background: linear-gradient(135deg, #25D366, #128C7E);
@@ -275,19 +289,6 @@
     }
     .whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
     .whatsapp-info { background: #F0FFF4; border: 1.5px solid #BBF7D0; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: #166534; display: flex; align-items: center; gap: 10px; }
-
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
-    .modal-overlay.show { display: flex; }
-    .modal { background: var(--white); border-radius: 16px; padding: 28px; width: min(480px, 92vw); box-shadow: 0 24px 64px rgba(0,0,0,0.25); }
-    .modal h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
-    .modal input, .modal select, .modal textarea {
-      width: 100%; border: 1.5px solid var(--bg2); border-radius: 8px; padding: 10px 14px;
-      font-size: 14px; font-family: 'Cairo', sans-serif; direction: rtl; margin-bottom: 12px; background: var(--bg);
-    }
-    .modal input:focus, .modal select:focus, .modal textarea:focus { outline: none; border-color: var(--navy); }
-    .modal-actions { display: flex; gap: 10px; margin-top: 6px; }
-    .modal-actions .btn { flex: 1; justify-content: center; }
 
     /* UTILITIES */
     .empty-state { text-align: center; padding: 60px 20px; color: var(--sub); }
@@ -300,6 +301,7 @@
       .nav-logo span { display: none; }
       .ahkam-grid { grid-template-columns: 1fr; }
       .dura-selector { grid-template-columns: 1fr 1fr; }
+      .cat-toggle { flex-direction: column; }
     }
   </style>
 </head>
@@ -337,7 +339,7 @@
       <div class="cat-card" onclick="selectCategory('fawq')">
         <span class="cat-icon">🎓</span>
         <div class="cat-title">الإعدادي والثانوي</div>
-        <div class="cat-sub">المتوسطة والثانوية — 4 مستويات</div>
+        <div class="cat-sub">فوق الابتدائي — 4 مستويات</div>
       </div>
     </div>
   </div>
@@ -350,7 +352,7 @@
     </div>
     <div class="page-header">
       <h2>اختر المستوى</h2>
-      <p id="levels-subtitle"></p>
+      <p>4 مستويات — اضغط على المستوى المناسب</p>
     </div>
     <div class="levels-grid" id="levels-grid"></div>
   </div>
@@ -380,50 +382,31 @@
 <div id="page-assessment" class="page">
   <div class="assessment-container">
 
-    <!-- Rule explanation box -->
-    <div class="assess-rule-box">
-      <h4>ℹ️ كيف يعمل التقييم؟</h4>
-      <p>
-        يُقيَّم الطالب على أحكام كل مستوى على حدة.<br>
-        <strong>القاعدة:</strong> إذا أخفق الطالب في <strong>7 أحكام أو أكثر</strong> من مستوى معيّن، فهو ينتمي إلى ذلك المستوى ولا يتجاوزه — بغض النظر عن أحكام المستويات الأعلى.
-      </p>
-      <div class="rule-example">
-        <strong>مثال:</strong> طالب أخفق في 6 أحكام من المبتدئ → هو <u>مبتدئ</u>، حتى لو أتقن أحكام المتوسط الأول كلها.
-      </div>
-    </div>
-
     <div class="form-section">
       <h3>📋 بيانات الطالب</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label>اسم الطالب *</label>
-          <input type="text" id="student-name" placeholder="أدخل اسم الطالب" />
-        </div>
-        <div class="form-group">
-          <label>الفئة</label>
-          <select id="student-cat" onchange="renderAssessmentChecklist()">
-            <option value="ibtidai">الابتدائي</option>
-            <option value="fawq">الإعدادي والثانوي</option>
-          </select>
-        </div>
+      <div class="form-group" style="margin-bottom:18px">
+        <label>اسم الطالب *</label>
+        <input type="text" id="student-name" placeholder="أدخل اسم الطالب" />
+      </div>
+      <label style="font-size:13px;font-weight:600;color:var(--sub);display:block;margin-bottom:8px">الفئة</label>
+      <div class="cat-toggle">
+        <button type="button" class="cat-toggle-btn active" id="catbtn-ibtidai" onclick="setAssessCat('ibtidai')">🏫 ابتدائي</button>
+        <button type="button" class="cat-toggle-btn" id="catbtn-fawq" onclick="setAssessCat('fawq')">🎓 إعدادي / ثانوي</button>
       </div>
     </div>
 
     <div class="form-section">
       <h3>❌ الأحكام التي يُخفق فيها الطالب</h3>
-      <p style="font-size:13px;color:var(--sub);margin-bottom:16px">ضع علامة ✓ على كل حكم لا يُطبّقه الطالب بشكل صحيح — عدّاد كل مستوى يظهر تلقائياً</p>
-      <div class="ahkam-checklist" id="assessment-checklist"></div>
+      <p style="font-size:13px;color:var(--sub);margin-bottom:16px">ضع علامة ✓ على كل حكم لا يُطبّقه الطالب بشكل صحيح ضمن كل مستوى</p>
+      <div id="assessment-levels"></div>
     </div>
 
-    <button class="assess-btn" onclick="calcAssessment()">🎯 احسب المستوى المناسب</button>
+    <button class="assess-btn" onclick="calcAssessment()">🎯 عرض تقرير الطالب</button>
 
     <div class="result-box" id="result-box">
-      <div style="font-size:18px;color:var(--sub);margin-bottom:8px">النتيجة</div>
-      <div class="result-level" id="res-level"></div>
-      <div class="result-note" id="res-note"></div>
-      <div class="result-level-detail" id="res-detail"></div>
-      <div class="weak-points" id="weak-points"></div>
-      <button class="btn btn-primary" style="margin-top:20px;width:100%;justify-content:center" onclick="window.print()">🖨️ طباعة التقرير</button>
+      <h3 id="result-student-name"></h3>
+      <div id="result-rows"></div>
+      <button class="assess-btn" style="margin-top:18px;background:var(--gold);color:var(--navy)" onclick="window.print()">🖨️ طباعة التقرير</button>
     </div>
 
   </div>
@@ -432,10 +415,16 @@
 <!-- =================== CIRCLES PAGE =================== -->
 <div id="page-circles" class="page">
   <div class="circles-container">
-    <div class="page-header" style="margin-bottom:28px;border-radius:var(--radius)">
+    <div class="page-header" style="margin-bottom:20px;border-radius:var(--radius)">
       <h2>👥 تقسيمات المقارئ</h2>
-      <p>اختر الدورة لعرض حلقاتها وأساتذتها</p>
+      <p>اختر الدورة لعرض حلقاتها وأساتذتها — أو ابحث باسم الطالب</p>
     </div>
+
+    <div class="search-box">
+      <input type="text" id="student-search" placeholder="🔍 ابحث باسم الطالب لمعرفة حلقته ودورته..." oninput="searchStudent()" />
+      <span class="search-icon">🔍</span>
+    </div>
+    <div class="search-results" id="search-results"></div>
 
     <!-- 4 دورات -->
     <div class="dura-selector">
@@ -461,7 +450,6 @@
       </div>
     </div>
 
-    <!-- محتوى الدورة -->
     <div id="circles-section" class="circles-section active">
       <div class="empty-state">
         <div class="empty-icon">👆</div>
@@ -498,271 +486,562 @@
 
 <script>
 // ============================================================
-// DATA — المنهاج الكامل
+// DATA — منهاج مقارئ الكنجلية (نص حرفي مطابق لملفات Word)
 // ============================================================
 
-// مستويات الابتدائي
-const LEVELS_IBTIDAI = {
-  ibt_mubtadi:    { id:'ibt_mubtadi',    name:'المبتدئ',         color:'#2E7D5E', icon:'🌱', desc:'صعوبة في القراءة — تجويد شبه معدوم', cat:'ibtidai' },
-  ibt_mutawasit1: { id:'ibt_mutawasit1', name:'المتوسط الأول',   color:'#1A5C8A', icon:'📖', desc:'تجويد ضعيف نظرياً وعملياً — معظم المخارج موجودة', cat:'ibtidai' },
-  ibt_mutawasit2: { id:'ibt_mutawasit2', name:'المتوسط الثاني',  color:'#7B3FA0', icon:'🎯', desc:'تجويد جيد مع نقص في المدود وأحكام الراء', cat:'ibtidai' },
-  ibt_mutaqadim:  { id:'ibt_mutaqadim',  name:'المتقدم',          color:'#B5490B', icon:'⭐', desc:'قراءة ممتازة — يحتاج صقل وإتقان كامل', cat:'ibtidai' },
-};
-
-// مستويات الإعدادي والثانوي
-const LEVELS_FAWQ = {
-  fawq_mubtadi:    { id:'fawq_mubtadi',    name:'المبتدئ',         color:'#2E7D5E', icon:'🌱', desc:'صعوبة في القراءة — تجويد شبه معدوم', cat:'fawq' },
-  fawq_mutawasit1: { id:'fawq_mutawasit1', name:'المتوسط الأول',   color:'#1A5C8A', icon:'📖', desc:'تجويد ضعيف نظرياً وعملياً — معظم المخارج موجودة', cat:'fawq' },
-  fawq_mutawasit2: { id:'fawq_mutawasit2', name:'المتوسط الثاني',  color:'#7B3FA0', icon:'🎯', desc:'تجويد جيد مع نقص في المدود وأحكام الراء', cat:'fawq' },
-  fawq_mutaqadim:  { id:'fawq_mutaqadim',  name:'المتقدم',          color:'#B5490B', icon:'⭐', desc:'قراءة ممتازة — يحتاج صقل وإتقان كامل', cat:'fawq' },
-};
-
-// ---- أحكام المبتدئ (مشترك بين الابتدائي والإعدادي مع اختلاف السور) ----
-const AHKAM_MUBTADI_IBTIDAI = [
-  // ضبط الحرف
-  { id:'ib_m1',  lesson:1,  title:'إتمام الحركات وعدم التمطيط', mahwar:'ضبط الحرف', sharh:'إعطاء كل حركة حقها من غير إفراط في الإشباع — التمطيط هو الإفراط في إشباع الحركات حتى يتولد منها حرف.', amthal:['مِثَالاً كلمة: عَلَيْهِم','البسملة كاملة'], sura:'سورة الفاتحة' },
-  { id:'ib_m2',  lesson:2,  title:'ضبط زمن المد الطبيعي',       mahwar:'ضبط الحرف', sharh:'المد الطبيعي: لا تقوم ذات الحرف إلا به، لا يتوقف على همز أو سكون، يُمد بمقدار حركتين.', amthal:['النازعات','قَالَ','يَقُولُ'], sura:'سورة الفاتحة والناس' },
-  { id:'ib_m3',  lesson:3,  title:'حق الحرف المشدد والوقوف عليه', mahwar:'ضبط الحرف', sharh:'لا بد من إعطاء الحرف المشدد قوة حرفين وخاصة بعد المد.', amthal:['اللام الشمسية','يَذَّكَّرُ','يُزَكِّي'], sura:'سورة البقرة' },
-  { id:'ib_m4',  lesson:4,  title:'ضبط زمن الحرف الساكن — الشديد والقصير', mahwar:'ضبط الحرف', sharh:'الشدة: انحباس جريان الصوت. حروفها: أجد قط بكت (8 أحرف).', amthal:['كُوِّرَت','الطَّارِق','البُرُوج'], sura:'سورة آل عمران' },
-  { id:'ib_m5',  lesson:5,  title:'ضبط زمن الحرف الساكن — البيني المتوسط', mahwar:'ضبط الحرف', sharh:'وُصفت بالتوسط لأن الصوت لم ينحبس كالشديدة ولم يجرِ كالرخوة. حروفها: لن عمر.', amthal:['انفطرت','المطففين','يستوفون','مرقوم'], sura:'سورة النساء' },
-  { id:'ib_m6',  lesson:6,  title:'ضبط زمن الحرف الساكن الرخو — طويل', mahwar:'ضبط الحرف', sharh:'الرخاوة: جريان الصوت مع الحرف لضعف الاعتماد على المخرج. حروفها: ما عدا الشدة والتوسط.', amthal:['يَسْتَوْفُون','حروف المد'], sura:'سورة المائدة' },
-  // مخارج الحروف
-  { id:'ib_m7',  lesson:7,  title:'فكرة عامة عن مخارج الحروف', mahwar:'مخارج الحروف', sharh:'المخارج الخمس الأساسية: الجوف، الحلق، اللسان، الشفتان، الخيشوم.', amthal:['الجوف','الحلق','اللسان','الشفتان'], sura:'سورة الأنعام' },
-  { id:'ib_m8',  lesson:8,  title:'مخرج الجوف', mahwar:'مخارج الحروف', sharh:'أحرفه: (ا، و، ي) + تصفية الحروف من الغنة وعدم إمالة الألف في غير موضعها.', amthal:['الكَافِرُون','تَعبُدُون','جَاء'], sura:'سورة الأنعام' },
-  { id:'ib_m9',  lesson:9,  title:'مخرج الحلق — الهمزة والهاء والعين', mahwar:'مخارج الحروف', sharh:'عدم تفخيم الهمزة، عدم قلقلة الهمزة الساكنة، عدم تفخيم العين.', amthal:['أَحَد','هُوَ','عَلِيم'], sura:'سورة الأعراف' },
-  { id:'ib_m10', lesson:10, title:'مخرج الحلق — الحاء والغين والخاء', mahwar:'مخارج الحروف', sharh:'عدم إبدال الغين خاءً أو قلقلتها.', amthal:['غَاشِيَة','حَمِيد','خَالِق'], sura:'سورة الأنفال' },
-  { id:'ib_m11', lesson:11, title:'مخرج اللسان — أقصى اللسان (ق، ك)', mahwar:'مخارج الحروف', sharh:'عدم المبالغة في همس الكاف المتحركة.', amthal:['ذَلِكَ','كَيفَ','قَالَ'], sura:'سورة التوبة' },
-  { id:'ib_m12', lesson:12, title:'وسط اللسان — الجيم والشين والياء', mahwar:'مخارج الحروف', sharh:'عدم نطق الجيم رخوة أو شبيهة بالشين أو الدال، مراعاة رخاوة الياء حال تشديدها.', amthal:['وَإيَّاكُم','جَنَّة','شَمسٍ'], sura:'سورة يونس' },
-  { id:'ib_m13', lesson:13, title:'حافة اللسان — الضاد واللام', mahwar:'مخارج الحروف', sharh:'مراعاة اللام الشمسية والقمرية. عدم قلقلتهما.', amthal:['الشَّمس','اللَّيل','ضَالِّين'], sura:'سورة هود' },
-  { id:'ib_m14', lesson:14, title:'طرف اللسان — النون والراء', mahwar:'مخارج الحروف', sharh:'عدم قلقلة النون حال سكونها، عدم تفخيمها، عدم تكرير الراء حال تشديدها.', amthal:['مِن','رَبَّنَا','نُور'], sura:'سورة يوسف' },
-  { id:'ib_m15', lesson:15, title:'طرف اللسان — الطاء والدال والتاء', mahwar:'مخارج الحروف', sharh:'عدم خلط صوت الدال بشيء من التاء، عدم المبالغة في همس التاء المتحركة.', amthal:['تِين','دِين','طَيِّبَة'], sura:'سورة الرعد' },
-  { id:'ib_m16', lesson:16, title:'طرف اللسان — الصاد والزاي والسين', mahwar:'مخارج الحروف', sharh:'عدم خلط صوت الزاي بصوت السين — متفقان بالمخرج لكن لكل منهما صفات تميزه.', amthal:['رِجزٍ','الرِّزق','صِراط'], sura:'سورة إبراهيم' },
-  { id:'ib_m17', lesson:17, title:'الأحرف اللثوية — الظاء والذال والثاء', mahwar:'مخارج الحروف', sharh:'تحقيق مخرجها بوضع طرف اللسان عند طرف الثنية، عدم إخراج اللسان في غيرها.', amthal:['إِذَا','السَّمَاء','ثُمَّ'], sura:'سورة الحجر' },
-  { id:'ib_m18', lesson:18, title:'مخرج الشفتين — الفاء والواو والباء والميم', mahwar:'مخارج الحروف', sharh:'عدم همس الباء، عدم تفخيم الميم والباء.', amthal:['فَاء','مِيم','بَاء','وَاو'], sura:'سورة النحل' },
-  // أحكام النون
-  { id:'ib_m19', lesson:19, title:'أحكام النون الساكنة والتنوين (1)', mahwar:'أحكام النون', sharh:'الإظهار: إظهار النون بلا غنة عند حروف الحلق الستة. الإدغام بغنة: عند (ي ن م و).', amthal:['مِن مَا','مِن نَعيم','من ما خلق'], sura:'سورة الإسراء' },
-  { id:'ib_m20', lesson:20, title:'أحكام النون الساكنة والتنوين (2)', mahwar:'أحكام النون', sharh:'الإدغام بلا غنة: عند (ل ر). الإقلاب: قلب النون ميماً عند الباء مع إخفاء وغنة.', amthal:['مِن بَين','مِن لَدُن','أَنبِئهُم'], sura:'سورة الكهف' },
-  { id:'ib_m21', lesson:21, title:'أحكام النون الساكنة والتنوين (3)', mahwar:'أحكام النون', sharh:'الإخفاء: النطق بالنون بصفة بين الإظهار والإدغام مع بقاء الغنة، عند 15 حرفاً.', amthal:['مِن قَبل','أَنتُم','مَنصُور'], sura:'سورة مريم' },
-  // الصفات
-  { id:'ib_m22', lesson:22, title:'القلقلة', mahwar:'الصفات', sharh:'اضطراب الصوت عند سكون أحرف: ق ط ب ج د — أقوى ما تكون عند الوقف.', amthal:['القَمَر','الطَّارِق','البُرُوج','أُجِيب','قَد'], sura:'سورة طه' },
-  { id:'ib_m23', lesson:23, title:'الهمس', mahwar:'الصفات', sharh:'جريان النفس عند النطق بالحرف. حروفه: (فحثه شخص سكت) — 10 أحرف.', amthal:['فاء','حاء','ثاء','هاء','شين'], sura:'سورة الأنبياء' },
-];
-
+// ---------------------------------------------------------------
+// 1) المبتدئ — فوق الابتدائي (إعدادي/ثانوي)
+// ---------------------------------------------------------------
 const AHKAM_MUBTADI_FAWQ = [
-  { id:'fw_m1',  lesson:1,  title:'إتمام الحركات وعدم التمطيط', mahwar:'ضبط الحرف', sharh:'إعطاء كل حركة حقها — التمطيط: الإفراط في إشباع الحركات حتى يتولد منها حرف.', amthal:['عَلَيْهِم','البسملة كاملة'], sura:'سورة عم' },
-  { id:'fw_m2',  lesson:2,  title:'ضبط زمن المد الطبيعي',       mahwar:'ضبط الحرف', sharh:'المد الطبيعي: لا تقوم ذات الحرف إلا به، يُمد بمقدار حركتين.', amthal:['النَّازعات','قَالَ'], sura:'النازعات' },
-  { id:'fw_m3',  lesson:3,  title:'حق الحرف المشدد والوقوف عليه', mahwar:'ضبط الحرف', sharh:'إعطاء الحرف المشدد قوة حرفين، خاصة بعد المد.', amthal:['اللام الشمسية','يَذَّكَّرُ','يُزَكِّي'], sura:'عبس' },
-  { id:'fw_m4',  lesson:4,  title:'ضبط زمن الحرف الساكن — الشديد والقصير', mahwar:'ضبط الحرف', sharh:'الشدة: انحباس جريان الصوت. حروفها 8: أجد قط بكت.', amthal:['كُوِّرَت','الطَّارِق','البُرُوج'], sura:'التكوير' },
-  { id:'fw_m5',  lesson:5,  title:'ضبط زمن الحرف الساكن — البيني المتوسط', mahwar:'ضبط الحرف', sharh:'حروفها: لن عمر. بين الشدة والرخاوة.', amthal:['انفطرت','المطففين','يستوفون'], sura:'الانفطار والمطففين' },
-  { id:'fw_m6',  lesson:6,  title:'ضبط زمن الحرف الساكن الرخو', mahwar:'ضبط الحرف', sharh:'جريان الصوت مع الحرف لضعف الاعتماد على المخرج.', amthal:['يَستَوفُون','حروف المد'], sura:'المطففين' },
-  { id:'fw_m7',  lesson:7,  title:'فكرة عامة عن مخارج الحروف', mahwar:'مخارج الحروف', sharh:'المخارج الخمس: الجوف، الحلق، اللسان، الشفتان، الخيشوم.', amthal:['الجوف','الحلق','اللسان'], sura:'البروج' },
-  { id:'fw_m8',  lesson:8,  title:'مخرج الجوف', mahwar:'مخارج الحروف', sharh:'أحرفه: (ا، و، ي) + تصفية من الغنة + عدم إمالة الألف.', amthal:['الكَافِرُون','تَعبُدُون','جَاء'], sura:'الطارق' },
-  { id:'fw_m9',  lesson:9,  title:'مخرج الحلق — الهمزة والهاء والعين', mahwar:'مخارج الحروف', sharh:'عدم تفخيم الهمزة، عدم قلقلة الهمزة الساكنة، عدم تفخيم العين.', amthal:['أَحَد','هُوَ','عَلِيم'], sura:'الأعلى' },
-  { id:'fw_m10', lesson:10, title:'مخرج الحلق — الحاء والغين والخاء', mahwar:'مخارج الحروف', sharh:'عدم إبدال الغين خاءً أو قلقلتها.', amthal:['غَاشِيَة','حَمِيد','خَالِق'], sura:'الغاشية' },
-  { id:'fw_m11', lesson:11, title:'مخرج اللسان — أقصى اللسان (ق، ك)', mahwar:'مخارج الحروف', sharh:'عدم المبالغة في همس الكاف المتحركة.', amthal:['ذَلِكَ','كَيفَ'], sura:'الفجر' },
-  { id:'fw_m12', lesson:12, title:'وسط اللسان — الجيم والشين والياء', mahwar:'مخارج الحروف', sharh:'عدم نطق الجيم رخوة، مراعاة رخاوة الياء حال تشديدها.', amthal:['وَإيَّاكُم','جَنَّة'], sura:'البلد' },
-  { id:'fw_m13', lesson:13, title:'حافة اللسان — الضاد واللام', mahwar:'مخارج الحروف', sharh:'مراعاة اللام الشمسية والقمرية، عدم قلقلتهما.', amthal:['الشَّمس','اللَّيل','ضَالِّين'], sura:'الشمس والليل' },
-  { id:'fw_m14', lesson:14, title:'طرف اللسان — النون والراء', mahwar:'مخارج الحروف', sharh:'عدم قلقلة النون، عدم تكرير الراء حال تشديدها.', amthal:['مِن','رَبَّنَا'], sura:'الضحى والشرح' },
-  { id:'fw_m15', lesson:15, title:'طرف اللسان — الطاء والدال والتاء', mahwar:'مخارج الحروف', sharh:'عدم خلط الدال بالتاء، عدم المبالغة في همس التاء.', amthal:['تِين','دِين','طَيِّبَة'], sura:'التين والعلق' },
-  { id:'fw_m16', lesson:16, title:'طرف اللسان — الصاد والزاي والسين', mahwar:'مخارج الحروف', sharh:'عدم خلط الزاي بالسين، لكل صفات تميزه.', amthal:['رِجزٍ','الرِّزق'], sura:'القدر والبينة' },
-  { id:'fw_m17', lesson:17, title:'الأحرف اللثوية — الظاء والذال والثاء', mahwar:'مخارج الحروف', sharh:'تحقيق مخرجها بوضع طرف اللسان عند الثنية.', amthal:['إِذَا','السَّمَاء','ثُمَّ'], sura:'الزلزلة والعاديات' },
-  { id:'fw_m18', lesson:18, title:'مخرج الشفتين — الفاء والواو والباء والميم', mahwar:'مخارج الحروف', sharh:'عدم همس الباء، عدم تفخيم الميم والباء.', amthal:['فاء','ميم','باء','واو'], sura:'القارعة والتكاثر' },
-  { id:'fw_m19', lesson:19, title:'أحكام النون الساكنة والتنوين (1) — الإظهار والإدغام بغنة', mahwar:'أحكام النون', sharh:'الإظهار: عند حروف الحلق. الإدغام بغنة: عند (ي ن م و).', amthal:['مِن مَا','مِن نَعيم'], sura:'العصر والهمزة والفيل' },
-  { id:'fw_m20', lesson:20, title:'أحكام النون الساكنة والتنوين (2) — الإدغام بلا غنة والإقلاب', mahwar:'أحكام النون', sharh:'الإدغام بلا غنة: عند (ل ر). الإقلاب: قلب النون ميماً عند الباء.', amthal:['مِن بَين','مِن لَدُن'], sura:'قريش والماعون' },
-  { id:'fw_m21', lesson:21, title:'أحكام النون الساكنة والتنوين (3) — الإخفاء', mahwar:'أحكام النون', sharh:'الإخفاء: بين الإظهار والإدغام مع بقاء الغنة، عند 15 حرفاً.', amthal:['مِن قَبل','أَنتُم'], sura:'الكوثر والكافرون' },
-  { id:'fw_m22', lesson:22, title:'القلقلة', mahwar:'الصفات', sharh:'اضطراب الصوت عند سكون: ق ط ب ج د.', amthal:['القَمَر','الطَّارِق','البُرُوج'], sura:'الإخلاص والفلق' },
-  { id:'fw_m23', lesson:23, title:'الهمس', mahwar:'الصفات', sharh:'جريان النفس عند النطق بالحرف. حروفه 10: فحثه شخص سكت.', amthal:['فاء','حاء','ثاء'], sura:'الناس' },
+  { lesson:1, mahwar:'ضبط الحرف', title:'إتمام الحركات + عدم التمطيط', sura:'سورة عم',
+    sharh:'بإعطاء كل حركة حقها.... مثلاً: كلمة (عَليْهِم) يجب تحقيق كسرة الهاء والحذر من خلط صوت الكسرة بصوت بين الياء والألف.. التمطيط: هو الإفراط في إشباع الحركات حتّى يتولد منها حروفٌ، كأن يقرأ البسملة (بِيسمي اللىهي الىرحمني الىرحيم). مثال: الباء في البسملة، عمَّ وليس عماا', youtube:'' },
+  { lesson:2, mahwar:'ضبط الحرف', title:'ضبط زمن المد الطبيعي', sura:'النازعات',
+    sharh:'المد الطبيعي: هو المد الذي لا تقوم ذات الحرف إلا به، ولا يتوقف على سبب من همز أو سكون، ويمد بمقدار حركتين. مثال: النازعات', youtube:'' },
+  { lesson:3, mahwar:'ضبط الحرف', title:'حق الحرف المشدد + الوقوف عليه', sura:'عبس',
+    sharh:'لا بد من إعطاء الحرف المشدد قوة حرفين وخاصة بعد المد. مثال: اللام الشمسية، تولّى، يزّكى، يذّكر', youtube:'' },
+  { lesson:4, mahwar:'ضبط الحرف', title:'ضبط زمن الحرف الساكن (الشديد- القصير)', sura:'التكوير',
+    sharh:'الشدة: انحباس جريان الصوت عند النطق بالحرف؛ لكمال قوة الاعتماد على المخرج حروفها: 8 وهي مجموعة في لفظ (أجد قط بكت) مثال: كورت - العلق - الطارق - البروج', youtube:'' },
+  { lesson:5, mahwar:'ضبط الحرف', title:'ضبط زمن الحرف الساكن (البيني المتوسط)', sura:'الانفطار والمطففين',
+    sharh:'وُصفت بالتوسط لأن الصوت لم ينحبس معها انحباسه مع الشديدة ولم يجر معها جريانه مع الرخوة حروفها: (لن عمر) مثال: انفطرت - المطففين - يستوفون - مرقوم', youtube:'' },
+  { lesson:6, mahwar:'ضبط الحرف', title:'ضبط زمن الحرف الساكن الرخو (طويل)', sura:'المطففين',
+    sharh:'الرخاوة: جريان الصوت مع الحرف لضعف الاعتماد على المخرج، حروفها: 6 وهي ماعدا حروف الشدة والتوسط مثال: يستوفون – حروف المد', youtube:'' },
+  { lesson:7, mahwar:'جلسة مراجعة', title:'مراجعة', sura:'الانشقاق',
+    sharh:'التأكد من أنه يطبق جميع ما سبق من أحكام', youtube:'' },
+  { lesson:8, mahwar:'مخارج الحروف', title:'مخارج الحروف', sura:'البروج',
+    sharh:'فهم ماذا يعني مخرج الحرف وتعداد المخارج الخمس الأساسية (فكرة نظرية سريعة)', youtube:'' },
+  { lesson:9, mahwar:'مخارج الحروف', title:'مخرج الجوف', sura:'الطارق',
+    sharh:'أحرفه (َا - ُو - ِي) + الملاحظتين: تصفية الحروف من الغنة - عدم إمالة الألف في غير موضع الإمالة.', youtube:'' },
+  { lesson:10, mahwar:'مخارج الحروف: شرح مع تفصيل الأحرف واتباع الملاحظات عملياً', title:'مخرج الحلق ء، ه، ع', sura:'الأعلى',
+    sharh:'ملاحظات متعلقة: عدم تفخيم الهمزة وعدم قلقلة الهمزة الساكنة، عدم تفخيم العين أو نطقها بصوت عائم أشبه بالألف المفخمة', youtube:'' },
+  { lesson:11, mahwar:'', title:'مخرج الحلق ح، غ، خ', sura:'الغاشية',
+    sharh:'عدم إبدال الغين خاءً أو قلقلتها.', youtube:'' },
+  { lesson:12, mahwar:'', title:'مخرج اللسان أقصى (ق، ك)', sura:'الفجر',
+    sharh:'ملاحظة: عدم المبالغة في همس الكاف المتحركة مثال: ذلك - كيف', youtube:'' },
+  { lesson:13, mahwar:'', title:'وسط اللسان (ج، ش، الياء غير المدية)', sura:'البلد',
+    sharh:'ملاحظات: عدم نطق الجيم رخوة أو شبيهة بالشين أو الدال، مراعاة رخاوة الياء حال تشديدها. والياء: هي حرف مجهور، رخو، منفتح، مستفل، فينبغي التأكيد على إعطائها وزن حرفين إذا وقعت مشددة مع مراعاة عدم المبالغة في ذلك حتّى لا تصبح كأنها جيم مثل: (وإيّاكم)', youtube:'' },
+  { lesson:14, mahwar:'', title:'حافة اللسان (ض، ل)', sura:'الشمس والليل',
+    sharh:'ملاحظات: مراعاة أداء اللام الشّمسية والقمرية. عدم قلقلتهما.', youtube:'' },
+  { lesson:15, mahwar:'', title:'طرف اللسان (ن، ر)', sura:'الضحى والشرح',
+    sharh:'ملاحظات: عدم قلقلة النون حال سكونها وعدم تفخيمها عدم تكرير الراء حال تشديدها.', youtube:'' },
+  { lesson:16, mahwar:'', title:'طرف اللسان (ط، د، ت)', sura:'التين والعلق',
+    sharh:'ملاحظات: - عدم خلط صوت الدال بشيء من التاء -عدم المبالغة في همس التاء المتحركة.', youtube:'' },
+  { lesson:17, mahwar:'', title:'طرف اللسان (ص، ز، س)', sura:'القدر والبينة',
+    sharh:'عدم خلط صوت الزاي بصوت السين - هما متفقان بالمخرج، لكن لكل منهما صفات تميّزه عن الآخر، كأداء (رجز) (الرزق)', youtube:'' },
+  { lesson:18, mahwar:'', title:'طرف اللسان (ظ، ذ، ث) الأحرف اللثوية', sura:'الزلزلة والعاديات',
+    sharh:'تحقيق مخرجها بوضع طرف اللسان عند طرف الثنية وعدم إخراج اللسان في غيرها مثال: إذا – السماء - ثم', youtube:'' },
+  { lesson:19, mahwar:'', title:'مخرج الشفتين ف، الواو غير المدية، ب، م', sura:'القارعة والتكاثر',
+    sharh:'ملاحظات: عدم همس الباء. عدم تفخيم الميم والباء.', youtube:'' },
+  { lesson:20, mahwar:'', title:'جلسة مراجعة وتعويض', sura:'',
+    sharh:'في حال كان هناك تقصير', youtube:'' },
+  { lesson:21, mahwar:'أحكام النون', title:'أحكام النون الساكنة والتنوين (1)', sura:'العصر والهمزة والفيل',
+    sharh:'نظرياً ومع التركيز على التطبيق العملي', youtube:'' },
+  { lesson:22, mahwar:'', title:'أحكام النون الساكنة والتنوين (2)', sura:'قريش والماعون',
+    sharh:'ليس في درس واحد وإنما من خلال التنبيه والسماع ينبغي يطبق الطالب في معظم أحكام النون مثال: من ما خلق – من بين – ليالٍ عشر', youtube:'' },
+  { lesson:23, mahwar:'', title:'أحكام النون الساكنة والتنوين (3)', sura:'الكوثر والكافرون',
+    sharh:'', youtube:'' },
+  { lesson:24, mahwar:'', title:'القلقلة', sura:'الإخلاص والفلق',
+    sharh:'من خلال الملاحظات في كل الدروس السابقة + النظري في هذا الدرس', youtube:'' },
+  { lesson:25, mahwar:'', title:'الهمس', sura:'الناس',
+    sharh:'من خلال الملاحظات في كل الدروس السابقة + النظري في هذا الدرس', youtube:'' },
 ];
 
-// المتوسط الأول — مشترك الأحكام مع تغيير السور
-const AHKAM_MUTAWASIT1_IBTIDAI = [
-  { id:'imt1_1', lesson:1,  title:'مراجعة مخارج الحروف (1) — الجوف والحلق', mahwar:'مراجعات أساسية', sharh:'التأكد من عدم وجود أخطاء في مخارج الجوف والحلق.', amthal:['مخرج الجوف','مخرج الحلق'], sura:'سورة البقرة' },
-  { id:'imt1_2', lesson:2,  title:'مراجعة مخارج الحروف (2) — اللسان', mahwar:'مراجعات أساسية', sharh:'مخرج اللسان: أقصى، وسط، حافة.', amthal:['قاف','جيم','ضاد'], sura:'سورة البقرة' },
-  { id:'imt1_3', lesson:3,  title:'مراجعة مخارج الحروف (3) — الشفتان والخيشوم', mahwar:'مراجعات أساسية', sharh:'مخرج الشفتين والخيشوم.', amthal:['باء','ميم','غنة'], sura:'سورة آل عمران' },
-  { id:'imt1_4', lesson:4,  title:'ضبط زمن الحرف الساكن — الشديد والقصير', mahwar:'مراجعات أساسية', sharh:'الشدة: انحباس جريان الصوت. حروفها 8: أجد قط بكت.', amthal:['البروج','الطارق','كورت'], sura:'سورة النساء' },
-  { id:'imt1_5', lesson:5,  title:'ضبط زمن الحرف الساكن — البيني المتوسط', mahwar:'مراجعات أساسية', sharh:'حروفها: لن عمر — بين الشدة والرخاوة.', amthal:['نون','يسطرون'], sura:'الحاقة' },
-  { id:'imt1_6', lesson:6,  title:'ضبط زمن الحرف الساكن الرخو', mahwar:'مراجعات أساسية', sharh:'جريان الصوت مع الحرف لضعف الاعتماد على المخرج.', amthal:['يسطرون','حروف المد'], sura:'الحاقة' },
-  { id:'imt1_7', lesson:7,  title:'أحكام النون الساكنة — الإظهار', mahwar:'أحكام النون والتنوين', sharh:'إظهار النون بلا غنة عند حروف الحلق الستة: أ ه ع ح غ خ.', amthal:['حَمِيمٍ حَمِيمًا','مَن عَمِل'], sura:'المعارج' },
-  { id:'imt1_8', lesson:8,  title:'أحكام النون الساكنة — الإدغام بغنة', mahwar:'أحكام النون والتنوين', sharh:'الإدغام بغنة عند: (ي ن م و). النون تذوب في الحرف مع بقاء الغنة.', amthal:['مَن يَعمَل','مَن مَا خَلَق'], sura:'المعارج' },
-  { id:'imt1_9', lesson:9,  title:'أحكام النون الساكنة — الإدغام بلا غنة', mahwar:'أحكام النون والتنوين', sharh:'الإدغام بلا غنة عند: (ل ر).', amthal:['مِن لَدُنه','مِن رَبِّهم'], sura:'نوح' },
-  { id:'imt1_10',lesson:10, title:'أحكام النون الساكنة — الإقلاب', mahwar:'أحكام النون والتنوين', sharh:'قلب النون ميماً مخفاة مع غنة عند الباء.', amthal:['مِن بَعد','أَنبِئهُم'], sura:'نوح' },
-  { id:'imt1_11',lesson:11, title:'أحكام النون الساكنة — الإخفاء', mahwar:'أحكام النون والتنوين', sharh:'النطق بين الإظهار والإدغام مع بقاء الغنة، عند 15 حرفاً.', amthal:['مِن قَبل','أَنتُم','مَنصُور'], sura:'الجن' },
-  { id:'imt1_12',lesson:12, title:'مراجعة شاملة لأحكام النون', mahwar:'أحكام النون والتنوين', sharh:'تطبيق شامل لجميع أحكام النون الساكنة والتنوين.', amthal:['من ما','من بين','ليالٍ عشر'], sura:'المزمل' },
-  { id:'imt1_13',lesson:13, title:'أحكام الميم الساكنة — الإخفاء الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إخفاء الميم الساكنة عند الباء مع غنة.', amthal:['هُم بِه','أُم مَثَلاً'], sura:'المدثر' },
-  { id:'imt1_14',lesson:14, title:'أحكام الميم الساكنة — الإدغام الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إدغام الميم الساكنة في مثلها.', amthal:['لَهُم مَا','كُنتُم مُسلمين'], sura:'المدثر' },
-  { id:'imt1_15',lesson:15, title:'أحكام الميم الساكنة — الإظهار الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إظهار الميم عند بقية الحروف.', amthal:['أَنتُم فِيه','هُم كَافِرُون'], sura:'القيامة' },
-  { id:'imt1_16',lesson:16, title:'المد الطبيعي', mahwar:'أساسيات المدود', sharh:'حركتان، لا سبب له من همز أو سكون.', amthal:['قَالَ','يَقُول','قِيل'], sura:'المرسلات' },
-  { id:'imt1_17',lesson:17, title:'المد المنفصل', mahwar:'أساسيات المدود', sharh:'حرف المد في آخر كلمة والهمزة في أول التالية — 4 أو 5 حركات.', amthal:['يَا أَيُّهَا','إِنَّا أَعطَينَاك'], sura:'المرسلات' },
-  { id:'imt1_18',lesson:18, title:'المد المتصل', mahwar:'أساسيات المدود', sharh:'حرف المد والهمزة في كلمة واحدة — 4 أو 5 حركات.', amthal:['جَاء','سَاء','جِيء'], sura:'سور متعددة' },
-  { id:'imt1_19',lesson:19, title:'المد المنفصل (تطبيق)', mahwar:'أساسيات المدود', sharh:'تطبيق وتدريب إضافي على المد المنفصل.', amthal:['وَمَا أُنزِل','قُل أُوحِيَ'], sura:'سور مختارة' },
-  { id:'imt1_20',lesson:20, title:'المد اللازم', mahwar:'أساسيات المدود', sharh:'حرف مد بعده سكون أصلي — 6 حركات وجوباً.', amthal:['الم','الحاقة','الصاخة'], sura:'سور مختارة' },
-  { id:'imt1_21',lesson:21, title:'مراجعة المدود', mahwar:'أساسيات المدود', sharh:'مراجعة شاملة لجميع المدود.', amthal:['المد الطبيعي','المتصل','المنفصل','اللازم'], sura:'سور مختارة' },
-  { id:'imt1_22',lesson:22, title:'أحكام لام لفظ الجلالة', mahwar:'متفرقات', sharh:'تفخيم لام الجلالة إن سبقها فتح أو ضم، وترقيقها إن سبقها كسر.', amthal:['قَالَ الله','بِسمِ الله','لِلَّه'], sura:'سور مختارة' },
-  { id:'imt1_23',lesson:23, title:'القلقلة والهمس — عملي ونظري', mahwar:'متفرقات', sharh:'تطبيق القلقلة والهمس من خلال القراءة.', amthal:['قَد','البُرُوج','فاء','ثاء'], sura:'سور مختارة' },
-];
-
+// ---------------------------------------------------------------
+// 2) المتوسط الأول — فوق الابتدائي (إعدادي/ثانوي)
+// ---------------------------------------------------------------
 const AHKAM_MUTAWASIT1_FAWQ = [
-  { id:'fmt1_1', lesson:1,  title:'مراجعة مخارج الحروف (1) — الجوف والحلق', mahwar:'مراجعات أساسية', sharh:'التأكد من عدم وجود أخطاء في مخارج الجوف والحلق.', amthal:['مخرج الجوف','مخرج الحلق'], sura:'الملك (1)' },
-  { id:'fmt1_2', lesson:2,  title:'مراجعة مخارج الحروف (2) — اللسان', mahwar:'مراجعات أساسية', sharh:'مخرج اللسان: أقصى، وسط، حافة.', amthal:['قاف','جيم','ضاد'], sura:'الملك (2)' },
-  { id:'fmt1_3', lesson:3,  title:'مراجعة مخارج الحروف (3) — الشفتان والخيشوم', mahwar:'مراجعات أساسية', sharh:'مخرج الشفتين والخيشوم.', amthal:['باء','ميم','غنة'], sura:'القلم' },
-  { id:'fmt1_4', lesson:4,  title:'ضبط زمن الحرف الساكن — الشديد والقصير', mahwar:'مراجعات أساسية', sharh:'الشدة: انحباس جريان الصوت. حروفها 8: أجد قط بكت.', amthal:['البروج','الطارق','كورت'], sura:'القلم' },
-  { id:'fmt1_5', lesson:5,  title:'ضبط زمن الحرف الساكن — البيني المتوسط', mahwar:'مراجعات أساسية', sharh:'حروفها: لن عمر.', amthal:['نون','يسطرون'], sura:'الحاقة' },
-  { id:'fmt1_6', lesson:6,  title:'ضبط زمن الحرف الساكن الرخو', mahwar:'مراجعات أساسية', sharh:'جريان الصوت مع الحرف.', amthal:['يسطرون','حروف المد'], sura:'الحاقة' },
-  { id:'fmt1_7', lesson:7,  title:'أحكام النون الساكنة — الإظهار', mahwar:'أحكام النون والتنوين', sharh:'إظهار النون بلا غنة عند حروف الحلق.', amthal:['حَمِيمٍ حَمِيمًا'], sura:'المعارج' },
-  { id:'fmt1_8', lesson:8,  title:'أحكام النون الساكنة — الإدغام بغنة', mahwar:'أحكام النون والتنوين', sharh:'عند: (ي ن م و).', amthal:['مَن يَعمَل'], sura:'المعارج' },
-  { id:'fmt1_9', lesson:9,  title:'أحكام النون الساكنة — الإدغام بلا غنة', mahwar:'أحكام النون والتنوين', sharh:'عند: (ل ر).', amthal:['مِن لَدُنه'], sura:'نوح' },
-  { id:'fmt1_10',lesson:10, title:'أحكام النون الساكنة — الإقلاب', mahwar:'أحكام النون والتنوين', sharh:'قلب النون ميماً عند الباء.', amthal:['مِن بَعد'], sura:'نوح' },
-  { id:'fmt1_11',lesson:11, title:'أحكام النون الساكنة — الإخفاء', mahwar:'أحكام النون والتنوين', sharh:'بين الإظهار والإدغام مع الغنة.', amthal:['مِن قَبل','أَنتُم'], sura:'الجن' },
-  { id:'fmt1_12',lesson:12, title:'مراجعة شاملة لأحكام النون', mahwar:'أحكام النون والتنوين', sharh:'تطبيق جميع أحكام النون.', amthal:['من ما','من بين','ليالٍ عشر'], sura:'المزمل' },
-  { id:'fmt1_13',lesson:13, title:'أحكام الميم الساكنة — الإخفاء الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إخفاء الميم عند الباء مع غنة.', amthal:['هُم بِه'], sura:'المدثر' },
-  { id:'fmt1_14',lesson:14, title:'أحكام الميم الساكنة — الإدغام الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إدغام الميم في مثلها.', amthal:['لَهُم مَا'], sura:'المدثر' },
-  { id:'fmt1_15',lesson:15, title:'أحكام الميم الساكنة — الإظهار الشفوي', mahwar:'أحكام الميم الساكنة', sharh:'إظهار الميم عند بقية الحروف.', amthal:['هُم كَافِرُون'], sura:'القيامة' },
-  { id:'fmt1_16',lesson:16, title:'المد الطبيعي', mahwar:'أساسيات المدود', sharh:'حركتان، لا سبب له.', amthal:['قَالَ','يَقُول'], sura:'المرسلات' },
-  { id:'fmt1_17',lesson:17, title:'المد المنفصل', mahwar:'أساسيات المدود', sharh:'حرف المد في آخر كلمة والهمزة في أول التالية.', amthal:['يَا أَيُّهَا'], sura:'المرسلات' },
-  { id:'fmt1_18',lesson:18, title:'المد المتصل', mahwar:'أساسيات المدود', sharh:'حرف المد والهمزة في كلمة واحدة.', amthal:['جَاء','سَاء'], sura:'سور متعددة' },
-  { id:'fmt1_19',lesson:19, title:'المد المنفصل (تطبيق)', mahwar:'أساسيات المدود', sharh:'تطبيق إضافي.', amthal:['وَمَا أُنزِل'], sura:'سور مختارة' },
-  { id:'fmt1_20',lesson:20, title:'المد اللازم', mahwar:'أساسيات المدود', sharh:'6 حركات وجوباً.', amthal:['الم','الحاقة'], sura:'سور مختارة' },
-  { id:'fmt1_21',lesson:21, title:'مراجعة المدود', mahwar:'أساسيات المدود', sharh:'مراجعة شاملة.', amthal:['المد الطبيعي','المتصل','المنفصل'], sura:'سور مختارة' },
-  { id:'fmt1_22',lesson:22, title:'أحكام لام لفظ الجلالة', mahwar:'متفرقات', sharh:'تفخيم وترقيق لام الجلالة.', amthal:['قَالَ الله','بِسمِ الله'], sura:'سور مختارة' },
-  { id:'fmt1_23',lesson:23, title:'القلقلة والهمس — عملي ونظري', mahwar:'متفرقات', sharh:'تطبيق القلقلة والهمس.', amthal:['قَد','البُرُوج'], sura:'سور مختارة' },
+  { lesson:1, mahwar:'مراجعات أساسية', title:'مخارج الحروف (1)', sura:'الملك',
+    sharh:'يتم الـتأكد من عدم وجود أخطاء في مخارج الحروف عند الطالب يعطى مخرج الجوف – مخرج الحلق يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المبتدئ', youtube:'' },
+  { lesson:2, mahwar:'', title:'مخارج الحروف (2)', sura:'الملك',
+    sharh:'مخرج اللسان (أقصى، وسط، حافة) يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المبتدئ', youtube:'' },
+  { lesson:3, mahwar:'', title:'مخارج الحروف (3)', sura:'القلم',
+    sharh:'مخرج الشفتين والخيشوم يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المبتدئ', youtube:'' },
+  { lesson:4, mahwar:'', title:'ضبط زمن الحرف الساكن (الشديد- القصير)', sura:'القلم',
+    sharh:'الشدة: انحباس جريان الصوت عند النطق بالحرف؛ لكمال قوة الاعتماد على المخرج حروفها: 8 وهي مجموعة في لفظ (أجد قط بكت) مثال: البروج- الطارق - كورت', youtube:'' },
+  { lesson:5, mahwar:'', title:'ضبط زمن الحرف الساكن (البيني المتوسط)', sura:'الحاقة',
+    sharh:'وُصفت بالتوسط لأن الصوت لم ينحبس معها انحباسه مع الشديدة ولم يجر معها جريانه مع الرخوة حروفها: (لن عمر) مثال: نون - يسطرون', youtube:'' },
+  { lesson:6, mahwar:'', title:'ضبط زمن الحرف الساكن الرخو (طويل)', sura:'الحاقة',
+    sharh:'الرخاوة: جريان الصوت مع الحرف لضعف الاعتماد على المخرج، حروفها: 6 وهي ماعدا حروف الشدة والتوسط', youtube:'' },
+  { lesson:7, mahwar:'', title:'مراجعة', sura:'',
+    sharh:'', youtube:'' },
+  { lesson:8, mahwar:'أحكام النون الساكنة والتنوين', title:'الإظهار', sura:'المعارج',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه (حميمٌ حميما)', youtube:'' },
+  { lesson:9, mahwar:'', title:'الإدغام بغنة', sura:'المعارج',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه (من يعمل)', youtube:'' },
+  { lesson:10, mahwar:'', title:'الإدغام بلا غنة', sura:'نوح',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:11, mahwar:'', title:'الإقلاب', sura:'نوح',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:12, mahwar:'', title:'الإخفاء', sura:'الجن',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:13, mahwar:'ملخص', title:'مراجعة كاملة لأحكام النون', sura:'المزمل',
+    sharh:'مخطط كامل + اختبار تطبيق الطلاب لهذه الأحكام', youtube:'' },
+  { lesson:14, mahwar:'أحكام الميم الساكنة', title:'الإخفاء الشفوي', sura:'المدثر',
+    sharh:'', youtube:'' },
+  { lesson:15, mahwar:'', title:'الإدغام الشفوي', sura:'المدثر',
+    sharh:'', youtube:'' },
+  { lesson:16, mahwar:'', title:'الإظهار الشفوي', sura:'القيامة',
+    sharh:'', youtube:'' },
+  { lesson:17, mahwar:'', title:'تلخيص', sura:'الإنسان',
+    sharh:'', youtube:'' },
+  { lesson:18, mahwar:'أساسيات المدود (عملي)', title:'المد الطبيعي', sura:'المرسلات',
+    sharh:'', youtube:'' },
+  { lesson:19, mahwar:'', title:'المد المنفصل', sura:'المرسلات',
+    sharh:'', youtube:'' },
+  { lesson:20, mahwar:'', title:'المد المتصل', sura:'تعويض السور',
+    sharh:'', youtube:'' },
+  { lesson:21, mahwar:'', title:'المد المنفصل', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:22, mahwar:'', title:'المد اللازم', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:23, mahwar:'', title:'مراجعة عن المدود', sura:'سورة مختارة',
+    sharh:'المهم في هذا القسم أن يكون تطبيقه للمدود بعد ال 23 درس الماضية بشكل ممتاز من خلال تصحيح الأخطاء ومع النظري تصبح أكثر إتقاناً', youtube:'' },
+  { lesson:24, mahwar:'', title:'أحكام لام لفظ الجلالة', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:25, mahwar:'', title:'القلقلة والهمس', sura:'سورة مختارة',
+    sharh:'عملي و نظري', youtube:'' },
 ];
 
-// المتوسط الثاني
+// ---------------------------------------------------------------
+// 3) المتوسط الثاني — فوق الابتدائي (إعدادي/ثانوي)
+// ---------------------------------------------------------------
+const AHKAM_MUTAWASIT2_FAWQ = [
+  { lesson:1, mahwar:'مراجعات أساسية', title:'أحكام النون والتنوين كاملة', sura:'قد سمع',
+    sharh:'يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط 1 أو من المصدر أعلاه', youtube:'' },
+  { lesson:2, mahwar:'', title:'أحكام الميم الساكنة', sura:'قد سمع',
+    sharh:'يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط 1 أو من المصدر أعلاه', youtube:'' },
+  { lesson:3, mahwar:'', title:'المدود الأساسية (المد الطبيعي، المتصل، المنفصل، اللازم)', sura:'الحشر',
+    sharh:'يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط 1 أو من المصدر أعلاه المد اللازم: هو أن يأتي حرف المد وبعده حرف ساكن سكوناً أصلياً (وصلاً ووقفاً). ينقسم المد اللازم إلى قسمين: كلمي وحرفي، وكل منهما ينقسم إلى مخفف ومثقل، فيتفرع إلى أربعة مدود:', youtube:'' },
+  { lesson:4, mahwar:'المدود بالتفصيل', title:'المد اللازم الكلمي', sura:'الممتحنة',
+    sharh:'المد اللازم الكلمي المثقل: وهو أن يأتي بعد حرف المد ساكنٌ مدغم (شدة)، مثال: (الصآخّة)، (أتحآجّوني). المد اللازم الكلمي المخفف: وهو أن يأتي بعد حرف المد حرف ساكن، نحو: (ءالآن وقد كنتم به تستعجلون)', youtube:'' },
+  { lesson:5, mahwar:'', title:'المد اللازم الحرفي', sura:'الممتحنة',
+    sharh:'المد اللازم الحرفي المثقل: هو أن يأتي حرف في فواتح بعض السور هجاؤه ثلاثة أحرف، أوسطها حرف مد، والثالث مدغم في الحرف الذي بعده، نحو: اللام من: (الم) / المد اللازم الحرفي المخفف: هو أن يأتي حرف في فواتح بعض السور هجاؤه ثلاثة أحرف، أوسطها حرف مد، ولكن الحرف الثالث ساكن، نحو: "قاف" من ((ق))', youtube:'' },
+  { lesson:6, mahwar:'', title:'مد الصلة (الصغرى والكبرى)', sura:'الصف',
+    sharh:'مد الصلة: هو مد خاص بصلة هاء الضمير في المفرد المذكر الغائب، وينقسم إلى قسمين: - الصلة الصغرى: إذا لم يأت بعد الهاء همز، مثال: (بهِ فهو) وهذا المد يلحق بالمد الأصلي', youtube:'' },
+  { lesson:7, mahwar:'', title:'مد الصلة (الصغرى والكبرى)', sura:'الجمعة',
+    sharh:'- الصلة الكبرى: أن يأتي بعد الهاء همز قطع، مثال (مالَهُ أخلده) وهذا المد يلحق بالمد الفرعي. ملاحظة: لا تمد الهاء إلا إذا كان قبلها متحرك وبعدها متحرك، وهناك أربع كلمات خرجت عن القاعدة وهي: (يرضَهُ لكم) لا تمد - (فيهِ مهانا) تمد - (أرجِهْ) لا تمد بل تنطق ساكنة (فألقِهْ إليهم) لا تمد', youtube:'' },
+  { lesson:8, mahwar:'', title:'المدود الأخرى (البدل، العوض و العارض للسكون)', sura:'المنافقون',
+    sharh:'مد البدل: هو أن يأتي قبل حرف المد همزة، مثال: (أوتوا)، (ءادم)، (إيماناً)، وسمي بدلاً لأنه في الأصل عبارة عن همزتين الأولى متحركة والثانية ساكنة، فأُبدلتِ الثانيةُ مداً.. المد العارض للسكون: هو أن يقع بعد أحد حروف المد سكون عارض للوقف، مثل: (البروج)', youtube:'' },
+  { lesson:9, mahwar:'', title:'المدود الأخرى (البدل، العوض، اللين و العارض للسكون)', sura:'التغابن',
+    sharh:'مد العوض: هو مد في حالة الوقف على تنوين النصب فقط، مثل: (عفوّاً)، (رحيماً)، وسمي عوضاً؛ لأننا عوضنا التنوين بالألف. مد اللين: هو أن يأتي واو أو ياء ساكنين وقبلهما مفتوح، مثال: (البَيْت)، (خَوْف)، (قرَيْش). ملاحظة: لا يمد اللين إلا في حالة الوقف.', youtube:'' },
+  { lesson:10, mahwar:'', title:'مراجعة المدود', sura:'',
+    sharh:'', youtube:'' },
+  { lesson:11, mahwar:'أحكام التفخيم والترقيق', title:'تفخيم حروف الاستعلاء', sura:'الطلاق',
+    sharh:'من لوازم حروف الاستعلاء التفخيم (كل حرف مستعلٍ مفخم)، والاستعلاء: ارتفاع أقصى اللسان إلى الحنك الأعلى، والتفخيم: سِمَنٌ في مخرج الحرف وقوة في صفته. أحرفه (خص ضغط قظ)', youtube:'' },
+  { lesson:12, mahwar:'', title:'تفخيم الراء في أحوالها', sura:'التحريم',
+    sharh:'أحوال تفخيم الراء: إذا كانت مضمومة أو مفتوحة، وإذا كانت ساكنة وقبلها فتح أو ضم، وإذا كانت ساكنة بعد كسر أصلي وبعدها حرف استعلاء _غير مكسور_ في كلمة واحدة (مِرصَاداً)، وإذا كانت ساكنة بعد كسر عارض (أمِ ارْتَابوا)', youtube:'' },
+  { lesson:13, mahwar:'', title:'تفخيم اللام في أحوالها', sura:'سورة مختارة',
+    sharh:'تفخم لام لفظ الجلالة إن سبقها فتحٌ أو ضمٌّ...(رسولُ الله) (هوَ الله)', youtube:'' },
+  { lesson:14, mahwar:'', title:'الغنة تتبع ما بعدها تفخيماً وترقيقاً', sura:'سورة مختارة',
+    sharh:'فالغنة في مثل: (من دِيارهم) مرققة، بينما في (من قَرن) مفخمة، فالفرق بينهما واضح ووضع اللسان والشفتين مختلف..', youtube:'' },
+  { lesson:15, mahwar:'', title:'الألف تتبع ما قبلها تفخيماً وترقيقاً', sura:'سورة مختارة',
+    sharh:'الألف لا توصف بترقيق ولا بتفخيم بل تتبع الحرف الذي قبلها، ولينتبه القارئ إلى عدم تفخيمها إذا كان بعدها حرف مفخم مثل (بالباطل)', youtube:'' },
+  { lesson:16, mahwar:'ملخص', title:'مراجعة + التأكد من تخليص المرقق من المفخم عملياً', sura:'سورة مختارة',
+    sharh:'الحروف المرققة (أ ب ت ث ج ح د ذ ز س ش ع ف ك م ن ه و ي) / الحروف المفخمة: (خ ص ض غ ط ق ظ) الحروف التي قد تفخم أو ترقق: (الراء- اللام - ألف المد – الغنة) / ملاحظة: عند مجاورة الحرف المفخم للحرف المرقق يغلب المفخم المرقق ويتسبب في تفخيمه، فيجب الانتباه (المستقيم - فما استطاعوا)', youtube:'' },
+  { lesson:17, mahwar:'الوقف والابتداء', title:'مراعاة الابتداء بهمزة الوصل', sura:'سورة مختارة',
+    sharh:'أولاً: بالأفعال: نبدأ بالكسر إن كان ثالث حرف من الفعل مفتوحاً (اِستَغفروا) أو مكسوراً (اِرجِعوا)...... ونبدأ فيها بالضم إذا كان ثالث حرف من الفعل مضموماً بضمة أصلية، مثل: (اُعبُدوا)', youtube:'' },
+  { lesson:18, mahwar:'', title:'مراعاة الابتداء بهمزة الوصل', sura:'سورة مختارة',
+    sharh:'تنبيه: نحترز عن كلمات مثل: (اِمشُوا) و(اِقضُوا) و(اِبنوا) و(اِئتوا) و(اِئتوني) فيجب أن نبدأ بالكسر؛ لأن الضم في ثالث حرف منها غير أصلي، فأصل ثالث حرف منها مكسور (اِمشِيوا) (اِقضِيوا)..', youtube:'' },
+  { lesson:19, mahwar:'', title:'مراعاة الابتداء بهمزة الوصل', sura:'سورة مختارة',
+    sharh:'ثانياً: بالأسماء: نبدأ بها بالكسر في الأسماء العشرة سماعاً وفي غيرها قياساً / ثالثاً: بالأحرف فقط ب (أل) التعريف نبدأ بها بالفتح', youtube:'' },
+  { lesson:20, mahwar:'', title:'مراعاة الوقف والابتداء', sura:'سورة مختارة',
+    sharh:'يجدر بالقارئ أن يقف في مكان الوقف الجائز، وأن يحذر من الوقف الممنوع (القبيح)', youtube:'' },
+  { lesson:21, mahwar:'بعض صفات الحروف', title:'القلقلة بالتفصيل + ملاحظات عملية', sura:'سورة مختارة',
+    sharh:'ملاحظات: قد يتأثر الحرف المقلقل بحركة الحرف السابق أو اللاحق فينبغي التحرز. مثل (لقد كان) (تُبتُم) (إبرَاهيم) - من الخطأ أن نخرج في نهاية القلقلة همزة ك (أحدء). - مط حرف القلقلة والاتكاء عليه اتكاءةً تتناسب مع الإيقاع والنغم يجب الحذر منه....', youtube:'' },
+  { lesson:22, mahwar:'', title:'الاستطالة في الضاد', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:23, mahwar:'', title:'تفشي الشين', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:24, mahwar:'', title:'تكرار الراء + الانحراف', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:25, mahwar:'', title:'مراجعة للدروس السابقة', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+];
+
+// ---------------------------------------------------------------
+// 4) المتقدم — فوق الابتدائي (إعدادي/ثانوي) — منهج خاص ومختلف
+// ---------------------------------------------------------------
+const AHKAM_MUTAQADIM_FAWQ = [
+  { lesson:1, mahwar:'مراجعات أساسية', title:'مراجعة مخارج الحروف كاملة', sura:'الذاريات',
+    sharh:'الجوف، الحلق، اللسان، الشفتان', youtube:'' },
+  { lesson:2, mahwar:'', title:'مراجعة أحكام النون والميم الساكنة', sura:'الطور',
+    sharh:'يمكن الاستعانة بالمصادر أو منهاج المستويات السابقة', youtube:'' },
+  { lesson:3, mahwar:'', title:'مخرج الخيشوم: مراتب الغنن (من حيث القوة) والغنة', sura:'النجم',
+    sharh:'الغنة: صوت رخيم، أغن، مجهور، شديد، يخرج من تجويف الأنف لا عمل للسان به. 1- الغنة الأكمل (الميم والنون المشددتان والمدغمتان) 2- الغنة الكاملة الميم والنون المخفاتان 3- الغنة الناقصة الميم والنون الساكنتان المظهرتان 4- الغنة الأنقص النون والميم المتحركتان. قول العلماء أكمل لا يعني أنها أطول زمناً، إنما يعني أن نسبة الغنة تكون كاملة في مخرجها، تامة في صداها في التجويف الأنفي. يجب أن تكون ثقيلة وتستغرق زمناً في السمع يتناسب مع سرعة القراءة وبطئها على حسب مراتب التلاوة، وهذه المدة تدرك بالسماع من الشيوخ...', youtube:'' },
+  { lesson:4, mahwar:'', title:'مراجعة قواعد التفخيم والترقيق', sura:'القمر',
+    sharh:'أحرف الاستعلاء – الراء في حالتيها – الغنة والألف في حالتيهما ولام لفظ الجلالة', youtube:'' },
+  { lesson:5, mahwar:'', title:'مراعاة مراتب التفخيم', sura:'',
+    sharh:'التفخيم على خمسة مراتب: 1- أن يكون حرف الاستعلاء مفتوحاً وبعده ألف (خَالدون) 2- أن يكون حرف الاستعلاء مفتوحاً وليس بعده ألف (ظَلم) 3- أن يكون حرف الاستعلاء مضموماً (قُتلوا) 4- أن يكون حرف الاستعلاء ساكناً (فيقْتلون) 5- أن يكون حرف الاستعلاء مكسوراً (قِيل)... ملاحظة (1): قد يفهم من هذه المراتب أن المرتبة الخامسة مرققة، وهذا غير صحيح، بل أدنى مرتبة من مراتب التفخيم هي أعلى من الترقيق، فالكسر في حروف الاستعلاء يضعف التفخيم ولا يلغيه. ملاحظة (2): هناك قول آخر للعلماء في مراتب التفخيم على أنها ثلاثة مراتب فقط فلتراجع', youtube:'' },
+  { lesson:6, mahwar:'', title:'مراجعة الابتداء على همزة وصل', sura:'الرحمن',
+    sharh:'متى تكون مضمومة ومتى تكون مكسورة', youtube:'' },
+  { lesson:7, mahwar:'', title:'مراجعة المدود كاملة', sura:'الرحمن',
+    sharh:'المدود الأصلية والفرعية مع الحالات الخاصة', youtube:'' },
+  { lesson:8, mahwar:'', title:'تعويض أو مراجعات أخرى', sura:'',
+    sharh:'', youtube:'' },
+  { lesson:9, mahwar:'صفات الحروف', title:'الاستعلاء والاستفال', sura:'الواقعة',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:10, mahwar:'', title:'الإطباق والانفتاح', sura:'الواقعة',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:11, mahwar:'', title:'الصفير', sura:'الحديد',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:12, mahwar:'', title:'القلقلة والهمس', sura:'الحديد',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:13, mahwar:'', title:'اللين', sura:'سورة مختارة',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:14, mahwar:'', title:'الانحراف', sura:'سورة مختارة',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:15, mahwar:'', title:'التكرير', sura:'سورة مختارة',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:16, mahwar:'', title:'مراجعة', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:17, mahwar:'الإدغام بحسب الصفات', title:'المتماثل', sura:'سورة مختارة',
+    sharh:'أيُّ حرفين متماثلين الأول ساكن والثاني متحرك (مْ + م) (بْ + ب)....إلخ. وهو أن يلتقي حرفان اتحدا مخرجاً وصفةً وكان الأول ساكناً فيجب إدغام الأول في الثاني.', youtube:'' },
+  { lesson:18, mahwar:'', title:'المتجانس (ب+م)، (ت+د)، (ت+ط)، (ط+ت)، (ذ+ظ)، (ث+ذ)، (د+ت)', sura:'سورة مختارة',
+    sharh:'ملاحظة: إذا نطقتَ بإدغام المتجانسين في (اركبْ مَّعنا) فإن الباء تذهب كلّيةً (اركمَّعنا) فلا يبقى أثر للحرف الأول إلا إذا كان حرف استعلاء، مثل (بسطْتَ) فإنه يبقى أثر التفخيم واضحاً، فهنا الطاء ساكنة مفخمة مطبقة غير مقلقلة، والتاء مشددة مرققة..', youtube:'' },
+  { lesson:19, mahwar:'', title:'المتقارب (ل+ر) (ق+ك)', sura:'سورة مختارة',
+    sharh:'ملاحظة: بالنسبة لإدغام القاف في الكاف بكلمة (نخلقكم) يجوز في نطقه وجهان: أ- الإدغام الناقص: إدغام القاف في الكاف مع بقاء صفة الاستعلاء في القاف. ب- الإدغام الكامل (المحض): وذلك بأن ينتقل اللسان من اللام إلى الكاف مباشرة فننطقها كاف مشددة (نخلكُّم) وهذا الأقوى والمقدم في الأداء. تنبيه: ينبغي أن يُلاحظ القارئ حال الشفتين عند نطقه باللام في (نخلقْكم) بأن يضمَّها ثمَّ يعيدها عند الكاف منفرجتين عرضاً ثم يضمهما لأجل ضمة الكاف.. أما إدغام اللام في الراء فهو إدغام كامل (لا يبقى أثر اللام بل يصيران راء مشددة)', youtube:'' },
+  { lesson:20, mahwar:'', title:'أحكام الوقف والابتداء تفصيلاً', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:21, mahwar:'', title:'أحكام الوقف والابتداء تفصيلاً', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:22, mahwar:'', title:'تعويض ومراجعات', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:23, mahwar:'', title:'مراعاة التوازن في أزمنة المدود والغنن', sura:'سورة مختارة',
+    sharh:'معرفة سرعات القراءة والتوازن بين زمن المدود (نظيره)', youtube:'' },
+  { lesson:24, mahwar:'', title:'حالات خاصة في القرآن', sura:'سورة مختارة',
+    sharh:'الروم والإشمام، الإمالة الوحيدة، من ضعف، وصل بداية سورة آل عمران', youtube:'' },
+  { lesson:25, mahwar:'', title:'ترك التكلف المذموم', sura:'سورة مختارة',
+    sharh:'ليس التجويد بتمضيغ اللسان (بأن تخرج الحروف الشديدة رخوة)، ولا بتقعير الفم (التشدق، فيخرج الحروف من أقصى الحلق بتفاصح)، ولا بتعويج الفك (ضد الاعتدال)، ولا بترعيد الصوت، ولا بتمطيط الشدة، ولا بتقطيع المد (خفض الصوت ورفعه)، ولا بتطنين الغنات (شدة إلصاق اللسان بمخرج النون بمبالغة وتطويل) ولا بحصرمة الراءات (وهي شد الأوتار الصوتية وعضلات أعضاء النطق، أو المبالغة بإخفاء تكرير الراء حتّى تخرج كأنها طاء)، بل تحسن القراءة السهلة العذبة اللطيفة.', youtube:'' },
+];
+
+// ---------------------------------------------------------------
+// 5) المبتدئ — الابتدائي (محتوى خاص بالابتدائي - مختلف عن الإعدادي)
+// ---------------------------------------------------------------
+const AHKAM_MUBTADI_IBTIDAI = [
+  { lesson:1, mahwar:'أساسيات', title:'اللام الشمسية والقمرية', sura:'الضحى والشرح',
+    sharh:'التمييز بين التطبيق العملي فيها مثال: الضّحى، الليل، الأولى، الجبال', youtube:'' },
+  { lesson:2, mahwar:'', title:'الحرف المشدد + الوقوف عليه في نهاية الكلام', sura:'التين والعلق',
+    sharh:'فهم معنى الشدة – إعطاء الحرف المشدد حقه من الزمن والقوة مثال: اللام الشمسية، علّم، إنّ، التّين، تبّ', youtube:'' },
+  { lesson:3, mahwar:'', title:'الوقوف على الحرف المتحرك', sura:'البينة والزلزلة',
+    sharh:'أن يقف بساكن على حرف متحرك في أي مكان وقف فيه مثال: ولا المشركين منفكين - رسول - إلخ', youtube:'' },
+  { lesson:4, mahwar:'', title:'الوقوف على تنوين النصب', sura:'العاديات',
+    sharh:'أن يقف بألف عند الوقوف على تنوين النصب وعند الوصل يبين التنوين للتمييز بين الحالتين مثال: ضبحا – قدحا – ضبحاً فالموريات (وصلاً)', youtube:'' },
+  { lesson:5, mahwar:'', title:'إعطاء حرف المد زمناً أكبر من غيرها من الحروف', sura:'القارعة والتكاثر',
+    sharh:'معرفة أن أحرف المد هي ا، و، ي وإعطاءها زمناً أكبر في القراءة دون مبالغة (المد الطبيعي دون تفصيل في الشرح) مثال: القارعة، التكاثر، يكون، اليقين', youtube:'' },
+  { lesson:6, mahwar:'', title:'الحركات، وإتمامها', sura:'الفيل وقريش',
+    sharh:'الحركات الثلاثة، التمييز بين زمنها وزن الأحرف ا، و، ي التأكيد على عدم اختصارها وعدم المبالغة فيها مثال: ألم ترَ - لإيلاف – إيلافهم – بِسم الله – الفاتحة كاملة', youtube:'' },
+  { lesson:7, mahwar:'جلسة مراجعة', title:'مراجعة الدروس الست الماضية', sura:'العصر، الهمزة',
+    sharh:'التأكد من أنه يطبق جميع ما سبق من أحكام', youtube:'' },
+  { lesson:8, mahwar:'فكرة عامة عن مخارج الحروف مع بعض الملاحظات المتعلقة بها من الناحية التطبيقية', title:'مخارج الحروف', sura:'الماعون والكوثر',
+    sharh:'فهم ماذا يعني مخرج الحرف وتعداد المخارج الخمس الأساسية (فكرة نظرية سريعة)', youtube:'' },
+  { lesson:9, mahwar:'', title:'مخرج الجوف', sura:'الكافرون والنصر والمسد',
+    sharh:'أحرفه وهي أحرف المد التأكد من خلو أحرفه من الغنة عملياً مثال: الكافرون، تعبدون، جاء', youtube:'' },
+  { lesson:10, mahwar:'', title:'الألف (عدم ارتجاج الصوت أو إمالتها)', sura:'الإخلاص للناس',
+    sharh:'التأكد من فتح الفم جيداً عند نطقها وعدم تشبيهها للياء الناس', youtube:'' },
+  { lesson:11, mahwar:'', title:'مخرج الحلق', sura:'البدء بسورة عم إن كان مناسباً',
+    sharh:'أحرفه بشكل سريع دون التعمق في الشرح', youtube:'' },
+  { lesson:12, mahwar:'', title:'الهمزة والوقوف عليها وعدم قلقلتها', sura:'تتمة سورة عم',
+    sharh:'الوقوف على الهمزة بالشكل الصحيح ماء – السماء', youtube:'' },
+  { lesson:13, mahwar:'', title:'نطق العين', sura:'النازعات',
+    sharh:'نطقها بشكل واضح ولا تكون مثل الألف المفخمة مثل: النازعات – عم - تتبعها', youtube:'' },
+  { lesson:14, mahwar:'', title:'التمييز بين الغين والخاء', sura:'تتمة النازعات',
+    sharh:'الغين والخاء متقاربان بالمخرج ينبغي أن يميز بينهما في النطق ولا يقلقلهما مثال: غرقاً - خاشعة - الصاخة', youtube:'' },
+  { lesson:15, mahwar:'', title:'جلسة مراجعة', sura:'سورة عبس',
+    sharh:'التأكد من أنه يطبق جميع ما سبق من أحكام', youtube:'' },
+  { lesson:16, mahwar:'', title:'مخرج اللسان (حرف التاء)', sura:'سورة التكوير',
+    sharh:'شرح بسيط عن مخرج اللسان التركيز على حرف التاء مع فكرة الهمس وتمييزها باللفظ عن الدال مثال: كورت - انكدرت', youtube:'' },
+  { lesson:17, mahwar:'', title:'حرف الجيم', sura:'سورة الانفطار',
+    sharh:'عدم تشبيهه بالشين والعكس مثال: فجرت', youtube:'' },
+  { lesson:18, mahwar:'', title:'الأحرف اللثوية', sura:'الانفطار - الانشقاق',
+    sharh:'إخراج اللسان عند نطقها وعدم إخراج اللسان في غيرها مثال: إذا – السماء - ثم', youtube:'' },
+  { lesson:19, mahwar:'', title:'مخرج الشفتين', sura:'المطففين',
+    sharh:'شرح بسيط مع أحرفه مثال: ف وم وب في المطففين، مبعوثون', youtube:'' },
+  { lesson:20, mahwar:'', title:'جلسة تعويضية', sura:'',
+    sharh:'في حال كان هناك تقصير', youtube:'' },
+  { lesson:21, mahwar:'متفرقات', title:'القلقلة', sura:'البروج',
+    sharh:'السورة فيها قلقلة كثرة تشرح الفكرة ببساطة جداً مع التركيز على العملي', youtube:'' },
+  { lesson:22, mahwar:'', title:'أحكام النون والتنوين عملياً', sura:'الطارق',
+    sharh:'ليس في درس واحد وإنما من خلال التنبيه والسماع ينبغي يطبق الطالب في معظم أحكام النون مثال: من ما خلق – من بين – ليالٍ عشر', youtube:'' },
+  { lesson:23, mahwar:'', title:'', sura:'الأعلى والغاشية',
+    sharh:'', youtube:'' },
+  { lesson:24, mahwar:'', title:'', sura:'الفجر',
+    sharh:'', youtube:'' },
+];
+
+// ---------------------------------------------------------------
+// 6) المتوسط الأول — الابتدائي (مطابق لمحتوى "المبتدئ - فوق الابتدائي")
+// ---------------------------------------------------------------
+const AHKAM_MUTAWASIT1_IBTIDAI = [
+  { lesson:1, mahwar:'ضبط الحرف', title:'إتمام الحركات + عدم التمطيط', sura:'سورة عم',
+    sharh:'بإعطاء كل حركة حقها.... مثلاً: كلمة (عَليْهِم) يجب تحقيق كسرة الهاء والحذر من خلط صوت الكسرة بصوت بين الياء والألف.. التمطيط: هو الإفراط في إشباع الحركات حتّى يتولد منها حروفٌ، كأن يقرأ البسملة (بِيسمي اللىهي الىرحمني الىرحيم). مثال: الباء في البسملة، عمَّ وليس عماا', youtube:'' },
+  { lesson:2, mahwar:'', title:'ضبط زمن المد الطبيعي', sura:'النازعات',
+    sharh:'المد الطبيعي: هو المد الذي لا تقوم ذات الحرف إلا به، ولا يتوقف على سبب من همز أو سكون، ويمد بمقدار حركتين. مثال: النازعات', youtube:'' },
+  { lesson:3, mahwar:'', title:'حق الحرف المشدد + الوقوف عليه', sura:'عبس',
+    sharh:'لا بد من إعطاء الحرف المشدد قوة حرفين وخاصة بعد المد. مثال: اللام الشمسية، تولّى، يزّكى، يذّكر', youtube:'' },
+  { lesson:4, mahwar:'', title:'ضبط زمن الحرف الساكن (الشديد- القصير)', sura:'التكوير',
+    sharh:'الشدة: انحباس جريان الصوت عند النطق بالحرف؛ لكمال قوة الاعتماد على المخرج حروفها: 8 وهي مجموعة في لفظ (أجد قط بكت) مثال: كورت - العلق - الطارق - البروج', youtube:'' },
+  { lesson:5, mahwar:'', title:'ضبط زمن الحرف الساكن (البيني المتوسط)', sura:'الانفطار والمطففين',
+    sharh:'وُصفت بالتوسط لأن الصوت لم ينحبس معها انحباسه مع الشديدة ولم يجر معها جريانه مع الرخوة حروفها: (لن عمر) مثال: انفطرت - المطففين - يستوفون - مرقوم', youtube:'' },
+  { lesson:6, mahwar:'', title:'ضبط زمن الحرف الساكن الرخو (طويل)', sura:'المطففين',
+    sharh:'الرخاوة: جريان الصوت مع الحرف لضعف الاعتماد على المخرج، حروفها: 6 وهي ماعدا حروف الشدة والتوسط مثال: يستوفون – حروف المد', youtube:'' },
+  { lesson:7, mahwar:'جلسة مراجعة', title:'مراجعة', sura:'الانشقاق',
+    sharh:'التأكد من أنه يطبق جميع ما سبق من أحكام', youtube:'' },
+  { lesson:8, mahwar:'مخارج الحروف', title:'مخارج الحروف', sura:'البروج',
+    sharh:'فهم ماذا يعني مخرج الحرف وتعداد المخارج الخمس الأساسية (فكرة نظرية سريعة)', youtube:'' },
+  { lesson:9, mahwar:'مخارج الحروف', title:'مخرج الجوف', sura:'الطارق',
+    sharh:'أحرفه (َا - ُو - ِي) + الملاحظتين: تصفية الحروف من الغنة - عدم إمالة الألف في غير موضع الإمالة.', youtube:'' },
+  { lesson:10, mahwar:'مخارج الحروف: شرح مع تفصيل الأحرف واتباع الملاحظات عملياً', title:'مخرج الحلق ء، ه، ع', sura:'الأعلى',
+    sharh:'ملاحظات متعلقة: عدم تفخيم الهمزة وعدم قلقلة الهمزة الساكنة، عدم تفخيم العين أو نطقها بصوت عائم أشبه بالألف المفخمة', youtube:'' },
+  { lesson:11, mahwar:'', title:'مخرج الحلق ح، غ، خ', sura:'الغاشية',
+    sharh:'عدم إبدال الغين خاءً أو قلقلتها.', youtube:'' },
+  { lesson:12, mahwar:'', title:'مخرج اللسان أقصى (ق، ك)', sura:'الفجر',
+    sharh:'ملاحظة: عدم المبالغة في همس الكاف المتحركة مثال: ذلك - كيف', youtube:'' },
+  { lesson:13, mahwar:'', title:'وسط اللسان (ج، ش، الياء غير المدية)', sura:'البلد',
+    sharh:'ملاحظات: عدم نطق الجيم رخوة أو شبيهة بالشين أو الدال، مراعاة رخاوة الياء حال تشديدها. والياء: هي حرف مجهور، رخو، منفتح، مستفل، فينبغي التأكيد على إعطائها وزن حرفين إذا وقعت مشددة مع مراعاة عدم المبالغة في ذلك حتّى لا تصبح كأنها جيم مثل: (وإيّاكم)', youtube:'' },
+  { lesson:14, mahwar:'', title:'حافة اللسان (ض، ل)', sura:'الشمس والليل',
+    sharh:'ملاحظات: مراعاة أداء اللام الشّمسية والقمرية. عدم قلقلتهما.', youtube:'' },
+  { lesson:15, mahwar:'', title:'طرف اللسان (ن، ر)', sura:'الضحى والشرح',
+    sharh:'ملاحظات: عدم قلقلة النون حال سكونها وعدم تفخيمها عدم تكرير الراء حال تشديدها.', youtube:'' },
+  { lesson:16, mahwar:'', title:'طرف اللسان (ط، د، ت)', sura:'التين والعلق',
+    sharh:'ملاحظات: - عدم خلط صوت الدال بشيء من التاء -عدم المبالغة في همس التاء المتحركة.', youtube:'' },
+  { lesson:17, mahwar:'', title:'طرف اللسان (ص، ز، س)', sura:'القدر والبينة',
+    sharh:'عدم خلط صوت الزاي بصوت السين - هما متفقان بالمخرج، لكن لكل منهما صفات تميّزه عن الآخر، كأداء (رجز) (الرزق)', youtube:'' },
+  { lesson:18, mahwar:'', title:'طرف اللسان (ظ، ذ، ث) الأحرف اللثوية', sura:'الزلزلة والعاديات',
+    sharh:'تحقيق مخرجها بوضع طرف اللسان عند طرف الثنية وعدم إخراج اللسان في غيرها مثال: إذا – السماء - ثم', youtube:'' },
+  { lesson:19, mahwar:'', title:'مخرج الشفتين ف، الواو غير المدية، ب، م', sura:'القارعة والتكاثر',
+    sharh:'ملاحظات: عدم همس الباء. عدم تفخيم الميم والباء.', youtube:'' },
+  { lesson:20, mahwar:'', title:'جلسة مراجعة وتعويض', sura:'',
+    sharh:'في حال كان هناك تقصير', youtube:'' },
+  { lesson:21, mahwar:'أحكام النون', title:'أحكام النون الساكنة والتنوين (1)', sura:'العصر والهمزة والفيل',
+    sharh:'نظرياً ومع التركيز على التطبيق العملي', youtube:'' },
+  { lesson:22, mahwar:'', title:'أحكام النون الساكنة والتنوين (2)', sura:'قريش والماعون',
+    sharh:'ليس في درس واحد وإنما من خلال التنبيه والسماع ينبغي يطبق الطالب في معظم أحكام النون مثال: من ما خلق – من بين – ليالٍ عشر', youtube:'' },
+  { lesson:23, mahwar:'', title:'أحكام النون الساكنة والتنوين (3)', sura:'الكوثر والكافرون',
+    sharh:'', youtube:'' },
+  { lesson:24, mahwar:'', title:'القلقلة', sura:'الإخلاص والفلق',
+    sharh:'من خلال الملاحظات في كل الدروس السابقة + النظري في هذا الدرس', youtube:'' },
+  { lesson:25, mahwar:'', title:'الهمس', sura:'الناس',
+    sharh:'من خلال الملاحظات في كل الدروس السابقة + النظري في هذا الدرس', youtube:'' },
+];
+
+// ---------------------------------------------------------------
+// 7) المتوسط الثاني — الابتدائي (مطابق لمحتوى "المتوسط الأول - فوق الابتدائي" بمرجع داخلي معدّل)
+// ---------------------------------------------------------------
 const AHKAM_MUTAWASIT2_IBTIDAI = [
-  { id:'imt2_1', lesson:1,  title:'مراجعة أحكام النون والتنوين كاملة', mahwar:'مراجعات أساسية', sharh:'مراجعة شاملة للإظهار والإدغام والإقلاب والإخفاء.', amthal:['من ما','من بين','من لدن'], sura:'قد سمع' },
-  { id:'imt2_2', lesson:2,  title:'مراجعة أحكام الميم الساكنة', mahwar:'مراجعات أساسية', sharh:'الإخفاء الشفوي والإدغام الشفوي والإظهار.', amthal:['هم به','لهم ما','هم كافرون'], sura:'قد سمع' },
-  { id:'imt2_3', lesson:3,  title:'المدود الأساسية — الطبيعي والمتصل والمنفصل واللازم', mahwar:'مراجعات أساسية', sharh:'مراجعة المدود الأساسية الأربعة.', amthal:['قال','جاء','يا أيها','الم'], sura:'الحشر' },
-  { id:'imt2_4', lesson:4,  title:'المد اللازم الكلمي', mahwar:'المدود بالتفصيل', sharh:'الكلمي المثقل: بعد حرف المد ساكن مشدد. الكلمي المخفف: بعده ساكن غير مشدد.', amthal:['الصآخة','أتحاجوني','ءالآن'], sura:'الممتحنة' },
-  { id:'imt2_5', lesson:5,  title:'المد اللازم الحرفي', mahwar:'المدود بالتفصيل', sharh:'الحرفي المثقل: في فواتح السور — اللام من (الم). الحرفي المخفف: "قاف" من (ق).', amthal:['الم','يس','حم'], sura:'الممتحنة' },
-  { id:'imt2_6', lesson:6,  title:'مد الصلة الصغرى', mahwar:'المدود بالتفصيل', sharh:'مد هاء الضمير إذا لم يأتِ بعدها همز — يلحق بالمد الأصلي.', amthal:['بِه فهو','له ما'], sura:'الصف' },
-  { id:'imt2_7', lesson:7,  title:'مد الصلة الكبرى', mahwar:'المدود بالتفصيل', sharh:'مد هاء الضمير إذا جاء بعدها همز قطع — يلحق بالمد الفرعي.', amthal:['مالَهُ أَخلَده','أَجرَهُ إِلَّا'], sura:'الجمعة' },
-  { id:'imt2_8', lesson:8,  title:'مد البدل والعارض للسكون', mahwar:'المدود الأخرى', sharh:'مد البدل: همزة قبل حرف المد. العارض للسكون: سكون عارض للوقف.', amthal:['أوتوا','آدم','البروج وقفاً'], sura:'المنافقون' },
-  { id:'imt2_9', lesson:9,  title:'مد العوض ومد اللين', mahwar:'المدود الأخرى', sharh:'العوض: مد في الوقف على تنوين النصب. اللين: واو أو ياء ساكنتان قبلهما فتح — عند الوقف.', amthal:['عفواً','رحيماً','البَيت','خَوف'], sura:'التغابن' },
-  { id:'imt2_10',lesson:10, title:'مراجعة المدود', mahwar:'المدود الأخرى', sharh:'مراجعة شاملة لجميع المدود.', amthal:['جميع أنواع المدود'], sura:'سور مختارة' },
-  { id:'imt2_11',lesson:11, title:'تفخيم حروف الاستعلاء', mahwar:'أحكام التفخيم والترقيق', sharh:'حروف الاستعلاء: خص ضغط قظ — كلها مفخمة.', amthal:['خَلَقَ','صَدَق','ضَرَب','غَفَر'], sura:'الطلاق' },
-  { id:'imt2_12',lesson:12, title:'تفخيم الراء في أحوالها', mahwar:'أحكام التفخيم والترقيق', sharh:'تفخيم الراء: إذا كانت مضمومة أو مفتوحة، أو ساكنة وقبلها فتح أو ضم، أو بعد كسر أصلي مع حرف استعلاء.', amthal:['رَبَّنَا','رِزق','مرصاداً','ارتابوا'], sura:'التحريم' },
-  { id:'imt2_13',lesson:13, title:'تفخيم اللام في أحوالها', mahwar:'أحكام التفخيم والترقيق', sharh:'تفخيم لام لفظ الجلالة إن سبقها فتح أو ضم.', amthal:['رسولُ الله','هو الله'], sura:'سور مختارة' },
-  { id:'imt2_14',lesson:14, title:'الغنة تتبع ما بعدها تفخيماً وترقيقاً', mahwar:'أحكام التفخيم والترقيق', sharh:'الغنة مرققة قبل الحروف المرققة ومفخمة قبل حروف الاستعلاء.', amthal:['مِن دِيارهم','مِن قَرن'], sura:'سور مختارة' },
-  { id:'imt2_15',lesson:15, title:'الألف تتبع ما قبلها تفخيماً وترقيقاً', mahwar:'أحكام التفخيم والترقيق', sharh:'الألف لا توصف بترقيق ولا تفخيم، بل تتبع ما قبلها.', amthal:['قَال','كَال','بِالبَاطِل'], sura:'سور مختارة' },
-  { id:'imt2_16',lesson:16, title:'مراجعة التفخيم والترقيق', mahwar:'أحكام التفخيم والترقيق', sharh:'الحروف المرققة والمفخمة والحروف التي تتبع ما قبلها.', amthal:['الراء','اللام','الألف','الغنة'], sura:'سور مختارة' },
-  { id:'imt2_17',lesson:17, title:'الابتداء بهمزة الوصل — الأفعال', mahwar:'الوقف والابتداء', sharh:'نبدأ بالكسر إن كان ثالث الفعل مفتوحاً أو مكسوراً، وبالضم إن كان مضموماً ضماً أصلياً.', amthal:['اِستَغفِروا','اِرجِعوا','اُعبُدوا'], sura:'سور مختارة' },
-  { id:'imt2_18',lesson:18, title:'الابتداء بهمزة الوصل — أفعال خاصة', mahwar:'الوقف والابتداء', sharh:'كلمات مثل: اِمشوا، اِقضوا، اِبنوا — نبدأ بالكسر لأن الضم في ثالثها غير أصلي.', amthal:['اِمشوا','اِقضوا','اِئتوا'], sura:'سور مختارة' },
-  { id:'imt2_19',lesson:19, title:'الابتداء بهمزة الوصل — الأسماء والأحرف', mahwar:'الوقف والابتداء', sharh:'الأسماء: بالكسر في العشرة الأسماء. (أل): بالفتح. الأحرف: بالفتح فقط.', amthal:['الكتاب','الرحمن','ابن'], sura:'سور مختارة' },
-  { id:'imt2_20',lesson:20, title:'مراعاة الوقف والابتداء', mahwar:'الوقف والابتداء', sharh:'الوقف في مكانه الجائز والتحرز من الوقف القبيح.', amthal:['وقف تام','وقف كافٍ','وقف حسن'], sura:'سور مختارة' },
-  { id:'imt2_21',lesson:21, title:'القلقلة بالتفصيل — ملاحظات عملية', mahwar:'بعض صفات الحروف', sharh:'قد يتأثر المقلقل بحركة السابق أو اللاحق — لا يُخرج في نهايته همزة، ولا يُمط حرف القلقلة.', amthal:['لقد كان','تبتم','إبراهيم'], sura:'سور مختارة' },
-  { id:'imt2_22',lesson:22, title:'الاستطالة في الضاد', mahwar:'بعض صفات الحروف', sharh:'صفة الاستطالة في حرف الضاد.', amthal:['ضَالِّين','ضَرَب','رِيَاضٍ'], sura:'سور مختارة' },
-  { id:'imt2_23',lesson:23, title:'تفشي الشين', mahwar:'بعض صفات الحروف', sharh:'تفشي الشين: انتشار الصوت في الفم عند النطق بها.', amthal:['شَمس','شَاء','مَشَى'], sura:'سور مختارة' },
-  { id:'imt2_24',lesson:24, title:'تكرار الراء والانحراف', mahwar:'بعض صفات الحروف', sharh:'الانحراف في اللام والراء. عدم تكرار الراء حال تشديدها.', amthal:['رَبَّنَا','اللَّيل'], sura:'سور مختارة' },
+  { lesson:1, mahwar:'مراجعات أساسية', title:'مخارج الحروف (1)', sura:'الملك',
+    sharh:'يتم الـتأكد من عدم وجود أخطاء في مخارج الحروف عند الطالب يعطى مخرج الجوف – مخرج الحلق يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط الأول', youtube:'' },
+  { lesson:2, mahwar:'', title:'مخارج الحروف (2)', sura:'الملك',
+    sharh:'مخرج اللسان (أقصى، وسط، حافة) يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط الأول', youtube:'' },
+  { lesson:3, mahwar:'', title:'مخارج الحروف (3)', sura:'القلم',
+    sharh:'مخرج الشفتين والخيشوم يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط الأول', youtube:'' },
+  { lesson:4, mahwar:'', title:'ضبط زمن الحرف الساكن (الشديد- القصير)', sura:'القلم',
+    sharh:'الشدة: انحباس جريان الصوت عند النطق بالحرف؛ لكمال قوة الاعتماد على المخرج حروفها: 8 وهي مجموعة في لفظ (أجد قط بكت) مثال: البروج- الطارق - كورت', youtube:'' },
+  { lesson:5, mahwar:'', title:'ضبط زمن الحرف الساكن (البيني المتوسط)', sura:'الحاقة',
+    sharh:'وُصفت بالتوسط لأن الصوت لم ينحبس معها انحباسه مع الشديدة ولم يجر معها جريانه مع الرخوة حروفها: (لن عمر) مثال: نون - يسطرون', youtube:'' },
+  { lesson:6, mahwar:'', title:'ضبط زمن الحرف الساكن الرخو (طويل)', sura:'الحاقة',
+    sharh:'الرخاوة: جريان الصوت مع الحرف لضعف الاعتماد على المخرج، حروفها: 6 وهي ماعدا حروف الشدة والتوسط', youtube:'' },
+  { lesson:7, mahwar:'', title:'مراجعة', sura:'',
+    sharh:'', youtube:'' },
+  { lesson:8, mahwar:'أحكام النون الساكنة والتنوين', title:'الإظهار', sura:'المعارج',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه (حميمٌ حميما)', youtube:'' },
+  { lesson:9, mahwar:'', title:'الإدغام بغنة', sura:'المعارج',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه (من يعمل)', youtube:'' },
+  { lesson:10, mahwar:'', title:'الإدغام بلا غنة', sura:'نوح',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:11, mahwar:'', title:'الإقلاب', sura:'نوح',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:12, mahwar:'', title:'الإخفاء', sura:'الجن',
+    sharh:'تعريفه، أحرفه، تطبيقه، أمثلة عنه ()', youtube:'' },
+  { lesson:13, mahwar:'ملخص', title:'مراجعة كاملة لأحكام النون', sura:'المزمل',
+    sharh:'مخطط كامل + اختبار تطبيق الطلاب لهذه الأحكام', youtube:'' },
+  { lesson:14, mahwar:'أحكام الميم الساكنة', title:'الإخفاء الشفوي', sura:'المدثر',
+    sharh:'', youtube:'' },
+  { lesson:15, mahwar:'', title:'الإدغام الشفوي', sura:'المدثر',
+    sharh:'', youtube:'' },
+  { lesson:16, mahwar:'', title:'الإظهار الشفوي', sura:'القيامة',
+    sharh:'', youtube:'' },
+  { lesson:17, mahwar:'', title:'تلخيص', sura:'الإنسان',
+    sharh:'', youtube:'' },
+  { lesson:18, mahwar:'أساسيات المدود (عملي)', title:'المد الطبيعي', sura:'المرسلات',
+    sharh:'', youtube:'' },
+  { lesson:19, mahwar:'', title:'المد المنفصل', sura:'المرسلات',
+    sharh:'', youtube:'' },
+  { lesson:20, mahwar:'', title:'المد المتصل', sura:'تعويض السور',
+    sharh:'', youtube:'' },
+  { lesson:21, mahwar:'', title:'المد المنفصل', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:22, mahwar:'', title:'المد اللازم', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:23, mahwar:'', title:'مراجعة عن المدود', sura:'سورة مختارة',
+    sharh:'المهم في هذا القسم أن يكون تطبيقه للمدود بعد ال 23 درس الماضية بشكل ممتاز من خلال تصحيح الأخطاء ومع النظري تصبح أكثر إتقاناً', youtube:'' },
+  { lesson:24, mahwar:'', title:'أحكام لام لفظ الجلالة', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:25, mahwar:'', title:'القلقلة والهمس', sura:'سورة مختارة',
+    sharh:'عملي و نظري', youtube:'' },
 ];
 
-const AHKAM_MUTAWASIT2_FAWQ = AHKAM_MUTAWASIT2_IBTIDAI.map(h => ({
-  ...h, id: h.id.replace('imt2','fmt2'),
-  sura: h.sura === 'قد سمع' ? 'قد سمع' :
-        h.sura === 'الحشر' ? 'الحشر' :
-        h.sura === 'الممتحنة' ? 'الممتحنة' :
-        h.sura === 'الصف' ? 'الصف' :
-        h.sura === 'الجمعة' ? 'الجمعة' :
-        h.sura === 'المنافقون' ? 'المنافقون' :
-        h.sura === 'التغابن' ? 'التغابن' :
-        h.sura === 'الطلاق' ? 'الطلاق' :
-        h.sura === 'التحريم' ? 'التحريم' : h.sura
-}));
-
-// المتقدم
-const AHKAM_MUTAQADIM = [
-  { id:'mq1',  lesson:1,  title:'مراجعة شاملة للمدود', mahwar:'مراجعة وتطبيق', sharh:'مراجعة جميع أنواع المدود من المستويين السابقين.', amthal:['الطبيعي','المتصل','المنفصل','اللازم','البدل'], sura:'سور مختارة' },
-  { id:'mq2',  lesson:2,  title:'مراجعة التفخيم والترقيق', mahwar:'مراجعة وتطبيق', sharh:'مراجعة جميع أحكام التفخيم والترقيق.', amthal:['الراء','اللام','الألف','الغنة'], sura:'سور مختارة' },
-  { id:'mq3',  lesson:3,  title:'أحكام الوقف — التام والكافي والحسن', mahwar:'الوقف والابتداء', sharh:'الوقف التام: تمّ الكلام. الكافي: تمّ ولا تعلق. الحسن: تمّ ويُستحسن وصله.', amthal:['وقف تام','وقف كافٍ','وقف حسن'], sura:'البقرة وآل عمران' },
-  { id:'mq4',  lesson:4,  title:'أحكام الوقف — القبيح والممنوع', mahwar:'الوقف والابتداء', sharh:'الوقف القبيح: أخلّ بالمعنى أو غيّره. الممنوع: يوهم المعنى.', amthal:['لا إله...','محمد رسول...'], sura:'سور متعددة' },
-  { id:'mq5',  lesson:5,  title:'أحكام السكت', mahwar:'الوقف والابتداء', sharh:'قطع الصوت زمناً يسيراً دون تنفس — مواضعه الأربعة في حفص.', amthal:['مَن رَاق','بَل رَان'], sura:'المطففين والقيامة' },
-  { id:'mq6',  lesson:6,  title:'الصفات المتضادة — الجهر والهمس', mahwar:'صفات الحروف', sharh:'الجهر: انطباق الوتران. الهمس: جريان النفس.', amthal:['الجهر: ب ج د','الهمس: ف ح ث ه'], sura:'سور متعددة' },
-  { id:'mq7',  lesson:7,  title:'الصفات المتضادة — الشدة والرخاوة والتوسط', mahwar:'صفات الحروف', sharh:'الشدة: انحباس الصوت. الرخاوة: جريانه. التوسط: بينهما.', amthal:['أجد قط بكت','لن عمر'], sura:'سور متعددة' },
-  { id:'mq8',  lesson:8,  title:'الصفات المتضادة — الاستعلاء والانخفاض', mahwar:'صفات الحروف', sharh:'الاستعلاء: رفع اللسان للحنك الأعلى. الانخفاض: عكسه.', amthal:['خص ضغط قظ','بقية الحروف'], sura:'سور متعددة' },
-  { id:'mq9',  lesson:9,  title:'الصفات المتضادة — الإطباق والانفتاح', mahwar:'صفات الحروف', sharh:'الإطباق: التصاق اللسان بالحنك. الانفتاح: عدم الالتصاق.', amthal:['ص ض ط ظ','بقية الحروف'], sura:'سور متعددة' },
-  { id:'mq10', lesson:10, title:'القراءة الترتيلية وتطبيق التجويد كاملاً', mahwar:'التطبيق الشامل', sharh:'القراءة بالتجويد الكامل مع مراعاة جميع الأحكام من البداية.', amthal:['تطبيق شامل'], sura:'جزء عم كاملاً' },
+// ---------------------------------------------------------------
+// 8) المتقدم — الابتدائي (مطابق لمحتوى "المتوسط الثاني - فوق الابتدائي" بمرجع داخلي معدّل)
+// ---------------------------------------------------------------
+const AHKAM_MUTAQADIM_IBTIDAI = [
+  { lesson:1, mahwar:'مراجعات أساسية', title:'أحكام النون والتنوين كاملة', sura:'قد سمع',
+    sharh:'يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط الثاني أو من المصدر أعلاه', youtube:'' },
+  { lesson:2, mahwar:'', title:'أحكام الميم الساكنة', sura:'قد سمع',
+    sharh:'يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط الثاني أو من المصدر أعلاه', youtube:'' },
+  { lesson:3, mahwar:'', title:'المدود الأساسية (المد الطبيعي، المتصل، المنفصل، اللازم)', sura:'الحشر',
+    sharh:'يمكن الاستعانة في هذه المراجعة لمنهاج المستوى المتوسط الثاني أو من المصدر أعلاه المد اللازم: هو أن يأتي حرف المد وبعده حرف ساكن سكوناً أصلياً (وصلاً ووقفاً). ينقسم المد اللازم إلى قسمين: كلمي وحرفي، وكل منهما ينقسم إلى مخفف ومثقل، فيتفرع إلى أربعة مدود:', youtube:'' },
+  { lesson:4, mahwar:'المدود بالتفصيل', title:'المد اللازم الكلمي', sura:'الممتحنة',
+    sharh:'المد اللازم الكلمي المثقل: وهو أن يأتي بعد حرف المد ساكنٌ مدغم (شدة)، مثال: (الصآخّة)، (أتحآجّوني). المد اللازم الكلمي المخفف: وهو أن يأتي بعد حرف المد حرف ساكن، نحو: (ءالآن وقد كنتم به تستعجلون)', youtube:'' },
+  { lesson:5, mahwar:'', title:'المد اللازم الحرفي', sura:'الممتحنة',
+    sharh:'المد اللازم الحرفي المثقل: هو أن يأتي حرف في فواتح بعض السور هجاؤه ثلاثة أحرف، أوسطها حرف مد، والثالث مدغم في الحرف الذي بعده، نحو: اللام من: (الم) / المد اللازم الحرفي المخفف: هو أن يأتي حرف في فواتح بعض السور هجاؤه ثلاثة أحرف، أوسطها حرف مد، ولكن الحرف الثالث ساكن، نحو: "قاف" من ((ق))', youtube:'' },
+  { lesson:6, mahwar:'', title:'مد الصلة (الصغرى والكبرى)', sura:'الصف',
+    sharh:'مد الصلة: هو مد خاص بصلة هاء الضمير في المفرد المذكر الغائب، وينقسم إلى قسمين: - الصلة الصغرى: إذا لم يأت بعد الهاء همز، مثال: (بهِ فهو) وهذا المد يلحق بالمد الأصلي', youtube:'' },
+  { lesson:7, mahwar:'', title:'مد الصلة (الصغرى والكبرى)', sura:'الجمعة',
+    sharh:'- الصلة الكبرى: أن يأتي بعد الهاء همز قطع، مثال (مالَهُ أخلده) وهذا المد يلحق بالمد الفرعي. ملاحظة: لا تمد الهاء إلا إذا كان قبلها متحرك وبعدها متحرك، وهناك أربع كلمات خرجت عن القاعدة وهي: (يرضَهُ لكم) لا تمد - (فيهِ مهانا) تمد - (أرجِهْ) لا تمد بل تنطق ساكنة (فألقِهْ إليهم) لا تمد', youtube:'' },
+  { lesson:8, mahwar:'', title:'المدود الأخرى (البدل، العوض و العارض للسكون)', sura:'المنافقون',
+    sharh:'مد البدل: هو أن يأتي قبل حرف المد همزة، مثال: (أوتوا)، (ءادم)، (إيماناً)، وسمي بدلاً لأنه في الأصل عبارة عن همزتين الأولى متحركة والثانية ساكنة، فأُبدلتِ الثانيةُ مداً.. المد العارض للسكون: هو أن يقع بعد أحد حروف المد سكون عارض للوقف، مثل: (البروج)', youtube:'' },
+  { lesson:9, mahwar:'', title:'المدود الأخرى (البدل، العوض، اللين و العارض للسكون)', sura:'التغابن',
+    sharh:'مد العوض: هو مد في حالة الوقف على تنوين النصب فقط، مثل: (عفوّاً)، (رحيماً)، وسمي عوضاً؛ لأننا عوضنا التنوين بالألف. مد اللين: هو أن يأتي واو أو ياء ساكنين وقبلهما مفتوح، مثال: (البَيْت)، (خَوْف)، (قرَيْش). ملاحظة: لا يمد اللين إلا في حالة الوقف.', youtube:'' },
+  { lesson:10, mahwar:'', title:'مراجعة المدود', sura:'',
+    sharh:'', youtube:'' },
+  { lesson:11, mahwar:'أحكام التفخيم والترقيق', title:'تفخيم حروف الاستعلاء', sura:'الطلاق',
+    sharh:'من لوازم حروف الاستعلاء التفخيم (كل حرف مستعلٍ مفخم)، والاستعلاء: ارتفاع أقصى اللسان إلى الحنك الأعلى، والتفخيم: سِمَنٌ في مخرج الحرف وقوة في صفته. أحرفه (خص ضغط قظ)', youtube:'' },
+  { lesson:12, mahwar:'', title:'تفخيم الراء في أحوالها', sura:'التحريم',
+    sharh:'أحوال تفخيم الراء: إذا كانت مضمومة أو مفتوحة، وإذا كانت ساكنة وقبلها فتح أو ضم، وإذا كانت ساكنة بعد كسر أصلي وبعدها حرف استعلاء _غير مكسور_ في كلمة واحدة (مِرصَاداً)، وإذا كانت ساكنة بعد كسر عارض (أمِ ارْتَابوا)', youtube:'' },
+  { lesson:13, mahwar:'', title:'تفخيم اللام في أحوالها', sura:'سورة مختارة',
+    sharh:'تفخم لام لفظ الجلالة إن سبقها فتحٌ أو ضمٌّ...(رسولُ الله) (هوَ الله)', youtube:'' },
+  { lesson:14, mahwar:'', title:'الغنة تتبع ما بعدها تفخيماً وترقيقاً', sura:'سورة مختارة',
+    sharh:'فالغنة في مثل: (من دِيارهم) مرققة، بينما في (من قَرن) مفخمة، فالفرق بينهما واضح ووضع اللسان والشفتين مختلف..', youtube:'' },
+  { lesson:15, mahwar:'', title:'الألف تتبع ما قبلها تفخيماً وترقيقاً', sura:'سورة مختارة',
+    sharh:'الألف لا توصف بترقيق ولا بتفخيم بل تتبع الحرف الذي قبلها، ولينتبه القارئ إلى عدم تفخيمها إذا كان بعدها حرف مفخم مثل (بالباطل)', youtube:'' },
+  { lesson:16, mahwar:'ملخص', title:'مراجعة + التأكد من تخليص المرقق من المفخم عملياً', sura:'سورة مختارة',
+    sharh:'الحروف المرققة (أ ب ت ث ج ح د ذ ز س ش ع ف ك م ن ه و ي) / الحروف المفخمة: (خ ص ض غ ط ق ظ) الحروف التي قد تفخم أو ترقق: (الراء- اللام - ألف المد – الغنة) / ملاحظة: عند مجاورة الحرف المفخم للحرف المرقق يغلب المفخم المرقق ويتسبب في تفخيمه، فيجب الانتباه (المستقيم - فما استطاعوا)', youtube:'' },
+  { lesson:17, mahwar:'الوقف والابتداء', title:'مراعاة الابتداء بهمزة الوصل', sura:'سورة مختارة',
+    sharh:'أولاً: بالأفعال: نبدأ بالكسر إن كان ثالث حرف من الفعل مفتوحاً (اِستَغفروا) أو مكسوراً (اِرجِعوا)...... ونبدأ فيها بالضم إذا كان ثالث حرف من الفعل مضموماً بضمة أصلية، مثل: (اُعبُدوا)', youtube:'' },
+  { lesson:18, mahwar:'', title:'مراعاة الابتداء بهمزة الوصل', sura:'سورة مختارة',
+    sharh:'تنبيه: نحترز عن كلمات مثل: (اِمشُوا) و(اِقضُوا) و(اِبنوا) و(اِئتوا) و(اِئتوني) فيجب أن نبدأ بالكسر؛ لأن الضم في ثالث حرف منها غير أصلي، فأصل ثالث حرف منها مكسور (اِمشِيوا) (اِقضِيوا)..', youtube:'' },
+  { lesson:19, mahwar:'', title:'مراعاة الابتداء بهمزة الوصل', sura:'سورة مختارة',
+    sharh:'ثانياً: بالأسماء: نبدأ بها بالكسر في الأسماء العشرة سماعاً وفي غيرها قياساً / ثالثاً: بالأحرف فقط ب (أل) التعريف نبدأ بها بالفتح', youtube:'' },
+  { lesson:20, mahwar:'', title:'مراعاة الوقف والابتداء', sura:'سورة مختارة',
+    sharh:'يجدر بالقارئ أن يقف في مكان الوقف الجائز، وأن يحذر من الوقف الممنوع (القبيح)', youtube:'' },
+  { lesson:21, mahwar:'بعض صفات الحروف', title:'القلقلة بالتفصيل + ملاحظات عملية', sura:'سورة مختارة',
+    sharh:'ملاحظات: قد يتأثر الحرف المقلقل بحركة الحرف السابق أو اللاحق فينبغي التحرز. مثل (لقد كان) (تُبتُم) (إبرَاهيم) - من الخطأ أن نخرج في نهاية القلقلة همزة ك (أحدء). - مط حرف القلقلة والاتكاء عليه اتكاءةً تتناسب مع الإيقاع والنغم يجب الحذر منه....', youtube:'' },
+  { lesson:22, mahwar:'', title:'الاستطالة في الضاد', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:23, mahwar:'', title:'تفشي الشين', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:24, mahwar:'', title:'تكرار الراء + الانحراف', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
+  { lesson:25, mahwar:'', title:'مراجعة للدروس السابقة', sura:'سورة مختارة',
+    sharh:'', youtube:'' },
 ];
 
-// ---- جمع الأحكام ----
-const AHKAM = {
-  ibt_mubtadi:    AHKAM_MUBTADI_IBTIDAI,
-  ibt_mutawasit1: AHKAM_MUTAWASIT1_IBTIDAI,
-  ibt_mutawasit2: AHKAM_MUTAWASIT2_IBTIDAI,
-  ibt_mutaqadim:  AHKAM_MUTAQADIM,
-  fawq_mubtadi:    AHKAM_MUBTADI_FAWQ,
-  fawq_mutawasit1: AHKAM_MUTAWASIT1_FAWQ,
-  fawq_mutawasit2: AHKAM_MUTAWASIT2_FAWQ,
-  fawq_mutaqadim:  AHKAM_MUTAQADIM,
-};
 
-// ---- قائمة التقييم ----
-// كل مستوى له عدد أحكامه الخاصة — القاعدة: 7 أخطاء = يبقى في هذا المستوى
-const ASSESSMENT_LEVELS = [
-  { key:'mubtadi',    name:'المبتدئ',        color:'#2E7D5E', icon:'🌱',
-    items: [
-      { id:'as_m1',  title:'إتمام الحركات وعدم التمطيط' },
-      { id:'as_m2',  title:'ضبط زمن المد الطبيعي' },
-      { id:'as_m3',  title:'حق الحرف المشدد والوقوف عليه' },
-      { id:'as_m4',  title:'ضبط الحرف الساكن الشديد' },
-      { id:'as_m5',  title:'ضبط الحرف الساكن البيني' },
-      { id:'as_m6',  title:'ضبط الحرف الساكن الرخو' },
-      { id:'as_m7',  title:'مخرج الجوف (أحرف المد)' },
-      { id:'as_m8',  title:'مخرج الحلق (ء ه ع ح غ خ)' },
-      { id:'as_m9',  title:'مخارج اللسان' },
-      { id:'as_m10', title:'مخرج الشفتين' },
-      { id:'as_m11', title:'أحكام النون الساكنة والتنوين — الإظهار' },
-      { id:'as_m12', title:'أحكام النون — الإدغام بغنة' },
-      { id:'as_m13', title:'أحكام النون — الإدغام بلا غنة' },
-      { id:'as_m14', title:'أحكام النون — الإقلاب' },
-      { id:'as_m15', title:'أحكام النون — الإخفاء' },
-      { id:'as_m16', title:'القلقلة' },
-      { id:'as_m17', title:'الهمس' },
-    ]
-  },
-  { key:'mutawasit1', name:'المتوسط الأول',  color:'#1A5C8A', icon:'📖',
-    items: [
-      { id:'as_mt1', title:'أحكام الميم الساكنة — الإخفاء الشفوي' },
-      { id:'as_mt2', title:'أحكام الميم الساكنة — الإدغام الشفوي' },
-      { id:'as_mt3', title:'أحكام الميم الساكنة — الإظهار الشفوي' },
-      { id:'as_mt4', title:'المد الطبيعي (ضبط الزمن)' },
-      { id:'as_mt5', title:'المد المنفصل' },
-      { id:'as_mt6', title:'المد المتصل' },
-      { id:'as_mt7', title:'المد اللازم' },
-      { id:'as_mt8', title:'أحكام لام لفظ الجلالة' },
-    ]
-  },
-  { key:'mutawasit2', name:'المتوسط الثاني', color:'#7B3FA0', icon:'🎯',
-    items: [
-      { id:'as_mw1', title:'المد اللازم الكلمي (مثقل ومخفف)' },
-      { id:'as_mw2', title:'المد اللازم الحرفي (مثقل ومخفف)' },
-      { id:'as_mw3', title:'مد الصلة الصغرى والكبرى' },
-      { id:'as_mw4', title:'مد البدل والعارض للسكون' },
-      { id:'as_mw5', title:'مد العوض ومد اللين' },
-      { id:'as_mw6', title:'تفخيم حروف الاستعلاء' },
-      { id:'as_mw7', title:'تفخيم الراء وترقيقها' },
-      { id:'as_mw8', title:'تفخيم اللام وترقيقها' },
-      { id:'as_mw9', title:'الغنة تبع ما بعدها تفخيماً وترقيقاً' },
-      { id:'as_mw10',title:'الوقف والابتداء — همزة الوصل' },
-      { id:'as_mw11',title:'القلقلة بالتفصيل' },
-      { id:'as_mw12',title:'الاستطالة في الضاد وتفشي الشين' },
-    ]
-  },
-  { key:'mutaqadim', name:'المتقدم', color:'#B5490B', icon:'⭐',
-    items: [
-      { id:'as_mq1', title:'أحكام الوقف التام والكافي والحسن والقبيح' },
-      { id:'as_mq2', title:'أحكام السكت' },
-      { id:'as_mq3', title:'الصفات المتضادة — الجهر والهمس' },
-      { id:'as_mq4', title:'الصفات المتضادة — الشدة والرخاوة والتوسط' },
-      { id:'as_mq5', title:'الإطباق والانفتاح والاستعلاء والانخفاض' },
-      { id:'as_mq6', title:'القراءة الترتيلية الكاملة' },
-    ]
-  }
+// ============================================================
+// LEVELS META — تنويع الألوان والأيقونات
+// ============================================================
+const LEVELS_IBTIDAI = [
+  { id:'ibt_mubtadi',    name:'المبتدئ',         color:'#2E7D5E', icon:'🌱', desc:'صعوبة في القراءة في جميع الأجزاء — تجويد شبه معدوم — بداية تعلم القراءة', data: AHKAM_MUBTADI_IBTIDAI },
+  { id:'ibt_mutawasit1', name:'المتوسط الأول',   color:'#1A5C8A', icon:'📘', desc:'صعوبة في القراءة في جميع الأجزاء — تجويد شبه معدوم', data: AHKAM_MUTAWASIT1_IBTIDAI },
+  { id:'ibt_mutawasit2', name:'المتوسط الثاني',  color:'#7B3FA0', icon:'🎯', desc:'تجويد ضعيف من الناحية النظرية والعملية لكنه ليس معدوم - يوجد معظم مخارج الحروف', data: AHKAM_MUTAWASIT2_IBTIDAI },
+  { id:'ibt_mutaqadim',  name:'المتقدم',          color:'#B5490B', icon:'⭐', desc:'تجويد جيد مع نقص في بعض الأحكام مثل المدود وأحكام الراء وغيرها من الملاحظات نظرياً أو عملياً', data: AHKAM_MUTAQADIM_IBTIDAI },
 ];
 
-const THRESHOLD = 7; // عدد الأخطاء الذي يُحدد المستوى
+const LEVELS_FAWQ = [
+  { id:'fawq_mubtadi',    name:'المبتدئ',         color:'#2E7D5E', icon:'🌱', desc:'صعوبة في القراءة في جميع الأجزاء — تجويد شبه معدوم', data: AHKAM_MUBTADI_FAWQ },
+  { id:'fawq_mutawasit1', name:'المتوسط الأول',   color:'#1A5C8A', icon:'📘', desc:'تجويد ضعيف من الناحية النظرية والعملية لكنه ليس معدوم - يوجد معظم مخارج الحروف', data: AHKAM_MUTAWASIT1_FAWQ },
+  { id:'fawq_mutawasit2', name:'المتوسط الثاني',  color:'#7B3FA0', icon:'🎯', desc:'تجويد جيد مع نقص في بعض الأحكام مثل المدود وأحكام الراء وغيرها من الملاحظات نظرياً أو عملياً', data: AHKAM_MUTAWASIT2_FAWQ },
+  { id:'fawq_mutaqadim',  name:'المتقدم',          color:'#C0392B', icon:'🏆', desc:'تجويد قوي من الناحية النظرية والعملية وسيتم تدعيمه بمنهج وتطبيق أو ختمة ضبط', data: AHKAM_MUTAQADIM_FAWQ },
+];
 
-// بيانات الحلقات (للعرض فقط)
+const ALL_LEVELS = { ibtidai: LEVELS_IBTIDAI, fawq: LEVELS_FAWQ };
+
+// ============================================================
+// CIRCLES DATA — تقسيمات المقارئ (للعرض فقط)
+// ============================================================
 const DURA_DATA = {
-  uthman:  { name:'دورة سيدنا عثمان بن عفان', type:'ابتدائي', color:'#2E7D5E', icon:'🕌', circles:[] },
+  uthman: {
+    name:'دورة سيدنا عثمان بن عفان', type:'ابتدائي', color:'#2E7D5E', icon:'🕌',
+    circles:[
+      {
+        teacher:'براء المزيك', level:'المبتدئ (1)', color:'#2E7D5E', note:'',
+        students:[
+          {name:'جاد كسكين', note:'ثاني'},
+          {name:'محمد علي شربجي', note:'ثاني'},
+          {name:'غيث خياط', note:'ثاني'},
+          {name:'حمزة كسكين', note:'ثاني'},
+          {name:'عمر علي بيك', note:'ثاني'},
+          {name:'عبادة يغمور', note:'ثاني'},
+          {name:'ياسر خباز', note:'ثاني'},
+          {name:'يوسف الحفار', note:'ثاني'},
+          {name:'محمد المهايني', note:'ثاني'},
+          {name:'هاشم القزاز', note:'ثاني'},
+          {name:'سيف الدين أبو خبصة', note:'ثاني'},
+          {name:'يوسف البردان', note:'ثالث'},
+          {name:'حمزة حرستاني', note:'ثالث'},
+          {name:'حمزة الحجي', note:'ثالث'},
+          {name:'كريم شقير', note:'ثالث'},
+          {name:'محمد حجازي', note:'ثالث'},
+          {name:'أديب جمعة زبادنة', note:'رابع'},
+          {name:'مهند الزمن', note:'تقييم'},
+          {name:'هشام عجاج', note:'ثالث - عناية'},
+        ]
+      },
+      {
+        teacher:'بكر الخن', level:'المبتدئ (2)', color:'#2E7D5E', note:'',
+        students:[
+          {name:'محمد خير الخباز', note:'ثاني'},
+          {name:'أيمن ببيلي', note:'رابع - حركة زائدة'},
+          {name:'أغيد فرام التتن', note:'خامس - حركة زائدة'},
+          {name:'سراج الدين دلبيق', note:'حركة زائدة'},
+          {name:'حمزة خباز', note:'ثالث'},
+          {name:'طارق بغادة', note:'ثالث'},
+          {name:'براء السعدي', note:'ثالث'},
+          {name:'محمد جباوي', note:'ثالث'},
+          {name:'عبد الرزاق دلال', note:'ثالث'},
+          {name:'محمود عزقول', note:'ثالث'},
+          {name:'بدر المجذوب', note:'ثالث'},
+          {name:'غيث خباز', note:'رابع'},
+          {name:'هشام القزاز', note:'رابع'},
+          {name:'معاذ كسكين', note:'ثالث - حركة زائدة'},
+          {name:'عمر عابدين', note:'رابع - حركة زائدة'},
+          {name:'عبادة الفرا', note:'رابع - تجربة'},
+        ]
+      },
+      {
+        teacher:'أنس الحكيم', level:'المتوسط 1', color:'#1A5C8A', note:'',
+        students:[
+          {name:'جود كسكين', note:'رابع'},
+          {name:'زيد الحاج', note:'رابع'},
+          {name:'بلال القادري', note:'رابع'},
+          {name:'سفيان السيد', note:'خامس - حركة زائدة'},
+          {name:'أسامة نقهلي', note:'خامس'},
+          {name:'جود أبو وطفة', note:'ثالث - نخبة'},
+          {name:'عدنان جبان', note:'نخبة ثاني'},
+          {name:'صلاح الدين جبان', note:'نخبة ثاني'},
+          {name:'زيد غنام', note:'ثالث - نخبة'},
+          {name:'زيد ناعورة', note:'ثالث - نخبة'},
+          {name:'محمد ديراني', note:'نخبة ثاني'},
+          {name:'غيث عديسة', note:'خامس - تجربة'},
+        ]
+      },
+      {
+        teacher:'أمين النوري', level:'المتوسط 2', color:'#7B3FA0', note:'',
+        students:[
+          {name:'كرم عبد النافع', note:'رابع'},
+          {name:'موفق أبو وطفة', note:'خامس'},
+          {name:'معاذ عثمان', note:'رابع'},
+          {name:'رياض حزام', note:'رابع'},
+          {name:'غيث هلال', note:'رابع'},
+          {name:'أيمن شامية', note:'خامس'},
+          {name:'مهدي خباز', note:'خامس'},
+          {name:'أنس المجذوب', note:'خامس'},
+          {name:'نبيل القباني', note:'خامس'},
+          {name:'حبيب الرحمن السعدي', note:'رابع'},
+          {name:'ريان السعدي', note:'خامس - حركة زائدة'},
+        ]
+      },
+    ]
+  },
   umar:    { name:'دورة سيدنا عمر بن الخطاب', type:'ابتدائي', color:'#1A5C8A', icon:'📖', circles:[] },
   abubakr: { name:'دورة سيدنا أبو بكر الصديق', type:'إعدادي', color:'#7B3FA0', icon:'⭐', circles:[] },
   thanawi: { name:'دورة الثانوي', type:'ثانوي', color:'#B5490B', icon:'🎓', circles:[] },
@@ -774,6 +1053,7 @@ const DURA_DATA = {
 let currentCat = '';
 let currentLevel = '';
 let selectedDura = '';
+let assessCat = 'ibtidai';
 
 // ============================================================
 // NAVIGATION
@@ -785,7 +1065,7 @@ function showPage(name, btn) {
   if(btn) btn.classList.add('active');
   else document.querySelectorAll('.nav-tab')[['curriculum','assessment','circles','notes'].indexOf(name)].classList.add('active');
 
-  if (name === 'assessment') renderAssessmentChecklist();
+  if (name === 'assessment') renderAssessment();
 }
 
 function goHome() {
@@ -807,12 +1087,11 @@ function selectCategory(cat) {
   document.getElementById('bc-cat').textContent = catName;
   document.getElementById('bc-cat2').textContent = catName;
 
-  const levels = cat === 'ibtidai' ? LEVELS_IBTIDAI : LEVELS_FAWQ;
+  const levels = ALL_LEVELS[cat];
   const grid = document.getElementById('levels-grid');
-  document.getElementById('levels-subtitle').textContent = '4 مستويات — اضغط على المستوى المناسب';
 
-  grid.innerHTML = Object.values(levels).map(lv => `
-    <div class="level-card" onclick="selectLevel('${lv.id}')" style="border-top: 4px solid ${lv.color}">
+  grid.innerHTML = levels.map(lv => `
+    <div class="level-card" onclick="selectLevel('${cat}','${lv.id}')" style="border-top: 4px solid ${lv.color};--lvl-bg:${lv.color}">
       <span class="level-icon">${lv.icon}</span>
       <div class="level-name" style="color:${lv.color}">${lv.name}</div>
       <div class="level-desc">${lv.desc}</div>
@@ -821,80 +1100,101 @@ function selectCategory(cat) {
   showView('levels');
 }
 
-function selectLevel(levelId) {
+function selectLevel(cat, levelId) {
   currentLevel = levelId;
-  const allLevels = {...LEVELS_IBTIDAI, ...LEVELS_FAWQ};
-  const lv = allLevels[levelId];
+  const lv = ALL_LEVELS[cat].find(l => l.id === levelId);
   document.getElementById('bc-level').textContent = lv.name;
   document.getElementById('level-icon').textContent = lv.icon;
   document.getElementById('level-title').textContent = lv.name;
   document.getElementById('level-desc').textContent = lv.desc;
 
-  const ahkam = AHKAM[levelId] || [];
+  const ahkam = lv.data || [];
   const grid = document.getElementById('ahkam-grid');
 
-  grid.innerHTML = ahkam.map(h => `
-    <div class="hukm-card" id="card-${h.id}" onclick="toggleHukm('${h.id}')">
+  grid.innerHTML = ahkam.map(h => {
+    const cardId = 'card-' + cat + '-' + levelId + '-' + h.lesson;
+    const hasTitle = h.title && h.title.trim() !== '';
+    const displayTitle = hasTitle ? h.title : ('سورة ' + (h.sura || ''));
+    return `
+    <div class="hukm-card" id="${cardId}" onclick="toggleHukm('${cardId}')" style="--hk-color:${lv.color};--hk-bg:${lv.color}18">
       <div class="hukm-header">
         <div class="hukm-header-left">
           <div class="hukm-num">${h.lesson}</div>
           <div>
-            <div class="hukm-badge">${h.mahwar}</div>
-            <div class="hukm-title">${h.title}</div>
+            ${h.mahwar ? `<div class="hukm-badge">${h.mahwar}</div>` : ''}
+            <div class="hukm-title">${displayTitle}</div>
           </div>
         </div>
         <span class="hukm-arrow">▼</span>
       </div>
       <div class="hukm-body">
-        <div class="hukm-sura">📖 ${h.sura}</div>
-        <div class="hukm-sharh">${h.sharh}</div>
-        <div class="amthal-title">أمثلة تطبيقية</div>
-        <div class="amthal-list">${h.amthal.map(a => `<span class="mithal">${a}</span>`).join('')}</div>
+        ${h.sura ? `<div class="hukm-sura">📖 ${h.sura}</div>` : ''}
+        ${h.sharh ? `<div class="hukm-sharh">${h.sharh}</div>` : ''}
+        ${h.youtube
+          ? `<a class="hukm-yt" href="${h.youtube}" target="_blank" onclick="event.stopPropagation()">▶ شرح على يوتيوب</a>`
+          : `<span class="hukm-yt-empty">▶ سيُضاف رابط الشرح قريباً</span>`
+        }
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
   showView('ahkam');
 }
 
 function toggleHukm(id) {
-  document.getElementById('card-' + id).classList.toggle('open');
+  document.getElementById(id).classList.toggle('open');
 }
 
 // ============================================================
-// ASSESSMENT — منطق الـ 7 أحكام
+// ASSESSMENT — نسبة كل مستوى (X/Y) لكل فئة
 // ============================================================
-function renderAssessmentChecklist() {
-  const cat = document.getElementById('student-cat').value;
-  const cl = document.getElementById('assessment-checklist');
+function setAssessCat(cat) {
+  assessCat = cat;
+  document.getElementById('catbtn-ibtidai').classList.toggle('active', cat === 'ibtidai');
+  document.getElementById('catbtn-fawq').classList.toggle('active', cat === 'fawq');
+  renderAssessment();
+  document.getElementById('result-box').classList.remove('show');
+}
 
-  cl.innerHTML = ASSESSMENT_LEVELS.map(lvl => `
-    <div class="ahkam-group-title" style="color:${lvl.color}">
-      ${lvl.icon} ${lvl.name} — <span id="counter-${lvl.key}">0</span> / ${lvl.items.length} أخطاء
+function renderAssessment() {
+  const levels = ALL_LEVELS[assessCat];
+  const container = document.getElementById('assessment-levels');
+
+  container.innerHTML = levels.map(lv => {
+    const items = (lv.data || []).filter(h => h.title && h.title.trim() !== '');
+    return `
+    <div class="assess-level-block">
+      <div class="assess-level-head" style="--lvl-color:${lv.color}">
+        <span class="alh-title">${lv.icon} ${lv.name}</span>
+        <span class="alh-score" id="score-${lv.id}">0 / ${items.length}</span>
+      </div>
+      <div class="assess-level-items">
+        ${items.map(item => `
+          <label class="check-item" onclick="updateLevelScore('${lv.id}')">
+            <input type="checkbox" id="chk-${lv.id}-${item.lesson}" data-level="${lv.id}" />
+            <span class="lesson-num">${item.lesson}</span>
+            <label style="pointer-events:none">${item.title}</label>
+          </label>
+        `).join('')}
+      </div>
     </div>
-    ${lvl.items.map(item => `
-      <label class="check-item" onclick="updateCounters()">
-        <input type="checkbox" id="chk-${item.id}" />
-        <label for="chk-${item.id}" style="pointer-events:none">${item.title}</label>
-        <span class="level-tag" style="background:${lvl.color}22;color:${lvl.color}">${lvl.name}</span>
-      </label>
-    `).join('')}
-  `).join('');
+  `;
+  }).join('');
 }
 
-function updateCounters() {
+function updateLevelScore(levelId) {
   setTimeout(() => {
-    ASSESSMENT_LEVELS.forEach(lvl => {
-      const count = lvl.items.filter(item => {
-        const el = document.getElementById('chk-' + item.id);
-        return el && el.checked;
-      }).length;
-      const counter = document.getElementById('counter-' + lvl.key);
-      if(counter) {
-        counter.textContent = count;
-        counter.style.color = count >= THRESHOLD ? '#C0392B' : '#27AE60';
-        counter.style.fontWeight = count >= THRESHOLD ? '700' : '400';
-      }
-    });
+    const levels = ALL_LEVELS[assessCat];
+    const lv = levels.find(l => l.id === levelId);
+    const items = (lv.data || []).filter(h => h.title && h.title.trim() !== '');
+    const total = items.length;
+    const missed = items.filter(item => {
+      const el = document.getElementById('chk-' + levelId + '-' + item.lesson);
+      return el && el.checked;
+    }).length;
+    const achieved = total - missed;
+    const scoreEl = document.getElementById('score-' + levelId);
+    if(scoreEl) scoreEl.textContent = `${achieved} / ${total}`;
   }, 0);
 }
 
@@ -902,76 +1202,40 @@ function calcAssessment() {
   const name = document.getElementById('student-name').value.trim();
   if (!name) { alert('الرجاء إدخال اسم الطالب'); return; }
 
-  // احسب الأخطاء لكل مستوى
-  const levelResults = ASSESSMENT_LEVELS.map(lvl => {
-    const missed = lvl.items.filter(item => {
-      const el = document.getElementById('chk-' + item.id);
+  const levels = ALL_LEVELS[assessCat];
+  const results = levels.map(lv => {
+    const items = (lv.data || []).filter(h => h.title && h.title.trim() !== '');
+    const total = items.length;
+    const missed = items.filter(item => {
+      const el = document.getElementById('chk-' + lv.id + '-' + item.lesson);
       return el && el.checked;
     }).length;
-    return { ...lvl, missed, failed: missed >= THRESHOLD };
+    const achieved = total - missed;
+    return { name: lv.name, icon: lv.icon, color: lv.color, achieved, total };
   });
 
-  // تحديد المستوى: أول مستوى فيه ≥7 أخطاء
-  let assignedLevel = null;
-  let assignedNote = '';
-  for(let i = 0; i < levelResults.length; i++) {
-    if(levelResults[i].failed) {
-      assignedLevel = levelResults[i];
-      assignedNote = `أخفق الطالب في ${assignedLevel.missed} أحكام من مستوى ${assignedLevel.name} (الحد: ${THRESHOLD}) — فهو ينتمي إلى هذا المستوى.`;
-      break;
-    }
-  }
+  document.getElementById('result-student-name').textContent = `📋 تقرير الطالب: ${name}`;
 
-  // إذا لم يفشل في أي مستوى → متقدم
-  if(!assignedLevel) {
-    assignedLevel = levelResults[levelResults.length - 1];
-    assignedNote = 'أتقن الطالب أحكام جميع المستويات — يُوصى بمستوى المتقدم للصقل والإتقان الكامل.';
-  }
-
-  // عرض النتيجة
-  document.getElementById('res-level').innerHTML = `${assignedLevel.icon} المستوى الموصى به: <span style="color:${assignedLevel.color}">${assignedLevel.name}</span>`;
-  document.getElementById('res-note').textContent = assignedNote;
-
-  // جدول تفصيلي
-  document.getElementById('res-detail').innerHTML = `
-    <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px">📊 تفصيل الأحكام لكل مستوى:</div>
-    ${levelResults.map(lr => `
-      <div class="lvl-row">
-        <span><span class="lvl-badge" style="background:${lr.color}">${lr.icon} ${lr.name}</span></span>
-        <span class="${lr.failed ? 'lvl-missed' : 'lvl-pass'}">
-          ${lr.missed} خطأ / ${lr.items.length}
-          ${lr.failed ? `❌ (≥${THRESHOLD} → يُحدَّد هنا)` : '✅'}
-        </span>
-      </div>
-    `).join('')}
+  document.getElementById('result-rows').innerHTML = results.map(r => {
+    const pct = r.total > 0 ? Math.round((r.achieved / r.total) * 100) : 0;
+    return `
+    <div class="result-row">
+      <span class="rr-name" style="color:${r.color}">${r.icon} ${r.name}</span>
+      <div class="rr-bar-wrap"><div class="rr-bar" style="width:${pct}%;background:${r.color}"></div></div>
+      <span class="rr-frac" style="color:${r.color}">${r.achieved}/${r.total}</span>
+    </div>
   `;
-
-  // نقاط الضعف
-  const allMissed = ASSESSMENT_LEVELS.flatMap(lvl =>
-    lvl.items.filter(item => {
-      const el = document.getElementById('chk-' + item.id);
-      return el && el.checked;
-    }).map(item => ({ title: item.title, color: lvl.color, level: lvl.name }))
-  );
-
-  const wp = document.getElementById('weak-points');
-  if(allMissed.length > 0) {
-    wp.innerHTML = `<h4>نقاط الضعف المُسجَّلة (${allMissed.length}):</h4>
-    <div class="weak-list">${allMissed.map(w => `<span class="weak-tag">❌ ${w.title}</span>`).join('')}</div>`;
-  } else {
-    wp.innerHTML = '<p style="color:#27ae60;font-weight:600;margin-top:12px">✅ لا توجد نقاط ضعف مُسجَّلة</p>';
-  }
+  }).join('');
 
   document.getElementById('result-box').classList.add('show');
   document.getElementById('result-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ============================================================
-// CIRCLES — تقسيمات المقارئ (للعرض فقط)
+// CIRCLES — تقسيمات المقارئ + بحث
 // ============================================================
 function selectDura(key) {
   selectedDura = key;
-  // تفعيل البطاقة المختارة
   document.querySelectorAll('.dura-card').forEach(c => c.classList.remove('selected'));
   event.currentTarget.classList.add('selected');
 
@@ -998,7 +1262,7 @@ function selectDura(key) {
       <div class="circles-grid">
         ${dura.circles.map(c => `
           <div class="circle-card">
-            <div class="circle-head" style="background:linear-gradient(135deg,${dura.color},${dura.color}cc)">
+            <div class="circle-head" style="background:linear-gradient(135deg,${c.color},${c.color}cc)">
               <div class="circle-head-info">
                 <h3>أ. ${c.teacher}</h3>
                 <p>${c.level} · ${c.students.length} طالب</p>
@@ -1013,7 +1277,7 @@ function selectDura(key) {
                     <div class="student-row">
                       <div>
                         <div class="student-name">${s.name}</div>
-                        ${s.note ? `<div class="student-note">📌 ${s.note}</div>` : ''}
+                        ${s.note ? `<div class="student-note">${s.note}</div>` : ''}
                       </div>
                     </div>
                   `).join('')}
@@ -1024,6 +1288,38 @@ function selectDura(key) {
       </div>
     `;
   }
+}
+
+function searchStudent() {
+  const q = document.getElementById('student-search').value.trim();
+  const resultsBox = document.getElementById('search-results');
+
+  if(!q) { resultsBox.innerHTML = ''; return; }
+
+  const matches = [];
+  Object.entries(DURA_DATA).forEach(([durKey, dura]) => {
+    dura.circles.forEach(circle => {
+      circle.students.forEach(s => {
+        if(s.name.includes(q)) {
+          matches.push({ student: s, dura, circle });
+        }
+      });
+    });
+  });
+
+  if(matches.length === 0) {
+    resultsBox.innerHTML = `<div class="search-no-result">لا توجد نتائج لـ "${q}"</div>`;
+    return;
+  }
+
+  resultsBox.innerHTML = matches.map(m => `
+    <div class="search-result-item" style="--src-color:${m.dura.color}">
+      <div>
+        <div class="sri-name">${m.student.name} ${m.student.note ? '<span style="color:var(--sub);font-weight:400;font-size:12px">(' + m.student.note + ')</span>' : ''}</div>
+        <div class="sri-loc">${m.dura.icon} ${m.dura.name} — حلقة الأستاذ ${m.circle.teacher} (${m.circle.level})</div>
+      </div>
+    </div>
+  `).join('');
 }
 
 // ============================================================
@@ -1043,7 +1339,7 @@ function sendWhatsapp(e) {
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
-  renderAssessmentChecklist();
+  renderAssessment();
 });
 </script>
 </body>
